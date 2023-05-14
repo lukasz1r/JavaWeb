@@ -72,7 +72,7 @@ main{
 
     display: flex;
     justify-content: space-between;
-    padding:5% 2% 0% 2%;
+    padding:7% 2% 0% 2%;
 }
 
 nav{
@@ -117,4 +117,11 @@ aside{
 
 .buttonStyle:hover {
     outline: 2px solid #031d2a;
+}
+
+footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 4.7%;
 }
