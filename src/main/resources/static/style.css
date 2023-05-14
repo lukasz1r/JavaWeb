@@ -69,25 +69,22 @@ header button{
 
 
 main{
+
     display: flex;
     justify-content: space-between;
-    padding:0% 2% 0% 2%;
-    background-color: red;
+    padding:5% 2% 0% 2%;
 }
 
 nav{
     width: 18%;
-    background-color: yellow;
 }
 
 .wpisy{
     width: 54%;
-    background-color: green;
 }
 
 aside{
     width: 18%;
-    background-color: purple;
 }
 
 .loginForm {
