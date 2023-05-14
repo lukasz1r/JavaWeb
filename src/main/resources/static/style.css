@@ -1,0 +1,73 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+    font-family: "Century Gothic", serif;
+
+}
+
+header{
+    width: 100vw;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+
+    justify-content: space-between;
+
+}
+header div{
+    width: 30vw;
+    margin: 0px;
+    padding: 0px;
+}
+header img{
+    width: 50%;
+}
+
+.mainLogo{
+    padding: 1vw;
+    background-color: red;
+}
+
+
+.mainHeader{
+    font-size: 2vw;
+    text-align: center;
+    background-color: blue;
+    margin: 0px;
+    padding: 0px;
+}
+
+.mainHeader h1{
+    padding: 0px;
+    margin: 0px;
+}
+
+.loginButton{
+    background-color: green;
+    align-content: end;
+    display: flex;
+    justify-content: end;
+}
+
+header button{
+    width: auto;
+    font-size: 1em;
+    height: 4vh;
+    overflow: hidden;
+    margin: 1vw;
+
+}
+
+section{
+    width: 80%;
+    margin: 0 auto;
+    background-color: mintcream;
+
+}
+
+section h2{
+    margin: 1vw;
+    background-color: red;
+}
