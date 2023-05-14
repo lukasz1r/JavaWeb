@@ -1,76 +1,93 @@
 body{
-    margin: 0px;
-    padding: 0px;
+    margin: 0%;
+    padding: 0%;
     background-color: white;
     font-family: "Century Gothic", serif;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
+    max-width: 100%;
 }
 
 header{
-    width: 100vw;
+    width: 100%;
     height: auto;
-    margin: 0px;
-    padding: 0px;
     display: flex;
-
     justify-content: space-between;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 1;
 
 }
 header div{
-    width: 30vw;
-    margin: 0px;
-    padding: 0px;
+    width: 30%;
+    margin: 0%;
+    display: flex;
+    align-items: center;
 }
 header img{
     width: 50%;
 }
 
 .mainLogo{
-    padding: 1vw;
-    background-color: #0a496a;
+    /*background-color: red;*/
+
 }
 
 
 .mainHeader{
     font-size: 2vw;
     text-align: center;
-    background-color: #0a496a;
-    margin: 0px;
-    padding: 0px;
+    /*background-color: yellow;*/
+    justify-content: center;
 }
 
 .mainHeader h1{
-    padding: 0px;
-    margin: 0px;
-    color: #e5e2d6;
+    margin: 0%;
+    color: #0a496a;
 }
 
 .loginButton{
-    background-color: #0a496a;
-    align-content: end;
-    display: flex;
-    justify-content: end;
+    /*background-color: green;*/
+    align-items: center;
+    justify-content: center;
 }
 
 header button{
-    width: auto;
+    background-color: rgb(20, 81, 117);
+    border-radius: 0.6vw;
+    border: 0px;
+    color: white;
+    padding: 0.6vw 1vw 0.6vw 1vw;
+    text-align: center;
+    line-height: 1.2vw;
     font-size: 1em;
-    height: 4vh;
     overflow: hidden;
     margin: 1vw;
-
 }
 
-section{
-    width: 80%;
-    margin: 0 auto;
-    background-color: mintcream;
 
+main{
+    display: flex;
+    justify-content: space-between;
+    padding:0% 2% 0% 2%;
+    background-color: red;
 }
 
-section h2{
-    margin: 1vw;
-    background-color: #0d628d;
+nav{
+    width: 18%;
+    background-color: yellow;
+}
+
+.wpisy{
+    width: 54%;
+    background-color: green;
+}
+
+aside{
+    width: 18%;
+    background-color: purple;
 }
 
 .loginForm {
@@ -78,4 +95,29 @@ section h2{
     align-items: center;
     text-align: center;
     font-family: "Century Gothic", serif;
+}
+
+#welcomeUsername {
+    font-weight: bold;
+    color: #e5e2d6;
+}
+
+.buttonStyle {
+    font-weight: bold;
+    font-family: "Century Gothic", serif;
+    background-color: #063044;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+    margin-right: 18px;
+    line-height: 2px;
+}
+
+.buttonStyle:hover {
+    outline: 2px solid #031d2a;
 }
