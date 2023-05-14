@@ -4,7 +4,6 @@ body{
     background-color: white;
     font-family: "Century Gothic", serif;
     overflow-x: hidden;
-
 }
 
 header{
@@ -28,14 +27,14 @@ header img{
 
 .mainLogo{
     padding: 1vw;
-    background-color: red;
+    background-color: #0a496a;
 }
 
 
 .mainHeader{
     font-size: 2vw;
     text-align: center;
-    background-color: blue;
+    background-color: #0a496a;
     margin: 0px;
     padding: 0px;
 }
@@ -43,10 +42,11 @@ header img{
 .mainHeader h1{
     padding: 0px;
     margin: 0px;
+    color: #e5e2d6;
 }
 
 .loginButton{
-    background-color: green;
+    background-color: #0a496a;
     align-content: end;
     display: flex;
     justify-content: end;
@@ -57,7 +57,7 @@ header button{
     font-size: 1em;
     height: 4vh;
     overflow: hidden;
-    margin: 1vw 3vw 1vw 1vw;
+    margin: 1vw;
 
 }
 
@@ -70,5 +70,12 @@ section{
 
 section h2{
     margin: 1vw;
-    background-color: red;
+    background-color: #0d628d;
+}
+
+.loginForm {
+    margin-top: 100px;
+    align-items: center;
+    text-align: center;
+    font-family: "Century Gothic", serif;
 }
