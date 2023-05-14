@@ -13,9 +13,17 @@
 
     <div class="mainHeader"><h1>HomePage</h1></div>
 
-    <div class="loginButton">
-        <form method="GET" action="/login/login">
-            <button type="submit">Zaloguj się!</button>
+    <div class="loginButton" th:if="${session.isLogged}">
+        <form method="GET" th:action="@{/login/logout}">
+            <label style="color: #e5e2d6" th:text="'Witaj '"> </label>
+            <label id="welcomeUsername" th:text="${session.username}"></label>
+            <button class="buttonStyle" type="submit">Wyloguj się</button>
+        </form>
+    </div>
+
+    <div class="loginButton" th:unless="${session.isLogged}">
+        <form method="GET" th:action="@{/login/login}">
+            <button class="buttonStyle" type="submit">Zaloguj się</button>
         </form>
     </div>
 
