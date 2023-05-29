@@ -2,11 +2,6 @@ package com.example.demo.controllers;
 
 import com.example.demo.data.NoteData;
 import com.example.demo.data.NoteRepository;
-import com.example.demo.data.UserData;
-
-import jakarta.servlet.http.HttpSession;
-
-import org.apache.logging.log4j.util.PropertySource.Comparator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

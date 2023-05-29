@@ -27,14 +27,6 @@ public class NoteData implements Comparable<NoteData> {
      @Column(name = "date")
      private String date;
 
-     public NoteData(int user_id, String title, String note, String date) {
-          super();
-          this.user_id = user_id;
-          this.title = title;
-          this.note = note;
-          this.date = date;
-     }
-
      public int getId() {
           return id;
      }
@@ -86,7 +78,7 @@ public class NoteData implements Comparable<NoteData> {
           } else if (flag.equals("ascending")) {
                return this.date.compareTo(other.date);
           }
-          
+
           return 0;
      }
 }

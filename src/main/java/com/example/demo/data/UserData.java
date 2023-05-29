@@ -30,13 +30,6 @@ public class UserData {
      @JoinColumn(name = "id")
      private List<NoteData> notes;
 
-     public UserData(String username, String password, String role) {
-          super();
-          this.username = username;
-          this.password = password;
-          this.role = role;
-     }
-
      public int getId() {
           return id;
      }
