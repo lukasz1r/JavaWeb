@@ -33,14 +33,13 @@
 
 
 <main>
-    <div th:if="${session.isLogged}">
+    <div class="navDiv" th:if="${session.isLogged}">
         <nav>
             <h2>Menu</h2>
             <ul>
                 <form method="GET" th:action="@{/notes}">
                     <button class="buttonStyle">Twoje wpisy</button>
                 </form>
-                <button class="buttonStyle" onclick="location.href='dodaj-wpis'" type="button">Dodaj<br> Wpis</button>
                 <button class="buttonStyle">Konto</button>
             </ul>
         </nav>
@@ -57,7 +56,7 @@
         </div>
     </div>
 
-    <div th:if="${session.isLogged}">
+    <div  class="navDiv" th:if="${session.isLogged}">
         <aside>
             <h2>Kategorie</h2>
             <ul>

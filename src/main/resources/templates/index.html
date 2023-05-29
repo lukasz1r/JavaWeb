@@ -33,7 +33,7 @@
 
 
 <main>
-    <div th:if="${session.isLogged}">
+    <div  class="navDiv" th:if="${session.isLogged}">
         <nav>
             <h2>Menu</h2>
             <ul>
@@ -55,7 +55,7 @@
         </article>
     </div>
 
-    <div th:if="${session.isLogged}">
+    <div class="navDiv"  th:if="${session.isLogged}">
         <aside>
             <h2>Kategorie</h2>
             <ul>
