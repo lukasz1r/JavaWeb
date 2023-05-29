@@ -33,21 +33,28 @@
 
 
 <main>
-    <div th:if="${session.isLogged}">
+
+    <div class="navDiv" th:if="${session.isLogged}">
         <nav>
             <h2>Menu</h2>
             <ul>
-                <button class="buttonStyle" style="margin-bottom: 5px;">Dodaj</button>
+                <button class="buttonStyle" onclick="location.href='dodaj-wpis'" type="button">Dodaj<br> Wpis</button>
                 <button class="buttonStyle">Konto</button>
             </ul>
+
         </nav>
     </div>
 
     <div class="wpisy">
-     <h2 style="margin-right: 100px;">Twoje wpisy</h2>
-        <button class="buttonStyle" onclick="location.href='notes-asc'" type="button">☝</button>
-        <button class="buttonStyle" onclick="location.href='notes-desc'" type="button">👇</button>
-          <article th:each="note : ${notes}" th:if="${session.isLogged and session.id == note.user_id}">
+        <div id="wpisyHeader">
+             <h2 style="margin-right: 100px;">Twoje wpisy</h2>
+             <div>
+                <button class="buttonStyle" onclick="location.href='notes-asc'" type="button">☝</button>
+                <button class="buttonStyle" onclick="location.href='notes-desc'" type="button">👇</button>
+             </div>
+        </div>
+
+        <article th:each="note : ${notes}" th:if="${session.isLogged and session.id == note.user_id}">
                 <div style="display: flex; align-items: center; justify-content: space-between;">
                     <h3 th:text="${note.title}"></h3>
                     <ul>
@@ -60,7 +67,7 @@
           </article>
      </div>
 
-    <div th:if="${session.isLogged}">
+    <div class="navDiv" th:if="${session.isLogged}">
         <aside>
             <h2>Kategorie</h2>
             <ul>
