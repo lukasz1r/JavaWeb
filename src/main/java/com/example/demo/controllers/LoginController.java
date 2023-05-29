@@ -30,6 +30,7 @@ public class LoginController {
             if (user.getPassword().equals(password)) {
                 session.setAttribute("isLogged", true);
                 session.setAttribute("username", username);
+                session.setAttribute("id", user.getId());
                 return "redirect:/home";
             }
         }

@@ -2,6 +2,9 @@ package com.example.demo.controllers;
 
 import com.example.demo.data.NoteData;
 import com.example.demo.data.NoteRepository;
+import com.example.demo.data.UserData;
+
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,19 +17,29 @@ import java.util.List;
 public class NoteController {
 
     @Autowired
-    private NoteRepository repo;
+    private NoteRepository noteRepo;
+
+    @Autowired
+    private NoteRepository userRepo;
 
     @GetMapping("/n")
     public String getAllNotes(Model model){     
-        List<NoteData> notes = repo.findAll();
+        List<NoteData> notes = noteRepo.findAll();
         model.addAttribute("notes", notes);
         return "/notes";
     }
 
     @GetMapping("/home")
     public String getAllNotesHomePage(Model model) {
-        List<NoteData> notes = repo.findAll();
+        List<NoteData> notes = userRepo.findAll();
         model.addAttribute("notes", notes);
         return "/index";
+    }
+
+    @GetMapping("/notes")
+    public String getAllNotesUser(Model model) {
+        List<NoteData> notes = userRepo.findAll();
+        model.addAttribute("notes", notes);
+        return "/userNotes";
     }
 }

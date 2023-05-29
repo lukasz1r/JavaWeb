@@ -69,8 +69,8 @@ header button{
 
 main{
     display: flex;
-    justify-content: space-between;
     padding:7% 2% 0% 2%;
+    justify-content: center;
 }
 
 nav{
@@ -109,7 +109,7 @@ article .postDate{
 }
 
 aside{
-    width: 18%;
+    width: 10%;
 }
 
 .loginForm {
