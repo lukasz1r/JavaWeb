@@ -169,3 +169,43 @@ footer{
     border-color: #063044;
     border-width: 3px;
 }
+
+#dodajWpis{
+    margin-top: 2vh;
+    background-color: white;
+    border: 1px solid lightgrey;
+}
+
+#dodajWpis h2{
+    text-align: center;
+}
+
+#dodajWpis form{
+    width: auto;
+    /*background-color: green;*/
+    padding: 0px 3vw 2vw 3vw;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    /*align-items: center;*/
+
+
+}
+
+#dodajWpis form input{
+    width: 70%;
+    height: 4vh;
+    margin: 0 auto;
+    /*background-color: yellow;*/
+}
+
+#dodajWpis form #content{
+    height: 7vh!important;
+}
+
+#dodajWpis form .buttonStyle{
+    padding: 0px;
+    width: 30%;
+}

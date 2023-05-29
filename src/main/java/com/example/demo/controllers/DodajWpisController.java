@@ -16,5 +16,11 @@ public class DodajWpisController {
             return "/dodaj-wpis";
         }
 
+    @GetMapping("/dodaj-wpis-form")
+    public String dodajWpisDoBazy(){
+        //miejsce odpowiedzialne za zapis wpisu do bazy
+        return "/userNotes";
+    }
+
 
 }

@@ -47,12 +47,14 @@
     </div>
 
     <div class="wpisy">
-        <h2>Najnowsze wpisy</h2>
-        <article th:each="note : ${notes}">
-            <h3 th:text="${note.title}"></h3>
-            <p th:text="${note.date}"></p>
-            <p style="text-align: left;" th:text="${note.note}"></p>
-        </article>
+        <div id="dodajWpis">
+            <h2>Dodaj własny wpis</h2>
+            <form action="GET" th:action="@{/dodaj-wpis-form}">
+                <input type="text" id="title" name="title" placeholder="Podaj tytuł swojego wpisu"><br>
+                <input type="text" id="content" name="content" placeholder="Wpisz treść swojego wpisu"><br>
+                <input  class="buttonStyle" type="submit" value="Dodaj Wpis">
+            </form>
+        </div>
     </div>
 
     <div th:if="${session.isLogged}">
