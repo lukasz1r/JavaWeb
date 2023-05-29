@@ -13,7 +13,7 @@
 
     <div class="mainLogo"><img id="logo" src="logo.png"  alt=""/></div>
 
-    <div class="mainHeader"><h1>HomePage</h1></div>
+    <div class="mainHeader"><h1>UserNotesPage</h1></div>
 
     <div class="loginButton" th:if="${session.isLogged}">
         <form method="GET" th:action="@{/login/logout}">
@@ -38,22 +38,19 @@
             <h2>Menu</h2>
             <ul>
                 <button class="buttonStyle" style="margin-bottom: 5px;">Dodaj</button>
-                <form method="GET" th:action="@{/notes}">
-                    <button class="buttonStyle" style="margin-bottom: 5px;">Wpisy</button>
-                </form>
                 <button class="buttonStyle">Konto</button>
             </ul>
         </nav>
     </div>
 
     <div class="wpisy">
-        <h2>Najnowsze wpisy</h2>
-        <article th:each="note : ${notes}">
-            <h3 th:text="${note.title}"></h3>
-            <p th:text="${note.date}"></p>
-            <p style="text-align: left;" th:text="${note.note}"></p>
-        </article>
-    </div>
+     <h2 style="margin-right: 100px;">Twoje wpisy</h2>
+          <article th:each="note : ${notes}" th:if="${session.isLogged and session.id == note.user_id}">
+               <h3 th:text="${note.title}"></h3>
+               <p th:text="${note.date}"></p>
+               <p style="text-align: left;" th:text="${note.note}"></p>
+          </article>
+     </div>
 
     <div th:if="${session.isLogged}">
         <aside>
@@ -72,40 +69,3 @@
     <p><b>Autorzy: </b> Adam Grzeszczuk, Dawid Kobeszko, Łukasz Kaliszewicz, Zuzanna Kalinowska &#9935</p>
 </footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<img src="main.png" width="300" height="100"/>-->
-
-<!--<form style="margin-bottom: 10px" method="GET" action="/test/1">-->
-<!--  <button type="submit">1</button>-->
-<!--</form>-->
-<!--<form style="margin-bottom: 10px" method="GET" action="/test/2">-->
-<!--    <button type="submit">2</button>-->
-<!--</form>-->
-<!--<form style="margin-bottom: 10px" method="GET" action="/test/3">-->
-<!--    <button type="submit">3</button>-->
-<!--</form>-->
-<!--<form method="GET" action="/test/4">-->
-<!--    <button type="submit">4</button>-->
-<!--</form>-->
-</body>
-</html>
