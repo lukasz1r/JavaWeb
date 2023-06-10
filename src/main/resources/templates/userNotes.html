@@ -5,13 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <title>User Notes</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
 <header>
 
-    <div class="mainLogo"><a href="home"> <img id="logo" src="logo.png"  alt=""/></a></div>
+    <div class="mainLogo"><a href="/home"> <img id="logo" src="/logo.png"  alt=""/></a></div>
 
     <div class="mainHeader"><h1>User Notes</h1></div>
 
@@ -38,7 +38,7 @@
         <nav>
             <h2>Menu</h2>
             <ul>
-                <button class="buttonStyle" onclick="location.href='dodaj-wpis'" type="button">Dodaj<br> Wpis</button>
+                <button class="buttonStyle" onclick="location.href='/dodaj-wpis'" type="button">Dodaj<br> Wpis</button>
                 <button class="buttonStyle">Konto</button>
             </ul>
 
@@ -56,7 +56,8 @@
              </div>
         </div>
 
-        <article th:each="note : ${notes}" th:if="${session.isLogged and session.id == note.user_id}">
+        <div th:if="${notesCategory}">
+            <article th:each="note : ${notesCategory}" th:if="${session.isLogged and session.id == note.user_id}">
                 <div style="display: flex; align-items: center; justify-content: space-between;">
                     <h3 th:text="${note.title}"></h3>
                     <ul>
@@ -75,14 +76,39 @@
                 
                 <p style="text-align: left;" th:text="${note.note}"></p>
           </article>
+        </div>
+        <div th:unless="${notesCategory}">
+            <article th:each="note : ${notes}" th:if="${session.isLogged and session.id == note.user_id}">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <h3 th:text="${note.title}"></h3>
+                    <ul>
+                        <button class="buttonStyle" 
+                                style="padding: 15px; flex-direction: column; display: flex; margin-bottom: 10px;" 
+                                th:onclick="'window.location.href=\'' + @{/editNote/{id}(id=${note.id})} + '\''">✒️</button> 
+                        <button class="buttonStyle" 
+                                style="padding: 15px; flex-direction: column; display: flex;"
+                                th:onclick="'window.location.href=\'' + @{/noteDelete/{id}(id=${note.id})} + '\''">❌</button>
+                    </ul>
+                </div>
+                <p th:each="category : ${categories}" th:if="${note.category_id == category.id}">
+                    <span th:text="${category.name}"></span>
+                </p>
+                <p th:text="${note.date}"></p>
+                
+                <p style="text-align: left;" th:text="${note.note}"></p>
+          </article>
+        </div>
      </div>
 
     <div class="navDiv" th:if="${session.isLogged}">
         <aside>
             <h2>Kategorie</h2>
             <ul>
-                <button class="buttonStyle" style="margin-bottom: 5px;" th:each="category : ${categories}" th:text="${category.name}">
-                </button>
+                <div th:each="category : ${categories}">
+                    <form th:action="@{/userCategory/{id}(id=${category.id})}" method="POST">
+                        <button class="buttonStyle" style="margin-bottom: 5px;" th:text="${category.name}" type="submit"></button>
+                    </form>
+                </div>
             </ul>
         </aside>
     </div>

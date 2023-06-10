@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>HomePage</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 
     <script>
         function validateForm() {
@@ -28,7 +28,7 @@
 
 <header>
 
-    <div class="mainLogo"><a href="home"> <img id="logo" src="logo.png"  alt=""/></a></div>
+    <div class="mainLogo"><a href="/home"> <img id="logo" src="/logo.png"  alt=""/></a></div>
 
     <div class="mainHeader"><h1>Home Page</h1></div>
 
@@ -57,7 +57,7 @@
                 <form method="GET" th:action="@{/notes}">
                     <button class="buttonStyle">Twoje wpisy</button>
                 </form>
-                <button class="buttonStyle" onclick="location.href='dodaj-wpis'" type="button">Dodaj<br> Wpis</button>
+                <button class="buttonStyle" onclick="location.href='/dodaj-wpis'" type="button">Dodaj<br> Wpis</button>
                 <button class="buttonStyle">Konto</button>
                 <button th:if="${session.role} eq 'ADMIN'" 
                     class="buttonStyle" 
@@ -93,28 +93,44 @@
 
     <div class="wpisy" th:if="${session.isLogged}">
         <h2>Najnowsze wpisy</h2>
-        <article th:each="note : ${notes}">
-            <h3 th:text="${note.title}"></h3>
-            <p th:text="${note.date}"></p>
-            <p th:each="category : ${categories}" th:if="${note.category_id == category.id}">
-                <span th:text="${category.name}"></span>
-            </p>
-            <p style="text-align: left;" th:text="${note.note}"></p>
-        </article>
+        <div th:if="${notesCategory}">
+            <article th:each="note : ${notesCategory}">
+                <h3 th:text="${note.title}"></h3>
+                <p th:text="${note.date}"></p>
+                <p th:each="category : ${categories}" th:if="${note.categoryId == category.id}">
+                    <span th:text="${category.name}"></span>
+                </p>
+                <p style="text-align: left;" th:text="${note.note}"></p>
+            </article>
+        </div>
+        <div th:unless="${notesCategory}">
+            <article th:each="note : ${notes}">
+                <h3 th:text="${note.title}"></h3>
+                <p th:text="${note.date}"></p>
+                <p th:each="category : ${categories}" th:if="${note.categoryId == category.id}">
+                    <span th:text="${category.name}"></span>
+                </p>
+                <p style="text-align: left;" th:text="${note.note}"></p>
+            </article>
+        </div>
     </div>
 
-    <div class="navDiv"  th:if="${session.isLogged}">
+    <div class="navDiv" th:if="${session.isLogged}">
         <aside>
             <h2>Kategorie
             <button class="buttonStyle" onclick="showCategoryForm()">➕</button>
             <div id="categoryForm" style="display: none; align-items: center; text-align: center;">
-                <form th:action="@{/addCategory}" method="post">
+                <form th:action="@{/addCategory}" method="POST">
                   <label style="font-size: 10px">Nazwa kategorii:</label>
                   <input class="inputStyle" type="text" id="categoryName" name="categoryName" required>
                   <button style="margin-top: 10px;" class="buttonStyle" type="submit">✔️</button>
                 </form>
             </div></h2>
-            <button class="buttonStyle" style="margin-bottom: 5px;" th:each="category : ${categories}" th:text="${category.name}"></button>
+            <div th:each="category : ${categories}">
+                <form th:action="@{/category/{id}(id=${category.id})}" method="POST">
+                    <button class="buttonStyle" style="margin-bottom: 5px;" th:text="${category.name}" type="submit"></button>
+                </form>
+            </div>
         </aside>
     </div>
 

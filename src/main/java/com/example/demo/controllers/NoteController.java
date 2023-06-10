@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.List;
@@ -109,4 +110,31 @@ public class NoteController {
         return "redirect:/notes";
     }
 
+    @PostMapping("/category/{id}")
+    public String redirectToHome(@PathVariable("id") int id) {
+        return "redirect:/home/category/" + id;
+    }
+
+    @GetMapping("/home/category/{id}")
+    public String showNotesByCategory(@PathVariable("id") int id, Model model) {
+        List<NoteData> notes = noteRepo.findAllByCategory(id);
+        model.addAttribute("notesCategory", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/index";
+    }
+
+    @PostMapping("/userCategory/{id}")
+    public String redirectToNotes(@PathVariable("id") int id) {
+        return "redirect:/user/category/" + id;
+    }
+
+    @GetMapping("/user/category/{id}")
+    public String showNotesByCategoryUser(@PathVariable("id") int id, Model model) {
+        List<NoteData> notes = noteRepo.findAllByCategory(id);
+        model.addAttribute("notesCategory", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/userNotes";
+    }
 }

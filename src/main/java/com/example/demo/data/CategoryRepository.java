@@ -14,5 +14,4 @@ public interface CategoryRepository extends JpaRepository<CategoryData, Integer>
      List<CategoryData> findAll();
      List<CategoryData> findAllByOrderByNameAsc();
      List<CategoryData> findAllByOrderByNameDesc();
-     
 }

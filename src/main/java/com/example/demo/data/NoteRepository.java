@@ -13,6 +13,9 @@ public interface NoteRepository extends JpaRepository<NoteData, Integer> {
      NoteData findById(int id);
      List<NoteData> findAll();
 
+     @Query(value = "SELECT * FROM notes WHERE category_id = :id", nativeQuery = true)
+     List<NoteData> findAllByCategory(@Param("id") int id);
+
      @Query(value = "SELECT notes.* FROM notes INNER JOIN categories ON notes.category_id = categories.id ORDER BY categories.name ASC", nativeQuery = true)
      List<NoteData> orderedByNameAsc();
 
