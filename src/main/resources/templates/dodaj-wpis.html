@@ -49,9 +49,9 @@
         <div id="dodajWpis">
             <h2>Dodaj własny wpis</h2>
             <form action="GET" th:action="@{/dodaj-wpis-form}">
-                <input type="text" id="title" name="title" placeholder="Podaj tytuł swojego wpisu" required><br>
-                <input type="text" id="content" name="content" placeholder="Wpisz treść swojego wpisu" required><br>
-                <select name="category_id" id="category_id">
+                <input class="inputStyle" type="text" id="title" name="title" placeholder="Podaj tytuł swojego wpisu" required><br>
+                <input class="inputStyle" type="text" id="content" name="content" placeholder="Wpisz treść swojego wpisu" required><br>
+                <select class="inputStyle" style="margin-left: 195px; margin-right: 195px;" name="category_id" id="category_id">
                     <option disabled selected >Kategoria</option>
                     <option th:each="category : ${categories}" 
                         th:text="${category.name}"
