@@ -6,6 +6,23 @@
     <meta charset="UTF-8">
     <title>HomePage</title>
     <link rel="stylesheet" href="style.css">
+
+    <script>
+        function validateForm() {
+            var password = document.getElementById("password").value;
+            var pattern = /^(?=.*\d)(?=.*[!@#$%^&*]).*$/;
+
+            if (!pattern.test(password)) {
+                alert("Hasło musi zawierać co najmniej jedną literę, liczbę i znak specjalny!");
+                var dispalyNone = document.getElementById("dispalyNone");
+                dispalyNone.style.display = "block";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
 </head>
 <body>
 
@@ -56,14 +73,15 @@
         <!--        <img src="logo.png" alt="logo notegods" width="70%"/>-->
         <p>NoteGods pomaga zapisywać i udostępniać różne informacje i materiały.</p>
 
-        <form action="/login/register">
+        <form onsubmit="return validateForm()" action="/login/register">
             <div class="loginForm">
                 <div>
                     <label> Login: </label><br>
                     <input class="inputStyle" style="margin-top: 5px; margin-bottom: 15px" type="text" name="username"/><br>
-                    <div th:if="${message}" th:text="${message}"></div>
+                    <div id="kontoIstnieje"  th:if="${message}" th:text="${message}"></div>
                     <label> Hasło: </label><br>
-                    <input class="inputStyle" style="margin-top: 5px" type="password" name="password"/><br>
+                    <input class="inputStyle" style="margin-top: 5px" type="password" name="password" id="password"/><br>
+                    <p id="dispalyNone">Hasło musi zawierać co najmniej jedną literę, liczbę i znak specjalny!</p>
                 </div>
 
                 <input class="buttonStyle" style="margin-top: 15px; margin-left: auto; margin-right: auto;" type="submit" value="Zarejestruj się"/>
@@ -88,11 +106,7 @@
     <div class="navDiv"  th:if="${session.isLogged}">
         <aside>
             <h2>Kategorie</h2>
-            <ul>
-                <button class="buttonStyle" style="margin-bottom: 5px;">Bankowość</button>
-                <button class="buttonStyle" style="margin-bottom: 5px;">Sport</button>
-                <button class="buttonStyle">Zdrowie</button>
-            </ul>
+            <button class="buttonStyle" style="margin-bottom: 5px;" th:each="category : ${categories}" th:text="${category.name}"></button>
         </aside>
     </div>
 
