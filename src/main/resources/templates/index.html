@@ -73,7 +73,7 @@
 
     </div>
 
-    <div th:if="${session.isLogged}">
+    <div class="wpisy" th:if="${session.isLogged}">
         <h2>Najnowsze wpisy</h2>
         <article th:each="note : ${notes}">
             <h3 th:text="${note.title}"></h3>
