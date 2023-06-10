@@ -1,0 +1,20 @@
+"filename", "language", "SQL", "HTML", "CSS", "Java", "Java Properties", "comment", "blank", "total"
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\Application.java", "Java", 0, 0, 0, 9, 0, 0, 4, 13
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\controllers\DodajWpisController.java", "Java", 0, 0, 0, 28, 0, 0, 11, 39
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\controllers\LoginController.java", "Java", 0, 0, 0, 37, 0, 0, 8, 45
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\controllers\NoteController.java", "Java", 0, 0, 0, 51, 0, 0, 10, 61
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\controllers\UserController.java", "Java", 0, 0, 0, 19, 0, 0, 6, 25
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\data\NoteData.java", "Java", 0, 0, 0, 65, 0, 0, 20, 85
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\data\NoteRepository.java", "Java", 0, 0, 0, 7, 0, 0, 3, 10
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\data\UserData.java", "Java", 0, 0, 0, 49, 0, 0, 16, 65
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\data\UserRepository.java", "Java", 0, 0, 0, 10, 0, 0, 3, 13
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\application.properties", "Java Properties", 0, 0, 0, 0, 10, 2, 5, 17
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\scripts.sql", "SQL", 0, 0, 0, 0, 0, 0, 1, 1
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\static\style.css", "CSS", 0, 0, 170, 0, 0, 8, 33, 211
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\templates\dodaj-wpis.html", "HTML", 0, 63, 0, 0, 0, 14, 36, 113
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\templates\index.html", "HTML", 0, 61, 0, 0, 0, 14, 36, 111
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\templates\login.html", "HTML", 0, 26, 0, 0, 0, 0, 8, 34
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\templates\notes.html", "HTML", 0, 53, 0, 0, 0, 0, 4, 57
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\templates\userNotes.html", "HTML", 0, 64, 0, 0, 0, 1, 15, 80
+"j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\templates\users.html", "HTML", 0, 51, 0, 0, 0, 0, 4, 55
+"Total", "-", 0, 318, 170, 275, 10, 39, 223, 1035
