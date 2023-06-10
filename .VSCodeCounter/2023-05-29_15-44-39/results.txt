@@ -1,0 +1,57 @@
+Date : 2023-05-29 15:44:39
+Directory : j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\
+Total : 18 files,  773 codes, 39 comments, 223 blanks, all 1035 lines
+
+Languages
++-----------------+------------+------------+------------+------------+------------+
+| language        | files      | code       | comment    | blank      | total      |
++-----------------+------------+------------+------------+------------+------------+
+| HTML            |          6 |        318 |         29 |        103 |        450 |
+| Java            |          9 |        275 |          0 |         81 |        356 |
+| CSS             |          1 |        170 |          8 |         33 |        211 |
+| Java Properties |          1 |         10 |          2 |          5 |         17 |
+| SQL             |          1 |          0 |          0 |          1 |          1 |
++-----------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                          | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                             |         18 |        773 |         39 |        223 |      1,035 |
+| java                                                                                                          |          9 |        275 |          0 |         81 |        356 |
+| java\com                                                                                                      |          9 |        275 |          0 |         81 |        356 |
+| java\com\example                                                                                              |          9 |        275 |          0 |         81 |        356 |
+| java\com\example\demo                                                                                         |          9 |        275 |          0 |         81 |        356 |
+| java\com\example\demo (Files)                                                                                 |          1 |          9 |          0 |          4 |         13 |
+| java\com\example\demo\controllers                                                                             |          4 |        135 |          0 |         35 |        170 |
+| java\com\example\demo\data                                                                                    |          4 |        131 |          0 |         42 |        173 |
+| resources                                                                                                     |          9 |        498 |         39 |        142 |        679 |
+| resources (Files)                                                                                             |          2 |         10 |          2 |          6 |         18 |
+| resources\static                                                                                              |          1 |        170 |          8 |         33 |        211 |
+| resources\templates                                                                                           |          6 |        318 |         29 |        103 |        450 |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| filename                                                                                                      | language        | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\Application.java                     | Java            |          9 |          0 |          4 |         13 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\controllers\DodajWpisController.java | Java            |         28 |          0 |         11 |         39 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\controllers\LoginController.java     | Java            |         37 |          0 |          8 |         45 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\controllers\NoteController.java      | Java            |         51 |          0 |         10 |         61 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\controllers\UserController.java      | Java            |         19 |          0 |          6 |         25 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\data\NoteData.java                   | Java            |         65 |          0 |         20 |         85 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\data\NoteRepository.java             | Java            |          7 |          0 |          3 |         10 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\data\UserData.java                   | Java            |         49 |          0 |         16 |         65 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\java\com\example\demo\data\UserRepository.java             | Java            |         10 |          0 |          3 |         13 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\application.properties                           | Java Properties |         10 |          2 |          5 |         17 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\scripts.sql                                      | SQL             |          0 |          0 |          1 |          1 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\static\style.css                                 | CSS             |        170 |          8 |         33 |        211 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\templates\dodaj-wpis.html                        | HTML            |         63 |         14 |         36 |        113 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\templates\index.html                             | HTML            |         61 |         14 |         36 |        111 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\templates\login.html                             | HTML            |         26 |          0 |          8 |         34 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\templates\notes.html                             | HTML            |         53 |          0 |          4 |         57 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\templates\userNotes.html                         | HTML            |         64 |          1 |         15 |         80 |
+| j:\Mój dysk\IntelliJ\Projekt\JavaWeb-main\src\main\resources\templates\users.html                             | HTML            |         51 |          0 |          4 |         55 |
+| Total                                                                                                         |                 |        773 |         39 |        223 |      1,035 |
++---------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
