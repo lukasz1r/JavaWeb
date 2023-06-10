@@ -84,7 +84,7 @@ public class NoteController {
         note.setDate(editedNote.getDate());
         note.setCategoryId(editedNote.getCategoryId());
         noteRepo.save(note);
-        return "redirect:/home";
+        return "redirect:/notes";
     }
 
 }
