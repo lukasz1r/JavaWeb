@@ -83,6 +83,23 @@ public class NoteController {
         return "/userNotes";
     }
 
+    @GetMapping("/popular-asc")
+    public String sortByPopularAsc(Model model) {
+        List<NoteData> notes = noteRepo.orderedByPopularCategoryAsc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/index";
+    }
+
+    @GetMapping("/popular-desc")
+    public String sortByPopularDesc(Model model) {
+        List<NoteData> notes = noteRepo.orderedByPopularCategoryDesc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/index";
+    }
 
     @GetMapping("/noteDelete/{id}")
     public String deleteNote(@PathVariable("id") int id) {

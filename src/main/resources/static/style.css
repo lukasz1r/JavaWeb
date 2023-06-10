@@ -330,3 +330,8 @@ select.inputStyle {
     font-size: 1vw;
     font-weight: 600!important;
 }
+
+#najnowszeWpisyHeader button {
+    padding: 0.5vw;
+    text-align: center;
+}

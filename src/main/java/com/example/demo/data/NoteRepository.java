@@ -28,6 +28,12 @@ public interface NoteRepository extends JpaRepository<NoteData, Integer> {
      @Query(value = "SELECT * FROM notes ORDER BY date DESC", nativeQuery = true)
      List<NoteData> orderedByDateDesc();
 
+     @Query(value = "SELECT n.* FROM notes n JOIN categories c ON n.category_id = c.id ORDER BY (SELECT COUNT(*) FROM notes WHERE category_id = n.category_id) ASC, n.category_id DESC", nativeQuery = true)
+     List<NoteData> orderedByPopularCategoryAsc();
+
+     @Query(value = "SELECT n.* FROM notes n JOIN categories c ON n.category_id = c.id ORDER BY (SELECT COUNT(*) FROM notes WHERE category_id = n.category_id) DESC, n.category_id ASC", nativeQuery = true)
+     List<NoteData> orderedByPopularCategoryDesc();
+
      @Modifying
      @Query(value = "DELETE FROM notes WHERE id = :id", nativeQuery = true)
      int deleteById(@Param("id") int id);

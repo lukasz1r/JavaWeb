@@ -92,7 +92,13 @@
     </div>
 
     <div class="wpisy" th:if="${session.isLogged}">
+        <div id="najnowszeWpisyHeader" style="display: flex; flex-direction: row; justify-content: space-between;">
         <h2>Najnowsze wpisy</h2>
+            <div style="margin-top: 1.5vw;">
+                <button class="buttonStyle" onclick="location.href='popular-asc'" type="button">P ⮝</button>
+                <button class="buttonStyle" onclick="location.href='popular-desc'" type="button">P ⮟</button>
+            </div>
+        </div>
         <div th:if="${notesCategory}">
             <article th:each="note : ${notesCategory}">
                 <h3 th:text="${note.title}"></h3>
