@@ -78,7 +78,9 @@
         <article th:each="note : ${notes}">
             <h3 th:text="${note.title}"></h3>
             <p th:text="${note.date}"></p>
-            <p th:text="${note.category_id}">
+            <p th:each="category : ${categories}" th:if="${note.category_id == category.id}">
+                <span th:text="${category.name}"></span>
+            </p>
             <p style="text-align: left;" th:text="${note.note}"></p>
         </article>
     </div>

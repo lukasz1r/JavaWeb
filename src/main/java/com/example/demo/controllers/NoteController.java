@@ -1,5 +1,7 @@
 package com.example.demo.controllers;
 
+import com.example.demo.data.CategoryData;
+import com.example.demo.data.CategoryRepository;
 import com.example.demo.data.NoteData;
 import com.example.demo.data.NoteRepository;
 import com.example.demo.data.UserData;
@@ -22,34 +24,31 @@ public class NoteController {
     private NoteRepository noteRepo;
 
     @Autowired
-    private NoteRepository userRepo;
-
-    @GetMapping("/n")
-    public String getAllNotes(Model model){     
-        List<NoteData> notes = noteRepo.findAll();
-        model.addAttribute("notes", notes);
-        return "/notes";
-    }
+    private CategoryRepository categoryRepo;
 
     @GetMapping("/home")
     public String getAllNotesHomePage(Model model) {
-        List<NoteData> notes = userRepo.findAll();
+        List<NoteData> notes = noteRepo.findAll();
         Collections.sort(notes);
         model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
         return "/index";
     }
 
     @GetMapping("/notes")
     public String getAllNotesUser(Model model) {
-        List<NoteData> notes = userRepo.findAll();
+        List<NoteData> notes = noteRepo.findAll();
         model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
         return "/userNotes";
     }
 
     @GetMapping("/notes-asc")
     public String sortNotesByDateAsc(Model model)
     {   
-        List<NoteData> notes = userRepo.findAll();
+        List<NoteData> notes = noteRepo.findAll();
         Collections.sort(notes, (n1, n2) -> n1.compareTo(n2, "ascending"));
         model.addAttribute("notes", notes);
         return "/userNotes";
@@ -58,7 +57,7 @@ public class NoteController {
     @GetMapping("/notes-desc")
     public String sortNotesByDateDesc(Model model)
     {
-        List<NoteData> notes = userRepo.findAll();
+        List<NoteData> notes = noteRepo.findAll();
         Collections.sort(notes, (n1, n2) -> n1.compareTo(n2, "descending"));
         model.addAttribute("notes", notes);
         return "/userNotes";
