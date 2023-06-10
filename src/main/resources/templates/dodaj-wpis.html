@@ -51,7 +51,14 @@
             <form action="GET" th:action="@{/dodaj-wpis-form}">
                 <input type="text" id="title" name="title" placeholder="Podaj tytuł swojego wpisu"><br>
                 <input type="text" id="content" name="content" placeholder="Wpisz treść swojego wpisu"><br>
-                <input  class="buttonStyle" type="submit" value="Dodaj Wpis">
+                <select name="category_id" id="category_id">
+                    <option disabled selected>Kategoria</option>
+                    <option th:each="category : ${categories}" 
+                        th:text="${category.name}"
+                        th:value="${category.id}">
+                    </option>
+                </select><br>
+                <input class="buttonStyle" type="submit" value="Dodaj Wpis">
             </form>
         </div>
     </div>

@@ -28,6 +28,9 @@ public class NoteData implements Comparable<NoteData> {
      @Column(name = "date")
      private String date;
 
+     @Column(name = "category_id")
+     private int category_id;
+
      public int getId() {
           return id;
      }
@@ -46,6 +49,10 @@ public class NoteData implements Comparable<NoteData> {
 
      public String getDate() {
           return date;
+     }
+
+     public int getCategoryId() {
+          return category_id;
      }
 
      public void setId(int id) {
@@ -67,6 +74,11 @@ public class NoteData implements Comparable<NoteData> {
      public void setDate(String date) {
           this.date = date;
      }
+
+     public void setCategoryId(int category_id) {
+          this.category_id = category_id;
+     }
+
 
      @Override
      public int compareTo(NoteData other) {
