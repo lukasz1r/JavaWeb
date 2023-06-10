@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -39,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping("/editUser/{id}")
-    public String editUser(@PathVariable("id") int id, @ModelAttribute("user") UserData editedUser) {
+    public String editUser(@PathVariable("id") int id, UserData editedUser) {
         UserData user = userRepository.findById(id);
         user.setUsername(editedUser.getUsername());
         user.setPassword(editedUser.getPassword());
