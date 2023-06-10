@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "categories")
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryData implements Comparable<CategoryData> {
+public class CategoryData {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      @Column(name = "id")
@@ -45,20 +45,5 @@ public class CategoryData implements Comparable<CategoryData> {
      
      public void setCategoryDesc(String description) {
           this.description = description;
-     }
-
-     @Override
-     public int compareTo(CategoryData other) {
-         return this.name.compareTo(other.name);
-     }
-     
-     public int compareTo(CategoryData other, String flag) {
-          if (flag.equals("descending")) {
-               return other.name.compareTo(this.name);
-          } else if (flag.equals("ascending")) {
-               return this.name.compareTo(other.name);
-          }
-
-          return 0;
      }
 }

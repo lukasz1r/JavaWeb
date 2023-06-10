@@ -26,8 +26,7 @@ public class NoteController {
 
     @GetMapping("/home")
     public String getAllNotesHomePage(Model model) {
-        List<NoteData> notes = noteRepo.findAll();
-        Collections.sort(notes);
+        List<NoteData> notes = noteRepo.orderedByDateDesc();
         model.addAttribute("notes", notes);
         List<CategoryData> categories = categoryRepo.findAll();
         model.addAttribute("categories", categories);
@@ -46,8 +45,7 @@ public class NoteController {
     @GetMapping("/date-asc")
     public String sortNotesByDateAsc(Model model)
     {   
-        List<NoteData> notes = noteRepo.findAll();
-        Collections.sort(notes, (n1, n2) -> n1.compareTo(n2, "ascending"));
+        List<NoteData> notes = noteRepo.orderedByDateAsc();
         model.addAttribute("notes", notes);
         List<CategoryData> categories = categoryRepo.findAll();
         model.addAttribute("categories", categories);
@@ -57,13 +55,33 @@ public class NoteController {
     @GetMapping("/date-desc")
     public String sortNotesByDateDesc(Model model)
     {
-        List<NoteData> notes = noteRepo.findAll();
-        Collections.sort(notes, (n1, n2) -> n1.compareTo(n2, "descending"));
+        List<NoteData> notes = noteRepo.orderedByDateDesc();
         model.addAttribute("notes", notes);
         List<CategoryData> categories = categoryRepo.findAll();
         model.addAttribute("categories", categories);
         return "/userNotes";
     }
+
+    @GetMapping("/category-desc")
+    public String sortNotesByCategoryDesc(Model model)
+    {
+        List<NoteData> notes = noteRepo.orderedByNameDesc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/userNotes";
+    }
+
+    @GetMapping("/category-asc")
+    public String sortNotesByCategoryAsc(Model model)
+    {   
+        List<NoteData> notes = noteRepo.orderedByNameAsc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/userNotes";
+    }
+
 
     @GetMapping("/noteDelete/{id}")
     public String deleteNote(@PathVariable("id") int id) {
