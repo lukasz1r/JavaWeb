@@ -105,6 +105,12 @@ nav{
     padding-bottom: 2vw;
 }
 
+.navDiv h2 button {
+    height: 2vw;
+    width: 2vw;
+    padding: 0px;
+}
+
 article{
     border: solid 1px rgba(211, 211, 211, 0.35);
     margin: 0vw 0vw 2.3vw 0vw;

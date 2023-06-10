@@ -105,10 +105,26 @@
 
     <div class="navDiv"  th:if="${session.isLogged}">
         <aside>
-            <h2>Kategorie</h2>
+            <h2>Kategorie
+            <button class="buttonStyle" onclick="showCategoryForm()">➕</button>
+            <div id="categoryForm" style="display: none; align-items: center; text-align: center;">
+                <form th:action="@{/addCategory}" method="post">
+                  <label style="font-size: 10px">Nazwa kategorii:</label>
+                  <input class="inputStyle" type="text" id="categoryName" name="categoryName" required>
+                  <button style="margin-top: 10px;" class="buttonStyle" type="submit">✔️</button>
+                </form>
+            </div></h2>
             <button class="buttonStyle" style="margin-bottom: 5px;" th:each="category : ${categories}" th:text="${category.name}"></button>
         </aside>
     </div>
+
+
+    <script th:inline="javascript">
+        function showCategoryForm() {
+            var categoryForm = document.getElementById('categoryForm');
+            categoryForm.style.display = 'block';
+        }
+    </script>
 
 </main>
 
