@@ -28,6 +28,16 @@
 
                     <label for="date">Date:</label><br>
                     <input class="inputStyle" type="date" id="date" name="date" th:value="${note.date}" /><br>
+
+                    <label for="category_id">Kategoria:</label><br>
+                    <select class="inputStyle" name="category_id" id="category_id">
+                         <option disabled selected>Kategoria</option>
+                         <option th:each="category : ${categories}" 
+                             th:text="${category.name}"
+                             th:value="${category.id}"
+                             th:selected="${note.category_id == category.id}">
+                         </option>
+                     </select><br>
                     
                     <button class="buttonStyle" type="submit">Save</button>
                </form>

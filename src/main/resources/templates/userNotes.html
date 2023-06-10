@@ -79,9 +79,8 @@
         <aside>
             <h2>Kategorie</h2>
             <ul>
-                <button class="buttonStyle" style="margin-bottom: 5px;">Bankowość</button>
-                <button class="buttonStyle" style="margin-bottom: 5px;">Sport</button>
-                <button class="buttonStyle">Zdrowie</button>
+                <button class="buttonStyle" style="margin-bottom: 5px;" th:each="category : ${categories}" th:text="${category.name}">
+                </button>
             </ul>
         </aside>
     </div>

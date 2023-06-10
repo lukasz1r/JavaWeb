@@ -30,11 +30,11 @@ public class DodajWpisController {
     private CategoryRepository categoryRepository;
 
     @GetMapping("/dodaj-wpis")
-        public String returnDodajWpis(Model model){
-            List<CategoryData> categories = categoryRepository.findAll();
-            model.addAttribute("categories", categories);
-            return "/dodaj-wpis";
-        }
+    public String returnDodajWpis(Model model){
+        List<CategoryData> categories = categoryRepository.findAll();
+        model.addAttribute("categories", categories);
+        return "/dodaj-wpis";
+    }
 
     @GetMapping("/dodaj-wpis-form")
     public String dodajWpisDoBazy(@RequestParam("title") String title, @RequestParam("content") String note, @RequestParam("category_id") int category_id, HttpSession session) {
