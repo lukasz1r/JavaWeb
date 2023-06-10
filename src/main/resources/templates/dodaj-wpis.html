@@ -49,13 +49,14 @@
         <div id="dodajWpis">
             <h2>Dodaj własny wpis</h2>
             <form action="GET" th:action="@{/dodaj-wpis-form}">
-                <input type="text" id="title" name="title" placeholder="Podaj tytuł swojego wpisu"><br>
-                <input type="text" id="content" name="content" placeholder="Wpisz treść swojego wpisu"><br>
+                <input type="text" id="title" name="title" placeholder="Podaj tytuł swojego wpisu" required><br>
+                <input type="text" id="content" name="content" placeholder="Wpisz treść swojego wpisu" required><br>
                 <select name="category_id" id="category_id">
-                    <option disabled selected>Kategoria</option>
+                    <option disabled selected >Kategoria</option>
                     <option th:each="category : ${categories}" 
                         th:text="${category.name}"
-                        th:value="${category.id}">
+                        th:value="${category.id}"
+                        th:selected="${category.id == 1}">
                     </option>
                 </select><br>
                 <input class="buttonStyle" type="submit" value="Dodaj Wpis">
