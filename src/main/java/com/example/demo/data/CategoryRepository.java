@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface CategoryRepository extends JpaRepository<CategoryData, Integer> {
      CategoryData findById(int id);
      List<CategoryData> findAll();
+     List<CategoryData> findAllByOrderByNameAsc();
+     List<CategoryData> findAllByOrderByNameDesc();
+     
 }

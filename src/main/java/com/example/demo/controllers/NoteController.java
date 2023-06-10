@@ -43,7 +43,7 @@ public class NoteController {
         return "/userNotes";
     }
 
-    @GetMapping("/notes-asc")
+    @GetMapping("/date-asc")
     public String sortNotesByDateAsc(Model model)
     {   
         List<NoteData> notes = noteRepo.findAll();
@@ -54,7 +54,7 @@ public class NoteController {
         return "/userNotes";
     }
 
-    @GetMapping("/notes-desc")
+    @GetMapping("/date-desc")
     public String sortNotesByDateDesc(Model model)
     {
         List<NoteData> notes = noteRepo.findAll();
