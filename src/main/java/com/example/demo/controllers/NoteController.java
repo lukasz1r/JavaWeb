@@ -49,7 +49,9 @@ public class NoteController {
         List<NoteData> notes = noteRepo.findAll();
         Collections.sort(notes, (n1, n2) -> n1.compareTo(n2, "ascending"));
         model.addAttribute("notes", notes);
-        return "redirect:/notes";
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/userNotes";
     }
 
     @GetMapping("/notes-desc")
@@ -58,7 +60,9 @@ public class NoteController {
         List<NoteData> notes = noteRepo.findAll();
         Collections.sort(notes, (n1, n2) -> n1.compareTo(n2, "descending"));
         model.addAttribute("notes", notes);
-        return "redirect:/notes";
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/userNotes";
     }
 
     @GetMapping("/noteDelete/{id}")
