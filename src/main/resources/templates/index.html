@@ -50,7 +50,7 @@
 
 
 <main>
-    <div  class="navDiv" th:if="${session.isLogged}">
+    <div  class="navDiv" th:if="${session.isLogged} and (${session.role eq 'ADMIN'} or ${session.role eq 'FULLUSER'})">
         <nav>
             <h2>Menu</h2>
             <ul>
@@ -123,7 +123,7 @@
         </div>
     </div>
 
-    <div class="navDiv" th:if="${session.isLogged}">
+    <div class="navDiv" th:if="${session.isLogged} and (${session.role eq 'ADMIN'} or ${session.role eq 'FULLUSER'})">
         <aside>
             <h2>Kategorie
             <button class="buttonStyle" onclick="showCategoryForm()">➕</button>
