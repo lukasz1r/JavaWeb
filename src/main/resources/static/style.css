@@ -266,6 +266,7 @@ footer{
 
 #dodajWpis form .buttonStyle{
     padding: 0px;
+    height: 4vw;
     width: 30%;
 }
 
@@ -341,4 +342,15 @@ select.inputStyle {
 
 article {
     border-radius: 10px;
+}
+
+.wpisy article button {
+    height: 2vw;
+    width: 3vw;
+    padding: 0px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
