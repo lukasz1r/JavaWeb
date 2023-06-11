@@ -338,3 +338,7 @@ select.inputStyle {
     padding: 0.5vw;
     text-align: center;
 }
+
+article {
+    border-radius: 10px;
+}
