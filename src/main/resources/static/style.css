@@ -131,9 +131,9 @@ article .buttonStyle:nth-child(2) {
     right: 20px;
 }
 
-article #shareBtn {
+article ul > button:nth-child(3) {
     position: absolute;
-    right: 160px;
+    right: 165px;
 }
 
 article .postContext{

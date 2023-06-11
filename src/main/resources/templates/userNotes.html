@@ -95,10 +95,10 @@
                         <button class="buttonStyle"
                                 style="padding: 15px; flex-direction: column; display: flex;"
                                 th:onclick="'window.location.href=\'' + @{/noteDelete/{id}(id=${note.id})} + '\''">❌</button>
+                        <button  class="buttonStyle"
+                           style="padding: 15px; flex-direction: column; display: flex;"
+                           th:onclick="'window.location.href=\'' + @{/shareNoteById/{id}(id=${note.id})} + '\''">🔗</button>
                     </ul>
-                    <a id="shareBtn" class="buttonStyle"
-                       style="padding: 15px; flex-direction: column; display: flex;"
-                       th:href="@{/shareNoteById/{id}(id=${note.id})}">🔗</a>
                 </div>
                 <p th:each="category : ${categories}" th:if="${note.category_id == category.id}">
                     <span th:text="${category.name}"></span>
