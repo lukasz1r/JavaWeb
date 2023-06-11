@@ -54,7 +54,7 @@ public class LoginController {
             return "redirect:/home";
         } else {
             UserData user = new UserData((int) repo.count() + 1, username, password, "USER");
-        repo.save(user);
+            repo.save(user);
         }
         return "redirect:/home";
     }

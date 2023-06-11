@@ -38,7 +38,6 @@ public class CategoryData {
           this.id = id;
      }
 
-     
      public void setCategoryName(String name) {
           this.name = name;
      }

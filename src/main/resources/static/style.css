@@ -235,6 +235,9 @@ footer{
     margin-top: 2vh;
     background-color: white;
     border: 1px solid lightgrey;
+    border-radius: 10px;
+    margin-left: -10vw;
+    margin-right: 7vw;
 }
 
 #dodajWpis h2{
@@ -268,6 +271,7 @@ footer{
 
 #dodajWpis form .buttonStyle{
     padding: 0px;
+    height: 4vw;
     width: 30%;
 }
 
@@ -334,4 +338,24 @@ select.inputStyle {
 #LoggedOutHome a p{
     font-size: 1vw;
     font-weight: 600!important;
+}
+
+#najnowszeWpisyHeader button {
+    padding: 0.5vw;
+    text-align: center;
+}
+
+article {
+    border-radius: 10px;
+}
+
+.wpisy article button {
+    height: 2vw;
+    width: 3vw;
+    padding: 0px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

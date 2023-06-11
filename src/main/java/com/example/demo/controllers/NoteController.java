@@ -45,9 +45,30 @@ public class NoteController {
         return "/userNotes";
     }
 
+    @GetMapping("/title-asc")
+    public String sortNotesByTitleAsc(Model model)
+    {
+        List<NoteData> notes = noteRepo.orderedByTitleAsc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/userNotes";
+    }
+
+    @GetMapping("/title-desc")
+    public String sortNotesByTitleDesc(Model model)
+    {
+        List<NoteData> notes = noteRepo.orderedByTitleDesc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/userNotes";
+    }
+
+
     @GetMapping("/date-asc")
     public String sortNotesByDateAsc(Model model)
-    {   
+    {
         List<NoteData> notes = noteRepo.orderedByDateAsc();
         model.addAttribute("notes", notes);
         List<CategoryData> categories = categoryRepo.findAll();
@@ -77,7 +98,7 @@ public class NoteController {
 
     @GetMapping("/category-asc")
     public String sortNotesByCategoryAsc(Model model)
-    {   
+    {
         List<NoteData> notes = noteRepo.orderedByNameAsc();
         model.addAttribute("notes", notes);
         List<CategoryData> categories = categoryRepo.findAll();
@@ -85,6 +106,41 @@ public class NoteController {
         return "/userNotes";
     }
 
+    @GetMapping("/popular-asc")
+    public String sortByPopularAsc(Model model) {
+        List<NoteData> notes = noteRepo.orderedByPopularCategoryAsc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/index";
+    }
+
+    @GetMapping("/dat-desc")
+    public String sortByDateDesc(Model model) {
+        List<NoteData> notes = noteRepo.orderedByDateDesc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/index";
+    }
+
+    @GetMapping("/dat-asc")
+    public String sortByDateAsc(Model model) {
+        List<NoteData> notes = noteRepo.orderedByDateAsc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/index";
+    }
+
+    @GetMapping("/popular-desc")
+    public String sortByPopularDesc(Model model) {
+        List<NoteData> notes = noteRepo.orderedByPopularCategoryDesc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/index";
+    }
 
     @GetMapping("/noteDelete/{id}")
     public String deleteNote(@PathVariable("id") int id) {
@@ -139,4 +195,31 @@ public class NoteController {
     }
 
 
+    @PostMapping("/category/{id}")
+    public String redirectToHome(@PathVariable("id") int id) {
+        return "redirect:/home/category/" + id;
+    }
+
+    @GetMapping("/home/category/{id}")
+    public String showNotesByCategory(@PathVariable("id") int id, Model model) {
+        List<NoteData> notes = noteRepo.findAllByCategory(id);
+        model.addAttribute("notesCategory", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/index";
+    }
+
+    @PostMapping("/userCategory/{id}")
+    public String redirectToNotes(@PathVariable("id") int id) {
+        return "redirect:/user/category/" + id;
+    }
+
+    @GetMapping("/user/category/{id}")
+    public String showNotesByCategoryUser(@PathVariable("id") int id, Model model) {
+        List<NoteData> notes = noteRepo.findAllByCategory(id);
+        model.addAttribute("notesCategory", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/userNotes";
+    }
 }

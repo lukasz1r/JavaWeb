@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>HomePage</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 
     <script>
         function validateForm() {
@@ -28,7 +28,7 @@
 
 <header>
 
-    <div class="mainLogo"><a href="home"> <img id="logo" src="logo.png"  alt=""/></a></div>
+    <div class="mainLogo"><a href="/home"> <img id="logo" src="/logo.png"  alt=""/></a></div>
 
     <div class="mainHeader"><h1>Home Page</h1></div>
 
@@ -50,20 +50,20 @@
 
 
 <main>
-    <div  class="navDiv" th:if="${session.isLogged}">
+    <div  class="navDiv" th:if="${session.isLogged} and (${session.role eq 'ADMIN'} or ${session.role eq 'FULLUSER'})">
         <nav>
             <h2>Menu</h2>
             <ul>
                 <form method="GET" th:action="@{/notes}">
                     <button class="buttonStyle">Twoje wpisy</button>
                 </form>
-                <button class="buttonStyle" onclick="location.href='dodaj-wpis'" type="button">Dodaj<br> Wpis</button>
-                <button class="buttonStyle">Konto</button>
-                <button th:if="${session.role} eq 'ADMIN'" 
-                    class="buttonStyle" 
-                    onclick="location.href='users'" 
+                <button class="buttonStyle" onclick="location.href='/dodaj-wpis'" type="button">Dodaj<br> Wpis</button>
+                <button th:if="${session.role} eq 'ADMIN'"
+                    class="buttonStyle"
+                    onclick="location.href='users'"
                     type="button"
-                    style="margin-top: 100px">Zarządzanie<br> Użytkownikami</button>
+                    style="margin-top: 100px">Zarządzanie<br> Użytkownikami
+                </button>
             </ul>
         </nav>
     </div>
@@ -92,33 +92,57 @@
     </div>
 
     <div class="wpisy" th:if="${session.isLogged}">
+        <div id="najnowszeWpisyHeader" style="display: flex; flex-direction: row; justify-content: space-between;">
         <h2>Najnowsze wpisy</h2>
-        <article th:each="note : ${notes}">
-            <h3 th:text="${note.title}"></h3>
-            <p th:text="${note.date}"></p>
-            <p th:each="category : ${categories}" th:if="${note.category_id == category.id}">
-                <span th:text="${category.name}"></span>
-            </p>
-            <p style="text-align: left;" th:text="${note.note}"></p>
-            <p th:id="'NoteId-'+${note.getId()}" style="color: red; font-size: 1vw;" th:text="'ID: ' + ${note.getId()}"></p>
-        </article>
+            <div style="margin-top: 1.5vw;">
+                <button class="buttonStyle" onclick="location.href='dat-asc'" type="button">D ⮝</button>
+                <button class="buttonStyle" onclick="location.href='dat-desc'" type="button">D ⮟</button>
+                <button class="buttonStyle" onclick="location.href='popular-asc'" type="button">P ⮝</button>
+                <button class="buttonStyle" onclick="location.href='popular-desc'" type="button">P ⮟</button>
+            </div>
+        </div>
+        <div th:if="${notesCategory}">
+            <article th:each="note : ${notesCategory}">
+                <h3 th:text="${note.title}"></h3>
+                <p th:text="${note.date}"></p>
+                <p th:each="category : ${categories}" th:if="${note.categoryId == category.id}">
+                    <span th:text="${category.name}"></span>
+                </p>
+                <p style="text-align: left;" th:text="${note.note}"></p>
+                <p th:id="'NoteId-'+${note.getId()}" style="color: red; font-size: 1vw;" th:text="'ID: ' + ${note.getId()}"></p>
+            </article>
+        </div>
+        <div th:unless="${notesCategory}">
+            <article th:each="note : ${notes}">
+                <h3 th:text="${note.title}"></h3>
+                <p th:text="${note.date}"></p>
+                <p th:each="category : ${categories}" th:if="${note.categoryId == category.id}">
+                    <span th:text="${category.name}"></span>
+                </p>
+                <p style="text-align: left;" th:text="${note.note}"></p>
+                <p th:id="'NoteId-'+${note.getId()}" style="color: red; font-size: 1vw;" th:text="'ID: ' + ${note.getId()}"></p>
+            </article>
+        </div>
     </div>
 
-    <div class="navDiv"  th:if="${session.isLogged}">
+    <div class="navDiv" th:if="${session.isLogged} and (${session.role eq 'ADMIN'} or ${session.role eq 'FULLUSER'})">
         <aside>
             <h2>Kategorie
             <button class="buttonStyle" onclick="showCategoryForm()">➕</button>
             <div id="categoryForm" style="display: none; align-items: center; text-align: center;">
-                <form th:action="@{/addCategory}" method="post">
+                <form th:action="@{/addCategory}" method="POST">
                   <label style="font-size: 10px">Nazwa kategorii:</label>
                   <input class="inputStyle" type="text" id="categoryName" name="categoryName" required>
                   <button style="margin-top: 10px;" class="buttonStyle" type="submit">✔️</button>
                 </form>
             </div></h2>
-            <button class="buttonStyle" style="margin-bottom: 5px;" th:each="category : ${categories}" th:text="${category.name}"></button>
+            <div th:each="category : ${categories}">
+                <form th:action="@{/category/{id}(id=${category.id})}" method="POST">
+                    <button class="buttonStyle" style="margin-bottom: 5px;" th:text="${category.name}" type="submit"></button>
+                </form>
+            </div>
         </aside>
     </div>
-
 
     <script th:inline="javascript">
         function showCategoryForm() {
