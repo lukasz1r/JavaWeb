@@ -33,13 +33,11 @@
 
 
 <main>
-
     <div class="navDiv" th:if="${session.isLogged}">
         <nav>
             <h2>Menu</h2>
             <ul>
                 <button class="buttonStyle" onclick="location.href='/dodaj-wpis'" type="button">Dodaj<br> Wpis</button>
-                <button class="buttonStyle">Konto</button>
             </ul>
 
         </nav>
@@ -63,10 +61,10 @@
                     <ul>
                         <button class="buttonStyle" 
                                 style="padding: 15px; flex-direction: column; display: flex; margin-bottom: 10px;" 
-                                th:onclick="'window.location.href=\'' + @{/editNote/{id}(id=${note.id})} + '\''">✒️</button> 
+                                onclick="location.href='editNote/{id}(id=${note.id})'">✒️</button> 
                         <button class="buttonStyle" 
                                 style="padding: 15px; flex-direction: column; display: flex;"
-                                th:onclick="'window.location.href=\'' + @{/noteDelete/{id}(id=${note.id})} + '\''">❌</button>
+                                onclick="location.href='/noteDelete/{id}(id=${note.id})'">❌</button>
                     </ul>
                 </div>
                 <p th:each="category : ${categories}" th:if="${note.category_id == category.id}">

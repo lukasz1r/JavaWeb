@@ -58,7 +58,6 @@
                     <button class="buttonStyle">Twoje wpisy</button>
                 </form>
                 <button class="buttonStyle" onclick="location.href='/dodaj-wpis'" type="button">Dodaj<br> Wpis</button>
-                <button class="buttonStyle">Konto</button>
                 <button th:if="${session.role} eq 'ADMIN'" 
                     class="buttonStyle" 
                     onclick="location.href='users'" 
@@ -139,7 +138,6 @@
             </div>
         </aside>
     </div>
-
 
     <script th:inline="javascript">
         function showCategoryForm() {

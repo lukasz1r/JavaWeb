@@ -18,23 +18,30 @@
       </header>
 
      <h1>Edit User</h1>
-          <div class="editForm">
+          <div class="editForm" th:if="${session.isLogged} and ${session.role eq 'ADMIN'}">
                <form class="editUserForm" method="POST" th:action="@{/editUser/{id}(id=${user.id})}">
-                    <label for="username">Username:</label><br>
+                    <label>Login:</label><br>
                     <input class="inputStyle" type="text" id="username" name="username" th:value="${user.username}" /><br>
                     
-                    <label for="password">Password:</label><br>
+                    <label>Hasło:</label><br>
                     <input class="inputStyle" type="text" id="password" name="password" th:value="${user.password}" /><br>
                     
-                    <label for="role">Role:</label><br>
+                    <label>Rola:</label><br>
                     <select  class="inputStyle" id="role" name="role">
                          <option th:value="ADMIN" th:text="ADMIN" th:selected="${user.role == 'ADMIN'}"></option>
                          <option th:value="USER" th:text="USER" th:selected="${user.role == 'USER'}"></option>
                          <option th:value="FULLUSER" th:text="FULLUSER" th:selected="${user.role == 'FULLUSER'}"></option>
                     </select><br>
                     
-                    <button class="buttonStyle" type="submit">Save</button>
+                    <button class="buttonStyle" type="submit">Zapisz</button>
                </form>
           </div>
+          <div class="navDiv" th:unless="${session.isLogged}">
+               <script>
+                   window.onload = function() {
+                       window.location.href = '/home';
+                   };
+               </script>
+           </div>  
      </body>
 </html>

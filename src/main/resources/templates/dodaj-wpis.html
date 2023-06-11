@@ -40,12 +40,18 @@
                 <form method="GET" th:action="@{/notes}">
                     <button class="buttonStyle">Twoje wpisy</button>
                 </form>
-                <button class="buttonStyle">Konto</button>
             </ul>
         </nav>
     </div>
+    <div class="navDiv" th:unless="${session.isLogged}">
+        <script>
+            window.onload = function() {
+                window.location.href = '/home';
+            };
+        </script>
+    </div>
 
-    <div class="wpisy">
+    <div class="wpisy" th:if="${session.isLogged}">
         <div id="dodajWpis">
             <h2>Dodaj własny wpis</h2>
             <form action="GET" th:action="@{/dodaj-wpis-form}">
@@ -63,15 +69,12 @@
             </form>
         </div>
     </div>
-
-    <div  class="navDiv" th:if="${session.isLogged}">
-        <aside>
-            <h2>Kategorie</h2>
-            <ul>
-                <button class="buttonStyle" style="margin-bottom: 5px;" th:each="category : ${categories}" th:text="${category.name}">
-                </button>
-            </ul>
-        </aside>
+    <div class="navDiv" th:unless="${session.isLogged}">
+        <script>
+            window.onload = function() {
+                window.location.href = '/home';
+            };
+        </script>
     </div>
 
 </main>
@@ -80,40 +83,5 @@
     <p><b>Autorzy: </b> Adam Grzeszczuk, Dawid Kobeszko, Łukasz Kaliszewicz, Zuzanna Kalinowska &#9935</p>
 </footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<img src="main.png" width="300" height="100"/>-->
-
-<!--<form style="margin-bottom: 10px" method="GET" action="/test/1">-->
-<!--  <button type="submit">1</button>-->
-<!--</form>-->
-<!--<form style="margin-bottom: 10px" method="GET" action="/test/2">-->
-<!--    <button type="submit">2</button>-->
-<!--</form>-->
-<!--<form style="margin-bottom: 10px" method="GET" action="/test/3">-->
-<!--    <button type="submit">3</button>-->
-<!--</form>-->
-<!--<form method="GET" action="/test/4">-->
-<!--    <button type="submit">4</button>-->
-<!--</form>-->
 </body>
 </html>
