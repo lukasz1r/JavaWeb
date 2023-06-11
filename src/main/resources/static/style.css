@@ -131,6 +131,11 @@ article .buttonStyle:nth-child(2) {
     right: 20px;
 }
 
+article #shareBtn {
+    position: absolute;
+    right: 160px;
+}
+
 article .postContext{
     text-align: justify;
     font-family: IBM Plex Serif,sans-serif;

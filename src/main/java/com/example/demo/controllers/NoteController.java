@@ -4,6 +4,7 @@ import com.example.demo.data.CategoryData;
 import com.example.demo.data.CategoryRepository;
 import com.example.demo.data.NoteData;
 import com.example.demo.data.NoteRepository;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.List;
@@ -39,6 +41,7 @@ public class NoteController {
         model.addAttribute("notes", notes);
         List<CategoryData> categories = categoryRepo.findAll();
         model.addAttribute("categories", categories);
+
         return "/userNotes";
     }
 
@@ -108,5 +111,32 @@ public class NoteController {
         noteRepo.save(note);
         return "redirect:/notes";
     }
+
+    @GetMapping("/shareNoteByKey/{key}")
+    public String shareNote(@PathVariable("key") String shareKey , @RequestParam("id") int id, Model model) {
+        // Przetwarzanie logiki dla udostępnienia notatki
+        // Na przykład, pobieranie notatki o określonym ID i przekazanie jej do widoku
+
+        NoteData note = noteRepo.findById(id);
+        model.addAttribute("note", note);
+        model.addAttribute("shareKey", shareKey);
+
+        return "share-note"; // Zwraca nazwę widoku, który będzie wyświetlany dla udostępnionej notatki
+    }
+
+    @GetMapping("/shareNoteById/{id}")
+    public String shareNote(@PathVariable("id") int id,  Model model) {
+        // Przetwarzanie logiki dla udostępnienia notatki
+        // Na przykład, pobieranie notatki o określonym ID i przekazanie jej do widoku
+
+        NoteData note = noteRepo.findById(id);
+        model.addAttribute("note", note);
+
+        String shareKey = UUID.randomUUID().toString();
+        model.addAttribute("shareKey", shareKey);
+
+        return "/share-note"; // Zwraca nazwę widoku, który będzie wyświetlany dla udostępnionej notatki
+    }
+
 
 }

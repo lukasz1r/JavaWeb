@@ -57,25 +57,30 @@
         </div>
 
         <article th:each="note : ${notes}" th:if="${session.isLogged and session.id == note.user_id}">
-                <div style="display: flex; align-items: center; justify-content: space-between;">
-                    <h3 th:text="${note.title}"></h3>
-                    <ul>
-                        <button class="buttonStyle" 
-                                style="padding: 15px; flex-direction: column; display: flex; margin-bottom: 10px;" 
-                                th:onclick="'window.location.href=\'' + @{/editNote/{id}(id=${note.id})} + '\''">✒️</button> 
-                        <button class="buttonStyle" 
-                                style="padding: 15px; flex-direction: column; display: flex;"
-                                th:onclick="'window.location.href=\'' + @{/noteDelete/{id}(id=${note.id})} + '\''">❌</button>
-                    </ul>
-                </div>
-                <p th:each="category : ${categories}" th:if="${note.category_id == category.id}">
-                    <span th:text="${category.name}"></span>
-                </p>
-                <p th:text="${note.date}"></p>
-                
-                <p style="text-align: left;" th:text="${note.note}"></p>
-          </article>
-     </div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h3 th:text="${note.title}"></h3>
+                <ul>
+                    <button class="buttonStyle"
+                            style="padding: 15px; flex-direction: column; display: flex; margin-bottom: 10px;"
+                            th:onclick="'window.location.href=\'' + @{/editNote/{id}(id=${note.id})} + '\''">✒️</button>
+                    <button class="buttonStyle"
+                            style="padding: 15px; flex-direction: column; display: flex;"
+                            th:onclick="'window.location.href=\'' + @{/noteDelete/{id}(id=${note.id})} + '\''">❌</button>
+                    <a id="shareBtn" class="buttonStyle"
+                       style="padding: 15px; flex-direction: column; display: flex;"
+                       th:href="@{/shareNoteById/{id}(id=${note.id})}">🔗</a>
+                </ul>
+            </div>
+            <p th:each="category : ${categories}" th:if="${note.category_id == category.id}">
+                <span th:text="${category.name}"></span>
+            </p>
+            <p th:text="${note.date}"></p>
+            <p style="text-align: left;" th:text="${note.note}"></p>
+
+
+        </article>
+
+    </div>
 
     <div class="navDiv" th:if="${session.isLogged}">
         <aside>

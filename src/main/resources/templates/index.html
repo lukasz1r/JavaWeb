@@ -100,6 +100,7 @@
                 <span th:text="${category.name}"></span>
             </p>
             <p style="text-align: left;" th:text="${note.note}"></p>
+            <p th:id="'NoteId-'+${note.getId()}" style="color: red; font-size: 1vw;" th:text="'ID: ' + ${note.getId()}"></p>
         </article>
     </div>
 
