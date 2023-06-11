@@ -39,12 +39,7 @@
           <p style="text-align: left;" th:text="${note.note}"></p>
 
           <p>Wygenerowany klucz: <span th:text="${shareKey}"></span></p>
-          <p>Link do udostępnienia: <a th:href="@{/shareNoteByKey/{key}(key=${shareKey}, id=${note.id})}" th:text="@{/shareNoteByKey/{key}(key=${shareKey})}"></a></p>
-
-          <form th:action="@{/shareNoteByKey/{key}(key=${shareKey})}" method="post" style="display: inline;">
-            <input type="hidden" name="id" th:value="${note.id}" />
-            <button type="submit" class="link-button">Link do udostępnienia</button>
-          </form>
+          <p>Link do udostępnienia: <a id="shareLink" th:href="@{/shareNoteByKey/{key}(key=${shareKey}, id=${note.id})}" th:text="@{/shareNoteByKey/{key}(key=${shareKey})}"></a></p>
 
         </article>
       </div>
@@ -230,9 +225,20 @@
 
 
 <script th:inline="javascript">
-  var currentUrl = window.location.href;
-  var newUrl = currentUrl.replace("?id=12", "");
-  window.history.replaceState({}, document.title, newUrl);
+    var currentUrl = window.location.href;
+
+    // Sprawdź, czy fraza "id" występuje w adresie URL
+    var idIndex = currentUrl.indexOf("id");
+    if (idIndex !== -1) {
+        // Obetnij resztę adresu URL po wystąpieniu frazy "id"
+        var trimmedUrl = currentUrl.substring(0, idIndex);
+
+        // Zaktualizuj adres URL w pasku wyszukiwania
+        window.history.replaceState({}, document.title, trimmedUrl);
+    }
+
+
+
 </script>
 </body>
 </html>
