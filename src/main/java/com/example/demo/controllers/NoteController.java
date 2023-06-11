@@ -43,6 +43,27 @@ public class NoteController {
         return "/userNotes";
     }
 
+    @GetMapping("/title-asc")
+    public String sortNotesByTitleAsc(Model model)
+    {   
+        List<NoteData> notes = noteRepo.orderedByTitleAsc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/userNotes";
+    }
+
+    @GetMapping("/title-desc")
+    public String sortNotesByTitleDesc(Model model)
+    {
+        List<NoteData> notes = noteRepo.orderedByTitleDesc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/userNotes";
+    }
+
+
     @GetMapping("/date-asc")
     public String sortNotesByDateAsc(Model model)
     {   
@@ -86,6 +107,24 @@ public class NoteController {
     @GetMapping("/popular-asc")
     public String sortByPopularAsc(Model model) {
         List<NoteData> notes = noteRepo.orderedByPopularCategoryAsc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/index";
+    }
+
+    @GetMapping("/dat-desc")
+    public String sortByDateDesc(Model model) {
+        List<NoteData> notes = noteRepo.orderedByDateDesc();
+        model.addAttribute("notes", notes);
+        List<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
+        return "/index";
+    }
+
+    @GetMapping("/dat-asc")
+    public String sortByDateAsc(Model model) {
+        List<NoteData> notes = noteRepo.orderedByDateAsc();
         model.addAttribute("notes", notes);
         List<CategoryData> categories = categoryRepo.findAll();
         model.addAttribute("categories", categories);

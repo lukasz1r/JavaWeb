@@ -28,6 +28,12 @@ public interface NoteRepository extends JpaRepository<NoteData, Integer> {
      @Query(value = "SELECT * FROM notes ORDER BY date DESC", nativeQuery = true)
      List<NoteData> orderedByDateDesc();
 
+     @Query(value = "SELECT * FROM notes ORDER BY title ASC", nativeQuery = true)
+     List<NoteData> orderedByTitleAsc();
+
+     @Query(value = "SELECT * FROM notes ORDER BY title DESC", nativeQuery = true)
+     List<NoteData> orderedByTitleDesc();
+
      @Query(value = "SELECT n.* FROM notes n JOIN categories c ON n.category_id = c.id ORDER BY (SELECT COUNT(*) FROM notes WHERE category_id = n.category_id) ASC, n.category_id DESC", nativeQuery = true)
      List<NoteData> orderedByPopularCategoryAsc();
 

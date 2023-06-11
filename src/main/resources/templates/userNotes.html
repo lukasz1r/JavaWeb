@@ -38,6 +38,12 @@
             <h2>Menu</h2>
             <ul>
                 <button class="buttonStyle" onclick="location.href='/dodaj-wpis'" type="button">Dodaj<br> Wpis</button>
+                <button th:if="${session.role} eq 'ADMIN'" 
+                class="buttonStyle" 
+                onclick="location.href='users'" 
+                type="button"
+                style="margin-top: 100px">Zarządzanie<br> Użytkownikami
+                </button>
             </ul>
 
         </nav>
@@ -47,10 +53,12 @@
         <div id="wpisyHeader">
              <h2 style="margin-right: 100px;">Twoje wpisy</h2>
              <div>
+                <button class="buttonStyle" onclick="location.href='title-asc'" type="button">T ⮝</button>
+                <button class="buttonStyle" onclick="location.href='title-desc'" type="button">T ⮟</button>
                 <button class="buttonStyle" onclick="location.href='category-asc'" type="button">K ⮝</button>
                 <button class="buttonStyle" onclick="location.href='category-desc'" type="button">K ⮟</button>
-                <button class="buttonStyle" onclick="location.href='date-asc'" type="button">T ⮝</button>
-                <button class="buttonStyle" onclick="location.href='date-desc'" type="button">T ⮟</button>
+                <button class="buttonStyle" onclick="location.href='date-asc'" type="button">D ⮝</button>
+                <button class="buttonStyle" onclick="location.href='date-desc'" type="button">D ⮟</button>
              </div>
         </div>
 
