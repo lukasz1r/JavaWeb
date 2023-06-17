@@ -11,7 +11,8 @@
 
 <header>
 
-    <div class="mainLogo"><a href="/home/"> <img id="logo" src="logo.png"  alt=""/></a></div>
+    <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt=""/></a></div>
+
 
     <div class="mainHeader"><h1>Dodaj notatkę</h1></div>
 
@@ -50,14 +51,14 @@
             <form action="GET" th:action="@{/addNoteForm}">
                 <input class="inputStyle" type="text" id="title" name="title" placeholder="Podaj tytuł swojego wpisu" required><br>
                 <textarea class="inputStyle" type="text" id="content" name="content" placeholder="Wpisz treść swojego wpisu" required></textarea><br>
-                <select class="inputStyle" style="margin-left: 195px; margin-right: 195px;" name="category_id" id="category_id">
+                <select class="inputStyle"  name="category_id" id="category_id">
                     <option disabled selected >Kategoria</option>
                     <option th:each="category : ${categories}" 
                         th:text="${category.name}"
                         th:value="${category.id}"
                         th:selected="${category.id == 1}">
                     </option>
-                </select><br>
+                </select>
                 <input class="buttonStyle" type="submit" value="Dodaj Wpis">
             </form>
         </div>
