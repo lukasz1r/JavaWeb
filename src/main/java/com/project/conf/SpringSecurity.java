@@ -30,7 +30,7 @@ public class SpringSecurity {
                         .requestMatchers("/editUser/**").hasAnyRole("ADMIN")
                         .requestMatchers("/sharedNotes/**").hasAnyRole("USER", "ADMIN", "FULLUSER")
                         .requestMatchers("/addCategory/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/editNote/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/editNote/**").hasAnyRole("FULLUSER", "ADMIN")
 
                         
                         .requestMatchers("/style.css/**").permitAll()

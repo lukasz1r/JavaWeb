@@ -1,6 +1,5 @@
 package com.project.controller;
 
-import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.data.CategoryData;
 import com.project.data.NoteData;
-import com.project.data.SharedData;
 import com.project.data.UserData;
 import com.project.repository.CategoryRepository;
 import com.project.repository.NoteRepository;
@@ -48,9 +46,6 @@ public class NoteController {
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
-          for (NoteData n : notes) {
-               System.out.println(n.getRemindDate());
-          }
           return "userNotes";
      }
 
@@ -65,7 +60,7 @@ public class NoteController {
           NoteData note = noteRepo.findById(id);
           note.setTitle(editedNote.getTitle());
           note.setNote(editedNote.getNote());
-          note.setDate(editedNote.getDate());
+          note.setRemindDate(editedNote.getRemindDate());
           note.setCategoryId(editedNote.getCategoryId());
           noteRepo.save(note);
           return "redirect:/notes/";

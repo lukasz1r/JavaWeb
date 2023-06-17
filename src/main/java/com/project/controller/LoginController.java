@@ -41,7 +41,7 @@ public class LoginController {
 
         if (existingUser != null)
             result.rejectValue("email", null,
-                    "Użytkownik juz istnieje");
+                    "User already registered !!!");
 
         if (result.hasErrors()) {
             model.addAttribute("user", userDto);

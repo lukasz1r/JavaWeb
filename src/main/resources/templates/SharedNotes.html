@@ -6,40 +6,40 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-
 <header>
     <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
     <div class="mainHeader"><h1>Udostępnione notatki</h1></div>
     <div class="loginButton">
-        <form method="GET" th:action="@{/logout}">
-            <p style="color: #6d6b64; padding: 0vw 0.6vw 0vw 0vw;" th:text="'Witaj '"> </p>
-            <h2 id="welcomeUsername" style="padding: 0px" th:text="${session.sessionUser}"></h2>
-            <button class="buttonStyle" type="submit">Wyloguj się</button>
-        </form>
+     <form method="POST" th:action="@{/logout}">
+          <p style="color: #6d6b64; padding: 0vw 0.6vw 0vw 0vw;" th:text="'Witaj '"> </p>
+          <h2 id="welcomeUsername" style="padding: 0px" th:text="${session.sessionUser}"></h2>
+          <button class="buttonStyle" type="submit">Wyloguj się</button>
+     </form>
     </div>
 </header>
 <main>
     <nav>
         <ul th:if="${session.role eq 2 or session.role eq 1}">
-            <h2>Menu</h2>
-            <form method="GET" th:action="@{/notes/}" th:if="${session.role eq 2 or session.role eq 1}">
-               <button style="width: 150px" class="buttonStyle">Twoje wpisy</button>
-           </form>
-            <button style="width: 150px" class="buttonStyle" onclick="location.href='/addNote'" type="button">Dodaj wpis</button>
-            <button th:if="${session.role} eq 1"
-                    class="buttonStyle"
-                    onclick="location.href='/adminPanel/'"
-                    type="button"
-                    style="width: 150px">Zarządzanie<br> Użytkownikami</button>
-            <button th:if="${session.role eq 1}"
-                    class="buttonStyle"
-                    onclick="location.href='/home/'"
-                    type="button"
-                    style="width: 150px">Strona<br> Główna</button>
+          <h2>Menu</h2>
+          <form method="GET" th:action="@{/notes/}" th:if="${session.role eq 2 or session.role eq 1}">
+          <button style="width: 150px" class="buttonStyle">Twoje wpisy</button>
+          </form>
+          <button style="width: 150px" class="buttonStyle" onclick="location.href='/addNote'" type="button">Dodaj wpis</button>
+          <button th:if="${session.role} eq 1"
+               class="buttonStyle"
+               onclick="location.href='/adminPanel/'"
+               type="button"
+               style="width: 150px">Zarządzanie<br> Użytkownikami
+          </button>
+          <button th:if="${session.role eq 2 or session.role eq 1}"
+               class="buttonStyle"
+               onclick="location.href='/home/'"
+               type="button"
+               style="width: 150px">Strona<br> Główna
+          </button>
         </ul>
     </nav>
     </div>
-    
     <div class="wpisy">
           <div id="wpisyHeader">
                <h2 style="margin-right: 100px;">Udostępnione notatki</h2>
@@ -55,19 +55,11 @@
                </p>
                <p style="text-align: left;" th:text="${note.note}"></p>
                <p></p>
-           </article>
+          </article>
      </div>
-
-    <div class="navDiv" th:if="${session.isLogged}">
-        <aside>
-            <ul>
-
-            </ul>
-        </aside>
-    </div>
-
-</main>
-
-<footer>
-    <p><b>Autorzy: </b> Adam Grzeszczuk, Dawid Kobeszko, Łukasz Kaliszewicz, Zuzanna Kalinowska &#9935</p>
-</footer>
+     <div class="navDiv" th:if="${session.isLogged}"></div>
+</body>
+     <footer>
+          <p><b>Autorzy: </b> Adam Grzeszczuk, Dawid Kobeszko, Łukasz Kaliszewicz, Zuzanna Kalinowska &#9935</p>
+     </footer>
+</html>

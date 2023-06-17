@@ -28,12 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(UserDto userDto) {
         RoleData role = roleRepository.findByName("ROLE_USER");
-
-        if (role == null)
-            role = roleRepository.save(new RoleData("ROLE_USER"));
-
-        UserData user = new UserData(userDto.getName(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()),
-                Arrays.asList(role));
+        UserData user = new UserData(userDto.getName(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()), Arrays.asList(role));
         userRepository.save(user);
     }
 

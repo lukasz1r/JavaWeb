@@ -13,11 +13,11 @@
     <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
     <div class="mainHeader"><h1>Twoje notatki</h1></div>
     <div class="loginButton">
-        <form method="POST" th:action="@{/logout}">
-            <p style="color: #6d6b64; padding: 0vw 0.6vw 0vw 0vw;" th:text="'Witaj '"> </p>
-            <h2 id="welcomeUsername" style="padding: 0px" th:text="${session.sessionUser}"></h2>
-            <button class="buttonStyle" type="submit">Wyloguj się</button>
-        </form>
+    <form method="POST" th:action="@{/logout}">
+        <p style="color: #6d6b64; padding: 0vw 0.6vw 0vw 0vw;" th:text="'Witaj '"> </p>
+        <h2 id="welcomeUsername" style="padding: 0px" th:text="${session.sessionUser}"></h2>
+        <button class="buttonStyle" type="submit">Wyloguj się</button>
+    </form>
     </div>
 </header>
 
@@ -33,17 +33,16 @@
                     class="buttonStyle"
                     onclick="location.href='/adminPanel/'"
                     type="button"
-                    style="width: 150px">Zarządzanie<br> Użytkownikami
+                    style="width: 150px">Zarządzanie użytkownikami
             </button>
-            <button th:if="${session.role eq 1}"
+            <button th:if="${session.role eq 2 or session.role eq 1}"
                     class="buttonStyle"
                     onclick="location.href='/home/'"
                     type="button"
-                    style="width: 150px">Strona<br> główna
+                    style="width: 150px">Strona główna
             </button>
         </ul>
     </nav>
-    </div>
 
     <div class="wpisy">
         <div id="wpisyHeader">
@@ -78,7 +77,7 @@
                     <span th:text="${category.name}"></span>
                 </p>
                 <p th:text="${note.date}"></p>
-                <p th:text="${note.remind_date}"></p>
+                <p th:text="'Przypomnienie: ' + ${note.remind_date}"></p>
                 <p style="text-align: left;" th:text="${note.note}"></p>
           </article>
         </div>
@@ -102,7 +101,7 @@
                     <span th:text="${category.name}"></span>
                 </p>
                 <p th:text="${note.date}"></p>
-                <p th:text="${note.remind_date}"></p>
+                <p th:text="'Przypomnienie: ' + ${note.remind_date}"></p>
                 <p style="text-align: left;" th:text="${note.note}"></p>
           </article>
         </div>
@@ -112,16 +111,16 @@
         <aside>
             <ul>
                 <h2 style="display: flex;">Kategorie
-                    <form th:action="@{/addCategory/}" method="POST" th:if="${session.role eq 2 or session.role eq 1}">
-                        <button class="buttonStyle" style="margin-left: 10px;" type="submit">➕</button>
-                    </form></h2>
-                    <form th:action="@{/notes/}" method="GET">
-                        <button class="buttonStyle" style="margin-bottom: 5px; width: 150px; color: rgb(122, 174, 157);" type="submit">Wszystkie</button>
-                    </form>
+                <form th:action="@{/addCategory/}" method="POST" th:if="${session.role eq 2 or session.role eq 1}">
+                    <button class="buttonStyle" style="margin-left: 10px;" type="submit">➕</button>
+                </form></h2>
+                <form th:action="@{/notes/}" method="GET">
+                    <button class="buttonStyle" style="margin-bottom: 5px; width: 150px; color: rgb(122, 174, 157);" type="submit">Wszystkie</button>
+                </form>
                 <div th:each="category : ${categories}">
-                    <form th:action="@{/notesCategory/{id}(id=${category.id})}" method="POST">
-                        <button class="buttonStyle" style="margin-bottom: 5px; width: 150px" th:text="${category.name}" type="submit"></button>
-                    </form>
+                <form th:action="@{/notesCategory/{id}(id=${category.id})}" method="POST">
+                    <button class="buttonStyle" style="margin-bottom: 5px; width: 150px" th:text="${category.name}" type="submit"></button>
+                </form>
                 </div>
             </ul>
         </aside>
