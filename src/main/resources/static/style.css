@@ -502,3 +502,14 @@ td {
     font-size: 20px;
     color: darkred;
 }
+
+.remindDate{
+    color: red;
+    font-size: 1.5vw;
+}
+
+.remindDate img{
+    position: absolute;
+    top: -7%;
+    left: -4%;
+}
