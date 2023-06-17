@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.data.CategoryData;
 import com.project.data.NoteData;
+import com.project.data.SharedData;
 import com.project.data.UserData;
 import com.project.repository.CategoryRepository;
 import com.project.repository.NoteRepository;
+import com.project.repository.SharedRepository;
 import com.project.repository.UserRepository;
 
 import org.springframework.security.core.Authentication;
@@ -35,6 +37,9 @@ public class NoteController {
 
      @Autowired
      UserRepository userRepo;
+
+     @Autowired
+     SharedRepository sharedRepo;
 
      @GetMapping("notes/")
      public String getAllUserNotes(Authentication authentication, Model model) {
@@ -194,6 +199,22 @@ public class NoteController {
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
           return "/userNotes";
+     }
+
+     @GetMapping("/share/{id}")
+     public String shareNoteToUser(@RequestParam("userEmail") String email, @PathVariable("id") Long noteId) {
+          UserData user = userRepo.findByEmail(email);    
+          sharedRepo.addSharedNote(user.getId(), noteId);
+          return "redirect:/notes/";
+     }
+
+     @GetMapping("/sharedNotes/")
+     public String sharedNotes(HttpSession session, Model model) {
+          ArrayList<NoteData> sharedNotes = noteRepo.getSharedNotes((long) session.getAttribute("id"));
+          model.addAttribute("sharedNotes", sharedNotes);
+          ArrayList<CategoryData> categories = categoryRepo.findAll();
+          model.addAttribute("categories", categories);
+          return "/sharedNotes";
      }
 
      @GetMapping("/shareNoteByKey/{key}")

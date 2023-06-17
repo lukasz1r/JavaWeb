@@ -15,7 +15,13 @@
 
   <div class="mainHeader"><h1>Edit Note</h1></div>
 
-  <div class="loginButton"></div>
+  <div class="loginButton">
+    <form method="POST" th:action="@{/logout}">
+        <label style="color: #6d6b64" th:text="'Witaj '"> </label>
+        <label id="welcomeUsername" th:text="${session.sessionUser}"></label>
+        <button class="buttonStyle" type="submit">Wyloguj się</button>
+    </form>
+  </div>
 
 </header>
 
@@ -31,6 +37,12 @@
         <article>
           <div style="display: flex; align-items: center; justify-content: space-between;">
             <h3 th:text="${note.title}"></h3>
+            <ul>
+              <form method="GET" th:action="@{/share/{id}(id=${note.id})}">
+                <input class="inputStyle" name="userEmail" placeholder="Wpisz email użytkownika"></input>
+                <button class="buttonStyle" style="width: 135px; padding: 20px; margin-top: 6px;">Udostępnij</button>
+              </form>
+            </ul>
           </div>
           <p>
             <span th:text="${category}"></span>

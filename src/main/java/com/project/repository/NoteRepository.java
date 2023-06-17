@@ -60,6 +60,9 @@ public interface NoteRepository extends JpaRepository<NoteData, Integer> {
      @Query(value = "SELECT categories.name FROM categories JOIN notes ON notes.category_id = categories.id WHERE notes.id = :id", nativeQuery = true)
      String getNoteCategory(@Param("id") int id);
 
+     @Query(value = "SELECT notes.* FROM notes JOIN shared ON notes.id = shared.note_id WHERE shared.user_id = :id", nativeQuery = true)
+     ArrayList<NoteData> getSharedNotes(@Param("id") Long id);
+
      @Modifying
      @Query(value = "DELETE FROM notes WHERE id = :id", nativeQuery = true)
      void deleteById(@Param("id") int id);

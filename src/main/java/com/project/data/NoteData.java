@@ -14,7 +14,7 @@ public class NoteData {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      @Column(name = "id")
-     private int id;
+     private Long id;
 
      @Column(name = "user_id")
      private Long user_id;
@@ -31,7 +31,7 @@ public class NoteData {
      @Column(name = "category_id")
      private int category_id;
 
-     public int getId() {
+     public Long getId() {
           return id;
      }
 
@@ -55,7 +55,7 @@ public class NoteData {
           return category_id;
      }
 
-     public void setId(int id) {
+     public void setId(Long id) {
           this.id = id;
      }
 

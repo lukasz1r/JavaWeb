@@ -42,7 +42,7 @@ public class AddNoteController {
      @GetMapping("/addNoteForm")
      public String dodajWpisDoBazy(@RequestParam("title") String title, @RequestParam("content") String note, @RequestParam("category_id") int category_id, HttpSession session) {
           noteRepo.save(new NoteData(
-                         (int) noteRepo.count() + 1, 
+                         noteRepo.count() + 1, 
                          (Long) session.getAttribute("id"), 
                          title, 
                          note, 
