@@ -62,6 +62,9 @@ public interface NoteRepository extends JpaRepository<NoteData, Integer> {
      @Query(value = "SELECT notes.* FROM notes JOIN shared ON notes.id = shared.note_id WHERE shared.user_id = :id", nativeQuery = true)
      ArrayList<NoteData> getSharedNotes(@Param("id") Long id);
 
+     @Query(value = "SELECT * FROM notes WHERE remind_date = CURDATE()", nativeQuery = true)
+     ArrayList<NoteData> getRemindNotes();
+
      @Modifying
      @Query(value = "DELETE FROM notes WHERE id = :id", nativeQuery = true)
      void deleteById(@Param("id") int id);
