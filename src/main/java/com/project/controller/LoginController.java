@@ -1,5 +1,6 @@
 package com.project.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,12 @@ public class LoginController {
         UserDto user = new UserDto();
         model.addAttribute("user", user);
         return "registration";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return "/login";
     }
 
     @PostMapping("/registration")

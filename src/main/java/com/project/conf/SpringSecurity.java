@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -40,11 +41,14 @@ public class SpringSecurity {
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/home/")
+                        .defaultSuccessUrl("/logged/")
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll())
+                .logout((logout) -> logout.permitAll()
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true))
                 .exceptionHandling().accessDeniedPage("/access-denied");
+
         return http.build();
     }
 }
