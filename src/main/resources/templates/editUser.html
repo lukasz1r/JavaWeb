@@ -2,46 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit User</title>
+    <title>Edycja uzytkownika</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
      <header>
 
-          <div class="mainLogo"><img id="logo" src="/logo.png" /></div>
+          <div class="mainLogo"><a href="/home/"></a><img id="logo" src="/logo.png" /></div>
       
-          <div class="mainHeader"><h1>Edit User</h1></div>
+          <div class="mainHeader" style="padding: 8px; margin-bottom: 2px;"><h1>Edycja uzytkownika</h1></div>
       
           <div class="loginButton"></div>
       
       </header>
 
-     <h1>Edit User</h1>
-          <div class="editForm" th:if="${session.isLogged} and ${session.role eq 'ADMIN'}">
-               <form class="editUserForm" method="POST" th:action="@{/editUser/{id}(id=${user.id})}">
-                    <label>Login:</label><br>
-                    <input class="inputStyle" type="text" id="username" name="username" th:value="${user.username}" /><br>
+     <h1>Edytuj uzytkownika</h1>
+          <div class="editForm">
+               <form class="editUserForm" method="POST" th:action="@{/editedUser/{email}(email=${user.email})}">
+                    <label>Nazwa:</label><br>
+                    <input class="inputStyle" type="text" id="name" name="name" th:value="${user.name}" /><br>
                     
-                    <label>Hasło:</label><br>
-                    <input class="inputStyle" type="text" id="password" name="password" th:value="${user.password}" /><br>
-                    
+                    <label>Email:</label><br>
+                    <input class="inputStyle" type="text" id="emailCh" name="emailCh" th:value="${user.email}" /><br>
+
                     <label>Rola:</label><br>
-                    <select  class="inputStyle" id="role" name="role">
-                         <option th:value="ADMIN" th:text="ADMIN" th:selected="${user.role == 'ADMIN'}"></option>
-                         <option th:value="USER" th:text="USER" th:selected="${user.role == 'USER'}"></option>
-                         <option th:value="FULLUSER" th:text="FULLUSER" th:selected="${user.role == 'FULLUSER'}"></option>
-                    </select><br>
+                    <label>
+                         <input type="radio" id="roleAdmin" name="role" value="ADMIN" th:checked="${role == 'ROLE_ADMIN'}">
+                         ADMIN
+                     </label></br>
+                     <label>
+                         <input type="radio" id="roleUser" name="role" value="USER" th:checked="${role == 'ROLE_USER'}">
+                         USER
+                     </label></br>
+                     <label>
+                         <input type="radio" id="roleFullUser" name="role" value="FULLUSER" th:checked="${role == 'ROLE_FULLUSER'}">
+                         FULLUSER
+                     </label></br>
                     
                     <button class="buttonStyle" type="submit">Zapisz</button>
                </form>
           </div>
-          <div class="navDiv" th:unless="${session.isLogged}">
-               <script>
-                   window.onload = function() {
-                       window.location.href = '/home';
-                   };
-               </script>
-           </div>  
      </body>
+     <footer>
+          <p><b>Autorzy: </b> Adam Grzeszczuk, Dawid Kobeszko, Łukasz Kaliszewicz, Zuzanna Kalinowska &#9935</p>
+      </footer>
 </html>

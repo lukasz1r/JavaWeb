@@ -1,34 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>LoginPage</title>
-    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="stylesheet" href="/style.css">
+    <title>Witaj</title>
 </head>
-
-<body>
-
-<header>
-
-    <div class="mainLogo"><img id="logo" src="/logo.png" /></div>
-
-    <div class="mainHeader"><h1>Login Page</h1></div>
-
-    <div class="loginButton"></div>
-
-</header>
-    <form method="GET" action="/login/logged">
-        <div class="loginForm">
-            <div>
-                <label> Login: </label><br>
-                <input class="inputStyle" style="margin-top: 5px; margin-bottom: 15px" type="text" name="username"/><br>
-
-                <label> Hasło: </label><br>
-                <input class="inputStyle" style="margin-top: 5px" type="password" name="password"/><br>
-            </div>
-
-            <input class="buttonStyle" style="margin-top: 15px; margin-left: auto; margin-right: auto;" type="submit" value="Zaloguj"/>
+<body  style="margin-top: 120px;">
+    <header style="padding: 19px">
+        <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt=""/></a></div>
+        <div class="mainHeader"><h1 style="font-weight: bold;">Witaj</h1></div>
+        <div class="loginButton">
         </div>
-    </form>
+    </header>
+<div style="margin-top: 20px;">
+    <div>
+        <div style="text-align: center;">
+            <h1 style="font-family: Century Gothic, serif;">Logowanie</h1>
+            <div th:if="${param.error}">
+                <div style="border-radius: 12px; font-family: Century Gothic, serif;">Niepoprawne dane</div>
+            </div>
+            <div th:if="${param.logout}">
+                <div style="border-radius: 12px; font-family: Century Gothic, serif;">Wylogowano</div>
+            </div>
+            <form method="POST" role="form" th:action="@{/login}">
+                <div>
+                    <label style="font-family: Century Gothic, serif;">Email</label>
+                    <input class="inputStyle" id="username" name="username" placeholder="Wpisz adres Email" type="email">
+                </div>
+                <div>
+                    <label style="font-family: Century Gothic, serif;">Hasło</label>
+                    <input class="inputStyle" id="password" name="password" placeholder="Wpisz hasło" type="password">
+                </div>
+                <div>
+                    <button class="buttonStyle" style="margin-left: 20px" type="submit">Zaloguj</button></br>
+                    lub  </br>
+                    <a class="link-primary" th:href="@{/registration}">Zarejestruj</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

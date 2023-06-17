@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Użytkownicy</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        h1 {
+            font-family: "Century Gothic", serif;
+        }
+    
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            color: #0a496a;
+        }
+    
+        th, td {    
+            border: none;
+            padding: 2px;
+            text-align: center;
+            font-family: "Century Gothic", serif;
+            padding-bottom: 30px;
+        }
+    
+        th {
+            font-weight: bolder;
+            font-size: 25px;
+        }
+    
+        td {
+            font-size: large;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<header>
+    <div class="mainLogo" style="margin-left: -79px;"><a href="/home/"> <img id="logo" src="/logo.png"  alt=""/></a></div>
+
+    <div class="mainHeader" style="padding: 8px; margin-bottom: 2px;"><h1>Użytkownicy</h1></div>
+
+    <div class="loginButton">
+        <form method="GET" th:action="@{/logout}">
+            <label style="color: #6d6b64" th:text="'Witaj '"> </label>
+            <label id="welcomeUsername" th:text="${session.sessionUser}"></label>
+            <button class="buttonStyle" type="submit">Wyloguj się</button>
+        </form>
+    </div>
+</header>
+
+<body style="background-color: white; text-align: center; align-items: center; margin-top: 120px;">
+    <table style="margin-left:auto; margin-right:auto;">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nazwa</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.email}"></td>
+                <td>
+                    <form method="GET" th:action="@{/editUser/{email}(email=${user.email})}">
+                        <button class="buttonStyle" style="padding: 1.5px; flex-direction: row; display: flex; margin-bottom: 10px">✒️</button>  
+                    </form>  
+
+                    <form method="GET" th:action="@{/userDelete/{id}(id=${user.id})}">
+                        <button class="buttonStyle" style="padding: 1.5px; flex-direction: row; display: flex" type="submit">❌</button> 
+                    </form>  
+                </td> 
+            </tr>
+        </tbody>
+    </table>
+    <footer>
+        <p><b>Autorzy: </b> Adam Grzeszczuk, Dawid Kobeszko, Łukasz Kaliszewicz, Zuzanna Kalinowska &#9935</p>
+    </footer>
+</body>
+</html>
