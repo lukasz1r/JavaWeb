@@ -19,11 +19,11 @@
             <p class="errorMsg" th:if="${param.success}">Zarejestrowano</p>
             <h1>Rejestracja</h1>
             <label >Imię</label>
-            <input class="inputStyle" id="name" name="name" type="text" placeholder="Twoje imię">
+            <input class="inputStyle" id="name" name="name" type="text" placeholder="Twoje imię" required>
             <label >Email</label>
-            <input class="inputStyle" id="email" name="email" type="email" placeholder="Twój email">
+            <input class="inputStyle" id="email" name="email" type="email" placeholder="Twój email" required>
             <label >Hasło</label>
-            <input class="inputStyle" id="password" name="password" type="password" placeholder="Twoje hasło">
+            <input class="inputStyle" id="password" name="password" type="password" placeholder="Twoje hasło" required>
             <button class="buttonStyle" type="submit">Zarejestruj</button>
         </form>
         <p>lub</p>
