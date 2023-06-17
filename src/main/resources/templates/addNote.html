@@ -35,11 +35,20 @@
                 <form method="GET" th:action="@{/notes/}">
                     <button style="width: 150px;" class="buttonStyle">Twoje wpisy</button>
                 </form>
+                <form method="GET" th:action="@{/sharedNotes/}">
+                    <button style="width: 150px" class="buttonStyle">Udostępnione notatki</button>
+                </form>
                 <button th:if="${session.role eq 1}"
                         class="buttonStyle"
                         onclick="location.href='/adminPanel/'"
                         type="button"
                         style="width: 150px">Zarządzanie<br> Użytkownikami
+                </button>
+                        <button th:if="${session.role eq 1}"
+                        class="buttonStyle"
+                        onclick="location.href='/home/'"
+                        type="button"
+                        style="width: 150px">Strona<br> główna
                 </button>
             </ul>
         </nav>
