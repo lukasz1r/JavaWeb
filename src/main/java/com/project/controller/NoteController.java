@@ -47,6 +47,8 @@ public class NoteController {
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
+          ArrayList<NoteData> reminded = noteRepo.getRemindNotes();
+          model.addAttribute("reminded", reminded);
           return "userNotes";
      }
 
