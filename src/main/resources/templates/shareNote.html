@@ -11,15 +11,15 @@
 <body>
 <header>
 
-  <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt=""/></a></div>
+  <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
 
   <div class="mainHeader"><h1>Edit Note</h1></div>
 
   <div class="loginButton">
-    <form method="POST" th:action="@{/logout}">
-        <label style="color: #6d6b64" th:text="'Witaj '"> </label>
-        <label id="welcomeUsername" th:text="${session.sessionUser}"></label>
-        <button class="buttonStyle" type="submit">Wyloguj się</button>
+    <form method="GET" th:action="@{/logout}">
+      <p style="color: #6d6b64; padding: 0vw 0.6vw 0vw 0vw;" th:text="'Witaj '"> </p>
+      <h2 id="welcomeUsername" style="padding: 0px" th:text="${session.sessionUser}"></h2>
+      <button class="buttonStyle" type="submit">Wyloguj się</button>
     </form>
   </div>
 

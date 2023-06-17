@@ -8,11 +8,15 @@
 
 <body>
      <header>
-          <div class="mainLogo"><a href="/home/"></a><img id="logo" src="/logo.png" /></div>
+          <div class="mainLogo"><a href="/home/"></a><img id="logo" src="/logo.png" alt="Strona glowna Notegoods" /></div>
       
           <div class="mainHeader" style="padding: 8px; margin-bottom: 2px;"><h1>Edycja uzytkownika</h1></div>
       
-          <div class="loginButton"></div>
+          <div class="loginButton"><form method="GET" th:action="@{/logout}">
+              <p style="color: #6d6b64; padding: 0vw 0.6vw 0vw 0vw;" th:text="'Witaj '"> </p>
+              <h2 id="welcomeUsername" style="padding: 0px" th:text="${session.sessionUser}"></h2>
+              <button class="buttonStyle" type="submit">Wyloguj się</button>
+          </form></div>
       
       </header>
 

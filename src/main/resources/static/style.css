@@ -75,6 +75,20 @@ header img{
     justify-content: right;
 }
 
+.loginButton form{
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+
+.loginButton form p, h3{
+    line-height: 12px!important;
+    font-size: 1.4vw;
+}
+
+
+
+
 header button{
     background-color: rgb(20, 81, 117);
     border-radius: 0.6vw;
