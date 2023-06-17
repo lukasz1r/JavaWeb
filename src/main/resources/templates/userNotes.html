@@ -144,13 +144,13 @@
 </main>
 
 
-<div id="popUp">
+<div id="popUp" >
 
     <button id="closePopUp" onclick="hidePopUp()">Zamknij popup!</button>
     <h2>Przypomnienia notatek!</h2>
 
     <div id="remindExist">
-        <article th:each="note : ${notes}" th:if="${note.remind_date == #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
+        <article class="remindNote" th:each="note : ${notes}" th:if="${note.remind_date == #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
             <h3 th:text="${note.title}"></h3>
             <p th:text="${note.date}"></p>
             <p style="text-align: left;" th:text="${#strings.abbreviate(note.note,40) + '...'}"   ></p>
@@ -171,6 +171,15 @@
 
     function hidePopUp() {
         document.getElementById("popUp").style.display = "none";
+    }
+
+    var articleCount = document.getElementsByClassName("remindNote").length;
+
+    // Jeżeli znacznik <remindNote> nie wystąpił ani razu
+    if (articleCount === 0) {
+        // Ustaw div o id "popUp" na "display: none"
+        var popUpDiv = document.getElementById("popUp");
+        popUpDiv.style.display = "none";
     }
 
 </script>

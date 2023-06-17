@@ -6,6 +6,7 @@ body{
     /*overflow-x: hidden;*/
     max-width: 100%;
     padding-top: min(22vh);
+    min-height: 100%!important;
 }
 
 #dispalyNone{
@@ -221,7 +222,7 @@ footer{
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 4.7%;
+    
 }
 
 .inputStyle {
