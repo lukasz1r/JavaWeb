@@ -5,6 +5,7 @@ body{
     font-family: "Century Gothic", serif;
     /*overflow-x: hidden;*/
     max-width: 100%;
+    padding-top: min(19vh);
 }
 
 #dispalyNone{
@@ -33,6 +34,7 @@ header{
     z-index: 1;
     box-shadow: 0px 0px 20px -7px rgba(66, 68, 90, 0.26);
     padding-bottom: 0.5vw;
+    padding: 19px 0 19px 0;
 }
 header div{
     width: 30%;
@@ -55,6 +57,7 @@ header img{
     text-align: center;
     /*background-color: yellow;*/
     justify-content: center;
+    margin-bottom: 2px;
 }
 
 .mainHeader h1{
@@ -84,7 +87,7 @@ header button{
 
 main{
     display: flex;
-    padding:7% 2% 0% 2%;
+    padding:0% 2% 0% 2%;
     justify-content: center;
 }
 
@@ -281,7 +284,8 @@ footer{
 .editForm {
     margin-top: 70px;
     align-items: center;
-    text-align: center;
+    display: flex;
+    justify-content: center;
     font-size: 22px;
     font-weight: bold;
     color: #063044;
@@ -350,6 +354,10 @@ select.inputStyle {
     width: 3vw;
     border-radius: 10px;
     margin-top: 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 article {
@@ -403,6 +411,34 @@ aside {
     padding-bottom: 2vw;
     color: #063044;
 }
+
+#loginContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    width: 50%;
+
+}
+#loginContainer form{
+    display: flex;
+    flex-direction: column;
+}
+
+#loginContainer form input{
+    margin: 2px 0 15px 0;
+}
+
+#loginContainer form button{
+    margin: 0 auto;
+    line-height: max(6px);
+}
+
+.registerOption{
+    font-size: 1.5vw;
+}
+
 
 footer {
     position: fixed;

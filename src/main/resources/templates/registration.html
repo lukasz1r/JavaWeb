@@ -6,48 +6,38 @@
     <link rel="stylesheet" href="/style.css">
     <title>Rejestracja</title>
 </head>
-<body  style="margin-top: 120px;">
-    <header style="padding: 19px">
+<body>
+    <header>
         <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt=""/></a></div> 
         <div class="mainHeader"><h1 style="font-weight: bold;">Witaj</h1></div> 
         <div class="loginButton">
         </div>
     </header>
-<div>
-    <div>
-        <div style="text-align: center;">
+
+        <div id="loginContainer">
             <form method="POST" role="form" th:action="@{/registration}" th:object="${user}">
-                <h1 style="font-family: Century Gothic, serif;">Rejestracja</h1>
-                <div th:if="${param.success}">
-                    <div style="font-family: Century Gothic, serif; border-radius: 12px;">
-                        Zarejestrowano
-                    </div>
-                </div>
-                <div>
-                    <label style="font-family: Century Gothic, serif;">Imię</label>
-                    <input class="inputStyle" id="name" name="name" type="text">
+                <h1>Rejestracja</h1>
+                <div th:if="${param.success}">Zarejestrowano</div>
+                    <label >Imię</label>
+                    <input class="inputStyle" id="name" name="name" type="text" placeholder="Twoje imię">
                     <p class="text-danger" th:errors="*{name}"
                        th:if="${#fields.hasErrors('name')}"></p>
-                </div>
-                <div>
-                    <label style="font-family: Century Gothic, serif;">Email</label>
-                    <input class="inputStyle" id="email" name="email" type="email">
+
+                    <label >Email</label>
+                    <input class="inputStyle" id="email" name="email" type="email" placeholder="Twój email">
                     <p class="text-danger" th:errors="*{email}"
                        th:if="${#fields.hasErrors('email')}"></p>
-                </div>
-                <div>
-                    <label style="font-family: Century Gothic, serif;">Hasło</label>
-                    <input class="inputStyle" id="password" name="password" type="password">
+
+                    <label >Hasło</label>
+                    <input class="inputStyle" id="password" name="password" type="password" placeholder="Twoje hasło">
                     <p class="text-danger" th:errors="*{password}"
                        th:if="${#fields.hasErrors('password')}"></p>
-                </div>
-                <div>
-                    <button class="buttonStyle" style="margin-left: 20px" type="submit">Zarejestruj</button></br>
-                    lub </br> <a class="link-primary" th:href="@{/login}">Zaloguj</a>
-                </div>
+
+                    <button class="buttonStyle" type="submit">Zarejestruj</button>
             </form>
+            <p>lub</p>
+            <a class="registerOption" th:href="@{/login}">Zaloguj</a>
         </div>
-    </div>
-</div>
+
 </body>
 </html>

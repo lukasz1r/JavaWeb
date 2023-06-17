@@ -6,40 +6,34 @@
     <link rel="stylesheet" href="/style.css">
     <title>Witaj</title>
 </head>
-<body  style="margin-top: 120px;">
-    <header style="padding: 19px">
+
+
+<body>
+    <header>
         <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt=""/></a></div>
         <div class="mainHeader"><h1 style="font-weight: bold;">Witaj</h1></div>
         <div class="loginButton">
         </div>
     </header>
-<div style="margin-top: 20px;">
-    <div>
-        <div style="text-align: center;">
-            <h1 style="font-family: Century Gothic, serif;">Logowanie</h1>
+
+        <div id="loginContainer">
+            <h1>Logowanie</h1>
             <div th:if="${param.error}">
-                <div style="border-radius: 12px; font-family: Century Gothic, serif;">Niepoprawne dane</div>
+                <div >Niepoprawne dane</div>
             </div>
             <div th:if="${param.logout}">
-                <div style="border-radius: 12px; font-family: Century Gothic, serif;">Wylogowano</div>
+                <div>Wylogowano</div>
             </div>
             <form method="POST" role="form" th:action="@{/login}">
-                <div>
-                    <label style="font-family: Century Gothic, serif;">Email</label>
+                    <label>Email</label>
                     <input class="inputStyle" id="username" name="username" placeholder="Wpisz adres Email" type="email">
-                </div>
-                <div>
-                    <label style="font-family: Century Gothic, serif;">Hasło</label>
+                    <label>Hasło</label>
                     <input class="inputStyle" id="password" name="password" placeholder="Wpisz hasło" type="password">
-                </div>
-                <div>
-                    <button class="buttonStyle" style="margin-left: 20px" type="submit">Zaloguj</button></br>
-                    lub  </br>
-                    <a class="link-primary" th:href="@{/registration}">Zarejestruj</a>
-                </div>
+                    <button class="buttonStyle"  type="submit">Zaloguj</button>
             </form>
-        </div>
+                <p>lub</p>
+                <a class="registerOption" th:href="@{/registration}">Zarejestruj</a>
+
     </div>
-</div>
 </body>
 </html>
