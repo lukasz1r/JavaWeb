@@ -20,6 +20,7 @@
         </form>
     </div>
 </header>
+
 <main>
     <nav>
         <ul>
@@ -33,6 +34,12 @@
                     onclick="location.href='/adminPanel/'"
                     type="button"
                     style="width: 150px">Zarządzanie<br> Użytkownikami
+            </button>
+            <button th:if="${session.role eq 1}"
+                    class="buttonStyle"
+                    onclick="location.href='/home/'"
+                    type="button"
+                    style="width: 150px">Strona<br> główna
             </button>
         </ul>
     </nav>
@@ -125,3 +132,4 @@
 <footer>
     <p><b>Autorzy: </b> Adam Grzeszczuk, Dawid Kobeszko, Łukasz Kaliszewicz, Zuzanna Kalinowska &#9935</p>
 </footer>
+</body>

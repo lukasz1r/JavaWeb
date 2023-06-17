@@ -32,6 +32,12 @@
                     type="button"
                     style="width: 150px">Zarządzanie<br> Użytkownikami
             </button>
+            <button th:if="${session.role eq 1}"
+                    class="buttonStyle"
+                    onclick="location.href='/home/'"
+                    type="button"
+                    style="width: 150px">Strona<br> główna
+          </button>
         </ul>
     </nav>
     </div>
@@ -42,11 +48,9 @@
           </div>
           <article th:each="note : ${sharedNotes}">
                <h3 th:text="${note.title}"></h3>
-               <ul>
                     <button class="buttonStyle"
                          style="padding: 15px; flex-direction: column; display: flex;"
                          th:onclick="'window.location.href=\'' + @{/sharedDelete/{id}(id=${note.id})} + '\''">❌</button>
-               </ul>
                <p th:text="${note.date}"></p>
                <p th:each="category : ${categories}" th:if="${note.categoryId == category.id}">
                    <span th:text="${category.name}"></span>
