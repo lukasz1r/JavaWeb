@@ -36,6 +36,7 @@ public class SpringSecurity {
                         
                         .requestMatchers("/style.css/**").permitAll()
                         .requestMatchers("/logo.png/**").permitAll()
+                        .requestMatchers("/icon.png/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

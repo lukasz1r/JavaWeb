@@ -248,5 +248,4 @@ public class NoteController {
 
           return "shareNote"; // Zwraca nazwę widoku, który będzie wyświetlany dla udostępnionej notatki
      }
-
 }
