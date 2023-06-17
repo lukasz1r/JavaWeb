@@ -61,6 +61,7 @@
             <article th:each="note : ${notesCategory}">
                 <h3 th:text="${note.title}"></h3>
                 <p th:text="${note.date}"></p>
+                <p th:text="${note.remind_date}"></p>
                 <p th:each="category : ${categories}" th:if="${note.categoryId == category.id}">
                     <span th:text="${category.name}"></span>
                 </p>
@@ -71,6 +72,7 @@
             <article th:each="note : ${notes}">
                 <h3 th:text="${note.title}"></h3>
                 <p th:text="${note.date}"></p>
+                <p th:text="${note.remind_date}"></p>
                 <p th:each="category : ${categories}" th:if="${note.categoryId == category.id}">
                     <span th:text="${category.name}"></span>
                 </p>

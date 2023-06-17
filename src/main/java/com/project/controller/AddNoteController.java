@@ -40,13 +40,14 @@ public class AddNoteController {
      }
 
      @GetMapping("/addNoteForm")
-     public String dodajWpisDoBazy(@RequestParam("title") String title, @RequestParam("content") String note, @RequestParam("category_id") int category_id, HttpSession session) {
+     public String dodajWpisDoBazy(@RequestParam("title") String title, @RequestParam("content") String note, @RequestParam("category_id") int category_id, @RequestParam("remind_date") String remind_date, HttpSession session) {
           noteRepo.save(new NoteData(
                          noteRepo.count() + 1, 
                          (Long) session.getAttribute("id"), 
                          title, 
                          note, 
                          (new SimpleDateFormat("yyyy-MM-dd")).format(new Date()), 
+                         remind_date,
                          category_id));
           return "redirect:/notes/";
      }

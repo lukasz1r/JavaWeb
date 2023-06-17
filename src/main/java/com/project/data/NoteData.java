@@ -28,6 +28,9 @@ public class NoteData {
      @Column(name = "date")
      private String date;
 
+     @Column(name = "remind_date")
+     private String remind_date;
+
      @Column(name = "category_id")
      private int category_id;
 
@@ -49,6 +52,10 @@ public class NoteData {
 
      public String getDate() {
           return date;
+     }
+
+     public String getRemindDate() {
+          return remind_date;
      }
 
      public int getCategoryId() {
@@ -73,6 +80,10 @@ public class NoteData {
 
      public void setDate(String date) {
           this.date = date;
+     }
+
+     public void setRemindDate(String remind_date) {
+          this.remind_date = remind_date;
      }
 
      public void setCategoryId(int category_id) {
