@@ -5,49 +5,33 @@
     <title>Edycja uzytkownika</title>
     <link rel="stylesheet" href="/style.css">
 </head>
-
 <body>
      <header>
-          <div class="mainLogo"><a href="/home/"></a><img id="logo" src="/logo.png" alt="Strona glowna Notegoods" /></div>
-      
-          <div class="mainHeader" style="padding: 8px; margin-bottom: 2px;"><h1>Edycja uzytkownika</h1></div>
-      
-          <div class="loginButton"><form method="GET" th:action="@{/logout}">
-              <p style="color: #6d6b64; padding: 0vw 0.6vw 0vw 0vw;" th:text="'Witaj '"> </p>
-              <h2 id="welcomeUsername" style="padding: 0px" th:text="${session.sessionUser}"></h2>
-              <button class="buttonStyle" type="submit">Wyloguj się</button>
-          </form></div>
-      
-      </header>
-
-     <h1>Edytuj uzytkownika</h1>
+          <div class="mainLogo"><a href="/home/"></a><img id="logo" src="/logo.png" alt="Strona glowna Notegoods" /></div>       
+               <div class="mainHeader" style="padding: 8px; margin-bottom: 2px;"><h1>Edycja uzytkownika</h1></div>    
+               <div class="loginButton"><form method="POST" th:action="@{/logout}">
+                    <p style="color: #6d6b64; padding: 0vw 0.6vw 0vw 0vw;" th:text="'Witaj '"> </p>
+                    <h2 id="welcomeUsername" style="padding: 0px" th:text="${session.sessionUser}"></h2>
+                    <button class="buttonStyle" type="submit">Wyloguj się</button>
+               </form>
+          </div>
+     </header>
+     <h1 style="color: #063044;">Edytuj uzytkownika</h1>
           <div class="editForm">
                <form class="editUserForm" method="POST" th:action="@{/editedUser/{email}(email=${user.email})}">
-                    <label>Nazwa:</label><br>
-                    <input class="inputStyle" type="text" id="name" name="name" th:value="${user.name}" /><br>
-                    
+                    <label>Imię:</label><br>
+                    <input class="inputStyle" type="text" id="name" name="name" th:value="${user.name}" /><br>                   
                     <label>Email:</label><br>
                     <input class="inputStyle" type="text" id="emailCh" name="emailCh" th:value="${user.email}" /><br>
-
                     <label>Rola:</label><br>
-                    <label>
-                         <input type="radio" id="roleAdmin" name="role" value="ADMIN" th:checked="${role == 'ROLE_ADMIN'}">
-                         ADMIN
-                     </label></br>
-                     <label>
-                         <input type="radio" id="roleUser" name="role" value="USER" th:checked="${role == 'ROLE_USER'}">
-                         USER
-                     </label></br>
-                     <label>
-                         <input type="radio" id="roleFullUser" name="role" value="FULLUSER" th:checked="${role == 'ROLE_FULLUSER'}">
-                         FULLUSER
-                     </label></br>
-                    
+                    <label><input type="radio" id="roleAdmin" name="role" value="ADMIN" th:checked="${role eq 'ROLE_ADMIN'}">ADMIN</label></br>
+                    <label><input type="radio" id="roleUser" name="role" value="USER" th:checked="${role eq 'ROLE_USER'}">USER</label></br>
+                    <label><input type="radio" id="roleFullUser" name="role" value="FULLUSER" th:checked="${role eq 'ROLE_FULLUSER'}">FULLUSER</label></br>  
                     <button class="buttonStyle" type="submit">Zapisz</button>
                </form>
           </div>
-     </body>
+</body>
      <footer>
           <p><b>Autorzy: </b> Adam Grzeszczuk, Dawid Kobeszko, Łukasz Kaliszewicz, Zuzanna Kalinowska &#9935</p>
-      </footer>
+     </footer>
 </html>

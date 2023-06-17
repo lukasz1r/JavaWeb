@@ -19,7 +19,7 @@ public class SpringSecurity {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/registration/**").permitAll()
                         .requestMatchers("/login/**").permitAll()
@@ -27,7 +27,12 @@ public class SpringSecurity {
                         .requestMatchers("/notes/**").hasAnyRole("FULLUSER", "ADMIN")
                         .requestMatchers("/addNote/**").hasAnyRole("FULLUSER", "ADMIN")
                         .requestMatchers("/adminPanel/**").hasAnyRole("ADMIN")
-                        .requestMatchers("/sharedNote/**").hasAnyRole("USER", "ADMIN", "FULLUSER")
+                        .requestMatchers("/editUser/**").hasAnyRole("ADMIN")
+                        .requestMatchers("/sharedNotes/**").hasAnyRole("USER", "ADMIN", "FULLUSER")
+                        .requestMatchers("/addCategory/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/editNote/**").hasAnyRole("USER", "ADMIN")
+
+                        
                         .requestMatchers("/style.css/**").permitAll()
                         .requestMatchers("/logo.png/**").permitAll()
                         .anyRequest().authenticated()

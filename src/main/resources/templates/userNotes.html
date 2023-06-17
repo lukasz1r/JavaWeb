@@ -27,7 +27,7 @@
             <h2>Menu</h2>
             <button style="width: 150px" class="buttonStyle" onclick="location.href='/addNote'" type="button">Dodaj wpis</button>
             <form method="GET" th:action="@{/sharedNotes/}">
-                <button style="width: 150px" class="buttonStyle">Udostępnione notatki</button>
+                <button style="width: 150px" class="buttonStyle">Udostępnione wpisy</button>
             </form>
             <button th:if="${session.role} eq 1"
                     class="buttonStyle"

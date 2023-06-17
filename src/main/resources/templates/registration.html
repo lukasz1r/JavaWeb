@@ -22,22 +22,21 @@
                     <input class="inputStyle" id="name" name="name" type="text" placeholder="Twoje imię">
                     <p class="text-danger" th:errors="*{name}"
                        th:if="${#fields.hasErrors('name')}"></p>
-
                     <label >Email</label>
                     <input class="inputStyle" id="email" name="email" type="email" placeholder="Twój email">
                     <p class="text-danger" th:errors="*{email}"
                        th:if="${#fields.hasErrors('email')}"></p>
-
                     <label >Hasło</label>
                     <input class="inputStyle" id="password" name="password" type="password" placeholder="Twoje hasło">
                     <p class="text-danger" th:errors="*{password}"
                        th:if="${#fields.hasErrors('password')}"></p>
-
                     <button class="buttonStyle" type="submit">Zarejestruj</button>
             </form>
             <p>lub</p>
             <a class="registerOption" th:href="@{/login}">Zaloguj</a>
         </div>
-
 </body>
+    <footer>
+        <p><b>Autorzy: </b> Adam Grzeszczuk, Dawid Kobeszko, Łukasz Kaliszewicz, Zuzanna Kalinowska &#9935</p>
+    </footer>
 </html>
