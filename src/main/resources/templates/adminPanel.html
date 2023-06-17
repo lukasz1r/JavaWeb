@@ -4,16 +4,7 @@
     <meta charset="UTF-8">
     <title>Użytkownicy</title>
     <link rel="stylesheet" href="/style.css">
-    <style>
-        body{
-            background-color: white;
-            text-align: center;
-            align-items: center;
-        }
-        h1 {
-            font-family: "Century Gothic", serif;
-        }
-    
+    <style>    
         table {
             border-collapse: collapse;
             width: 50%;
@@ -41,9 +32,9 @@
     </style>
 </head>
 <header>
-    <div class="mainLogo" style="margin-left: -79px;"><a href="/home/"> <img id="logo" src="/logo.png"  alt=""/></a></div>
+    <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt=""/></a></div>
 
-    <div class="mainHeader" style="padding: 8px; margin-bottom: 2px;"><h1>Użytkownicy</h1></div>
+    <div class="mainHeader"><h1>Użytkownicy</h1></div>
 
     <div class="loginButton">
         <form method="GET" th:action="@{/logout}">
