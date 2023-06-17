@@ -217,6 +217,12 @@ public class NoteController {
           return "/sharedNotes";
      }
 
+     @GetMapping("/sharedDelete/{id}")
+     public String sharedDelete(@PathVariable("id") Long id, Model model, HttpSession session) {
+          sharedRepo.deleteById(id);
+          return "redirect:/sharedNotes/";
+     }
+
      @GetMapping("/shareNoteByKey/{key}")
      public String shareNote(@PathVariable("key") String shareKey , @RequestParam("id") int id, Model model) {
           // Przetwarzanie logiki dla udostępnienia notatki

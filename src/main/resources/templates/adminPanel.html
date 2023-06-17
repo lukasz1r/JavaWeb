@@ -9,7 +9,6 @@
             background-color: white;
             text-align: center;
             align-items: center;
-            margin-top: 17vh;
         }
         h1 {
             font-family: "Century Gothic", serif;
@@ -56,6 +55,20 @@
 </header>
 
 <body>
+    <main>
+    <div class="navDiv">
+        <nav>
+            <ul>
+                <h2>Menu</h2>
+                <button th:if="${session.role eq 1}"
+                        class="buttonStyle"
+                        onclick="location.href='/home/'"
+                        type="button"
+                        style="width: 150px">Powrót
+                </button>
+            </ul>
+        </nav>
+    </div>
     <table style="margin-left:auto; margin-right:auto;">
         <thead>
             <tr>
@@ -81,6 +94,11 @@
             </tr>
         </tbody>
     </table>
+    <div class="navDiv">
+        <aside>
+        </aside>
+    </div>
+    </main>
     <footer>
         <p><b>Autorzy: </b> Adam Grzeszczuk, Dawid Kobeszko, Łukasz Kaliszewicz, Zuzanna Kalinowska &#9935</p>
     </footer>

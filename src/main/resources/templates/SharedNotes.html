@@ -20,8 +20,11 @@
 </header>
 <main>
     <nav>
-        <ul  th:if="${session.role eq 2 or session.role eq 1}">
+        <ul th:if="${session.role eq 2 or session.role eq 1}">
             <h2>Menu</h2>
+            <form method="GET" th:action="@{/notes/}" th:if="${session.role eq 2 or session.role eq 1}">
+               <button style="width: 150px" class="buttonStyle">Twoje wpisy</button>
+           </form>
             <button style="width: 150px" class="buttonStyle" onclick="location.href='/addNote'" type="button">Dodaj wpis</button>
             <button th:if="${session.role} eq 1"
                     class="buttonStyle"
@@ -39,6 +42,11 @@
           </div>
           <article th:each="note : ${sharedNotes}">
                <h3 th:text="${note.title}"></h3>
+               <ul>
+                    <button class="buttonStyle"
+                         style="padding: 15px; flex-direction: column; display: flex;"
+                         th:onclick="'window.location.href=\'' + @{/sharedDelete/{id}(id=${note.id})} + '\''">❌</button>
+               </ul>
                <p th:text="${note.date}"></p>
                <p th:each="category : ${categories}" th:if="${note.categoryId == category.id}">
                    <span th:text="${category.name}"></span>
@@ -51,18 +59,7 @@
     <div class="navDiv" th:if="${session.isLogged}">
         <aside>
             <ul>
-                <h2 style="display: flex;">Kategorie
-                    <form th:action="@{/addCategory/}" method="POST" th:if="${session.role eq 2 or session.role eq 1}">
-                        <button class="buttonStyle" style="margin-left: 10px;" type="submit">➕</button>
-                    </form></h2>
-                    <form th:action="@{/notes/}" method="GET">
-                        <button class="buttonStyle" style="margin-bottom: 5px; width: 150px; color: rgb(122, 174, 157);" type="submit">Wszystkie</button>
-                    </form>
-                <div th:each="category : ${categories}">
-                    <form th:action="@{/notesCategory/{id}(id=${category.id})}" method="POST">
-                        <button class="buttonStyle" style="margin-bottom: 5px; width: 150px" th:text="${category.name}" type="submit"></button>
-                    </form>
-                </div>
+
             </ul>
         </aside>
     </div>

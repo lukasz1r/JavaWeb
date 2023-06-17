@@ -16,8 +16,30 @@
           <div class="loginButton"></div>
       
       </header>
+      
 
-     <main style="margin-left: 30vh">
+     <main>
+
+        <div class="navDiv">
+            <nav>
+                <ul>
+                    <h2>Menu</h2>
+                    <form method="GET" th:action="@{/notes/}" th:if="${session.role eq 2 or session.role eq 1}">
+                        <button style="width: 150px" class="buttonStyle">Twoje wpisy</button>
+                    </form>
+                    <form method="GET" th:action="@{/sharedNotes/}">
+                        <button style="width: 150px" class="buttonStyle">Udostępnione notatki</button>
+                    </form>
+                    <button th:if="${session.role eq 2 or session.role eq 1}" style="width: 150px" class="buttonStyle" onclick="location.href='/addNote'" type="button">Dodaj Wpis</button>
+                    <button th:if="${session.role eq 1}"
+                            class="buttonStyle"
+                            onclick="location.href='/adminPanel/'"
+                            type="button"
+                            style="width: 150px">Zarządzanie<br> Użytkownikami
+                    </button>
+                </ul>
+            </nav>
+        </div>
           <div class="wpisy">
                <div id="dodajWpis">
                    <h2>Dodaj kategorię</h2>

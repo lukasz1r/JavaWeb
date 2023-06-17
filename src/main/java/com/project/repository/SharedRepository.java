@@ -21,4 +21,7 @@ public interface SharedRepository extends JpaRepository<SharedData, Long> {
      @Query(value = "INSERT INTO shared VALUES (:user_id, :note_id)", nativeQuery = true)
      void addSharedNote(@Param("user_id") Long user_id, @Param("note_id") Long note_id);
 
+     @Modifying
+     @Query(value = "DELETE FROM shared WHERE note_id = :id", nativeQuery = true)
+     void deleteById(@Param("id") Long id);
 }
