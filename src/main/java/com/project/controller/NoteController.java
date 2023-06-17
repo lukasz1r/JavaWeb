@@ -19,6 +19,7 @@ import com.project.repository.UserRepository;
 
 import org.springframework.security.core.Authentication;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -76,9 +77,9 @@ public class NoteController {
      }
 
      @GetMapping("/title-asc")
-     public String sortNotesByTitleAsc(Model model, HttpSession session)
+     public String sortNotesByTitleAsc(Model model, HttpServletRequest session)
      {
-          ArrayList<NoteData> notes = noteRepo.orderedByTitleAsc((long) session.getAttribute("id"));
+          ArrayList<NoteData> notes = noteRepo.orderedByTitleAsc((long) session.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
@@ -86,9 +87,9 @@ public class NoteController {
      }
 
      @GetMapping("/title-desc")
-     public String sortNotesByTitleDesc(Model model, HttpSession session)
+     public String sortNotesByTitleDesc(Model model, HttpServletRequest session)
      {
-          ArrayList<NoteData> notes = noteRepo.orderedByTitleDesc((long) session.getAttribute("id"));
+          ArrayList<NoteData> notes = noteRepo.orderedByTitleDesc((long) session.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
@@ -96,9 +97,9 @@ public class NoteController {
      }
 
      @GetMapping("/date-asc")
-     public String sortNotesByDateAsc(Model model, HttpSession session)
+     public String sortNotesByDateAsc(Model model, HttpServletRequest session)
      {
-          ArrayList<NoteData> notes = noteRepo.orderedByDateAsc((long) session.getAttribute("id"));
+          ArrayList<NoteData> notes = noteRepo.orderedByDateAsc((long) session.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
@@ -106,9 +107,9 @@ public class NoteController {
      }
 
      @GetMapping("/date-desc")
-     public String sortNotesByDateDesc(Model model, HttpSession session)
+     public String sortNotesByDateDesc(Model model, HttpServletRequest session)
      {
-          ArrayList<NoteData> notes = noteRepo.orderedByDateDesc((long) session.getAttribute("id"));
+          ArrayList<NoteData> notes = noteRepo.orderedByDateDesc((long) session.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
@@ -116,9 +117,9 @@ public class NoteController {
      }
 
      @GetMapping("/category-desc")
-     public String sortNotesByCategoryDesc(Model model, HttpSession session)
+     public String sortNotesByCategoryDesc(Model model, HttpServletRequest session)
      {
-          ArrayList<NoteData> notes = noteRepo.orderedByNameDesc((long) session.getAttribute("id"));
+          ArrayList<NoteData> notes = noteRepo.orderedByNameDesc((long) session.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
@@ -126,9 +127,9 @@ public class NoteController {
      }
 
      @GetMapping("/category-asc")
-     public String sortNotesByCategoryAsc(Model model, HttpSession session)
+     public String sortNotesByCategoryAsc(Model model, HttpServletRequest session)
      {
-          ArrayList<NoteData> notes = noteRepo.orderedByNameAsc((long) session.getAttribute("id"));
+          ArrayList<NoteData> notes = noteRepo.orderedByNameAsc((long) session.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
@@ -191,8 +192,8 @@ public class NoteController {
      }
 
      @GetMapping("/notes/category/{id}")
-     public String showNotesByCategoryUser(@PathVariable("id") int id, Model model, HttpSession session) {
-          ArrayList<NoteData> notes = noteRepo.findAllByCategory(id, (long) session.getAttribute("id"));
+     public String showNotesByCategoryUser(@PathVariable("id") int id, Model model, HttpServletRequest session) {
+          ArrayList<NoteData> notes = noteRepo.findAllByCategory(id, (long) session.getSession().getAttribute("id"));
           model.addAttribute("notesCategory", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
@@ -216,7 +217,7 @@ public class NoteController {
      }
 
      @GetMapping("/sharedDelete/{id}")
-     public String sharedDelete(@PathVariable("id") Long id, Model model, HttpSession session) {
+     public String sharedDelete(@PathVariable("id") Long id, Model model) {
           sharedRepo.deleteById(id);
           return "redirect:/sharedNotes/";
      }
