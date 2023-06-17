@@ -79,7 +79,12 @@
                     <span th:text="${category.name}"></span>
                 </p>
                 <p th:text="${note.date}"></p>
-                <p th:text="'Przypomnienie: ' + ${note.remind_date}"></p>
+                <p style="float: left;" >Przypomnienie &nbsp;&nbsp;</p> <p  style="float: left;" class="remindWartosc" th:text="${note.remind_date}"></p>
+                <div style="clear: both;"> </div>
+                <div class="remindDate"  th:if="${note.remind_date == #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
+                    <img src="/dzwon.png" width="9%" alt="przypomnienie" >
+                </div>
+
                 <p style="text-align: left;" th:text="${note.note}"></p>
           </article>
         </div>
@@ -103,7 +108,15 @@
                     <span th:text="${category.name}"></span>
                 </p>
                 <p th:text="${note.date}"></p>
-                <p th:text="'Przypomnienie: ' + ${note.remind_date}"></p>
+
+                <p style="float: left;" >Przypomnienie &nbsp;&nbsp;</p> <p  style="float: left;" class="remindWartosc" th:text="${note.remind_date}"></p>
+                <div style="clear: both;"> </div>
+                <div class="remindDate"  th:if="${note.remind_date == #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
+                    <img src="/dzwon.png" width="9%" alt="przypomnienie" >
+                </div>
+
+
+
                 <p style="text-align: left;" th:text="${note.note}"></p>
           </article>
         </div>
@@ -129,8 +142,37 @@
     </div>
 
 </main>
+
+
+<div id="popUp">
+
+    <button id="closePopUp" onclick="hidePopUp()">Zamknij popup!</button>
+    <h2>Przypomnienia notatek!</h2>
+
+    <div id="remindExist">
+        <article th:each="note : ${notes}" th:if="${note.remind_date == #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
+            <h3 th:text="${note.title}"></h3>
+            <p th:text="${note.date}"></p>
+            <p style="text-align: left;" th:text="${#strings.abbreviate(note.note,40) + '...'}"   ></p>
+            <button class="buttonStyle"
+                    style="padding: 15px; flex-direction: column; display: flex;"
+                    th:onclick="'window.location.href=\'' + @{/sharedNote/{id}(id=${note.id})} + '\''">Zobacz notatkę &#8594; </button>
+        </article>
+    </div>
+
+</div>
+
+
+<footer>
+    <p><b>Autorzy: </b> Adam Grzeszczuk, Dawid Kobeszko, Łukasz Kaliszewicz, Zuzanna Kalinowska &#9935</p>
+</footer>
+
+<script>
+
+    function hidePopUp() {
+        document.getElementById("popUp").style.display = "none";
+    }
+
+</script>
 </body>
-    <footer>
-        <p><b>Autorzy: </b> Adam Grzeszczuk, Dawid Kobeszko, Łukasz Kaliszewicz, Zuzanna Kalinowska &#9935</p>
-    </footer>
 </html>
