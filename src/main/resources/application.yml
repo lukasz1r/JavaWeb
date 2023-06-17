@@ -1,14 +1,14 @@
 spring:
-  jdbc:
-  properties:
-  hibernate:
-  dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-  ddl-auto: update
-  datasource:
-    url: jdbc:mysql://localhost/database
-    username: root
-    password:
-  session:
     jdbc:
-      initialize-schema: always
-    timeout: 300
+    properties:
+    hibernate:
+    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    ddl-auto: update
+    datasource:
+        url: jdbc:mysql://localhost/database
+        username: root
+        password:
+    session:
+        jdbc:
+            initialize-schema: always
+        timeout: 300
