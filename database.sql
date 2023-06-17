@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 17, 2023 at 10:58 AM
+-- Generation Time: Cze 17, 2023 at 07:48 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -39,11 +39,7 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `name`) VALUES
 (1, 'Bankowość'),
 (2, 'Sport'),
-(3, 'asd'),
-(4, 'lol'),
-(5, 'nowa'),
-(6, 'dodana'),
-(7, 'asdasdsadasdfasdasd');
+(9, 'nowa');
 
 -- --------------------------------------------------------
 
@@ -57,19 +53,9 @@ CREATE TABLE `notes` (
   `category_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `note` varchar(255) NOT NULL,
-  `date` varchar(255) NOT NULL
+  `date` varchar(255) NOT NULL,
+  `remind_date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `notes`
---
-
-INSERT INTO `notes` (`id`, `user_id`, `category_id`, `title`, `note`, `date`) VALUES
-(19, 37, 2, 'asd', 'asdas', '2023-06-13'),
-(20, 37, 1, 'sd', 'sd', '2023-06-13'),
-(21, 37, 2, 'sdsds', 'dsds', '2023-06-13'),
-(43, 1, 1, 'asfd', 'asdf', '2023-06-17'),
-(44, 1, 7, 'asd', 'asd', '2023-06-17');
 
 -- --------------------------------------------------------
 
@@ -94,6 +80,17 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `shared`
+--
+
+CREATE TABLE `shared` (
+  `user_id` int(11) NOT NULL,
+  `note_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `users`
 --
 
@@ -111,7 +108,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
 (1, 'adam', 'adam@wp.pl', '$2a$10$fJxjJ6.W.s237iwITs0AeefpxSAzK8X5OiUBhzEL0sGhlT1.mjQMe'),
 (2, 'user', 'user@wp.pl', '$2a$10$0y.iFyT3eMzSlH65y9Ik9en0Wvh895pR0ncRepU.LBcbpUiKnIEo.'),
-(42, 'asdsdsd', 'asdasd@wp.pl', '$2a$10$jGmtnyru6PMXGgrFG3U6yei0Ow.FoIC1vfONBwUgf0dty.vN9lMti');
+(43, 'asd', 'asd@wp.pl', '$2a$10$pPg/vfBWZUhduwU86RfMauYRf8t9wiTpNZ7vgvr.Lo.hKuP.sy4K.'),
+(52, 'adameq', 'adameq@wp.pl', '$2a$10$Gd4Clf1Wb1iDv7DDur53r.vF5TbEt3lz9Mj.lm/Cdz1TEFiRq4Snm'),
+(53, '', '', '$2a$10$Vgkwt7lDWr1KoiDuAbWJbu8QBjVJJk1Csc74R4rvp7yhfTDXbOlcS');
 
 -- --------------------------------------------------------
 
@@ -131,8 +130,9 @@ CREATE TABLE `users_roles` (
 INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES
 (1, 1),
 (2, 2),
-(39, 3),
-(42, 3);
+(43, 2),
+(52, 3),
+(53, 3);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -170,25 +170,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `notes`
 --
 ALTER TABLE `notes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
