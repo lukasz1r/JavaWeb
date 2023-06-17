@@ -346,6 +346,11 @@ select.inputStyle {
     font-size: 1vw;
     font-weight: 600!important;
 }
+#najnowszeWpisyHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 #najnowszeWpisyHeader button {
     padding: 0vw;
@@ -355,9 +360,7 @@ select.inputStyle {
     border-radius: 10px;
     margin-top: 10px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+
 }
 
 article {
