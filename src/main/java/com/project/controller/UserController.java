@@ -22,7 +22,7 @@ import com.project.repository.UsersRolesRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
 @Controller
@@ -44,28 +44,33 @@ public class UserController {
     @Autowired
     UsersRolesRepository rolesRepo;
 
-    @GetMapping("home/")
-    public String registrationForm(HttpSession session, Model model, Authentication authentication) {
-        session.setAttribute("isLogged", true);
+    @GetMapping("logged/")
+    public String logged(HttpServletRequest session, Authentication authentication) {
+        session.getSession().setAttribute("isLogged", true);
         UserData user = userRepo.findByEmail(authentication.getName());
-        session.setAttribute("sessionUser", user.getName());
-        session.setAttribute("id", user.getId());
-        ArrayList<NoteData> notes = noteRepo.findAll();
-        model.addAttribute("notes", notes);
-        ArrayList<CategoryData> categories = categoryRepo.findAll();
-        model.addAttribute("categories", categories);
+        session.getSession().setAttribute("sessionUser", user.getName());
+        session.getSession().setAttribute("id", user.getId());
 
         authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getAuthorities().stream()
                 .anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"))) {
-                session.setAttribute("role", 1);
+                session.getSession().setAttribute("role", 1);
         } else if (authentication != null && authentication.getAuthorities().stream()
                 .anyMatch(authority -> authority.getAuthority().equals("ROLE_FULLUSER"))) {
-                session.setAttribute("role", 2);
+                session.getSession().setAttribute("role", 2);
         } else if (authentication != null && authentication.getAuthorities().stream()
                 .anyMatch(authority -> authority.getAuthority().equals("ROLE_USER"))) {
-                session.setAttribute("role", 3);
+                session.getSession().setAttribute("role", 3);
         }
+        return "redirect:/home/";
+    }
+
+    @GetMapping("home/")
+    public String registrationForm(Model model) {
+        ArrayList<NoteData> notes = noteRepo.findAll();
+        model.addAttribute("notes", notes);
+        ArrayList<CategoryData> categories = categoryRepo.findAll();
+        model.addAttribute("categories", categories);
         return "index";
     }
 

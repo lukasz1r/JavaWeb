@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <title>Strona główna</title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -49,10 +51,10 @@
             <div id="najnowszeWpisyHeader" >
             <h2>Najnowsze wpisy</h2>
                 <div style="margin-top: 1.5vw;">
-                    <button class="buttonStyle" onclick="location.href='/dat-asc'" type="button">D ⮝</button>
-                    <button class="buttonStyle" onclick="location.href='/dat-desc'" type="button">D ⮟</button>
-                    <button class="buttonStyle" onclick="location.href='/popular-asc'" type="button">P ⮝</button>
-                    <button class="buttonStyle" onclick="location.href='/popular-desc'" type="button">P ⮟</button>
+                    <button class="buttonStyle" onclick="location.href='/dat-asc'" type="button">📅⭧</button>
+                    <button class="buttonStyle" onclick="location.href='/dat-desc'" type="button">📅⭨</button>
+                    <button class="buttonStyle" onclick="location.href='/popular-asc'" type="button">⭐️⭧</button>
+                    <button class="buttonStyle" onclick="location.href='/popular-desc'" type="button">⭐️⭨</button>
                 </div>
             </div>
             <div th:if="${notesCategory}">
@@ -80,7 +82,7 @@
             <aside>
                 <h2 style="display: flex;">Kategorie
                 <form th:action="@{/addCategory/}" method="POST" th:if="${session.role eq 2 or session.role eq 1}">
-                    <button class="buttonStyle" style="margin-left: 10px;" type="submit">➕</button>
+                    <button class="buttonStyle" style="margin-left: 35px; width: 40px" type="submit">+🏷️</button>
                 </form></h2>
                 <form th:action="@{/home/}" method="GET">
                     <button class="buttonStyle" style="margin-bottom: 5px; width: 150px; color: rgb(122, 174, 157);" type="submit">Wszystkie</button>

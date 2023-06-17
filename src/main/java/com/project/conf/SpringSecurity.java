@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -29,22 +30,26 @@ public class SpringSecurity {
                         .requestMatchers("/adminPanel/**").hasAnyRole("ADMIN")
                         .requestMatchers("/editUser/**").hasAnyRole("ADMIN")
                         .requestMatchers("/sharedNotes/**").hasAnyRole("USER", "ADMIN", "FULLUSER")
-                        .requestMatchers("/addCategory/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/addCategory/**").hasAnyRole("FULLUSER", "ADMIN")
                         .requestMatchers("/editNote/**").hasAnyRole("FULLUSER", "ADMIN")
 
                         
                         .requestMatchers("/style.css/**").permitAll()
                         .requestMatchers("/logo.png/**").permitAll()
+                        .requestMatchers("/icon.png/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/home/")
+                        .defaultSuccessUrl("/logged/")
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll())
+                .logout((logout) -> logout.permitAll()
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true))
                 .exceptionHandling().accessDeniedPage("/access-denied");
+
         return http.build();
     }
 }
