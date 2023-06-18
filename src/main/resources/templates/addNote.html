@@ -52,9 +52,9 @@
                 <h2>Dodaj własny wpis</h2>
                 <form action="GET" th:action="@{/addNoteForm}">
                     <label for="title" style="display: none">Title</label>
-                    <input class="inputStyle" type="text" id="title" name="title" placeholder="Podaj tytuł swojego wpisu" th:required="true"><br>
+                    <input class="inputStyle" type="text" id="title" name="title" placeholder="Podaj tytuł swojego wpisu" required><br>
                     <label for="content" style="display: none">content</label>
-                    <textarea class="inputStyle" type="text" id="content" name="content" placeholder="Wpisz treść swojego wpisu" th:required="true"></textarea><br>
+                    <textarea class="inputStyle" type="text" id="content" name="content" placeholder="Wpisz treść swojego wpisu" required></textarea><br>
                     <label for="remind_date" style="display: none">remind_date</label>
                     <input class="inputStyle" id="remind_date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="remind_date" placeholder="Data przypomnienia" th:required="true"/></br>
                     <label for="category_id" style="display: none">category_id</label>
