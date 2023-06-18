@@ -23,6 +23,9 @@
   <nav>
     <ul>
       <h2>Menu</h2>
+      <form method="GET" th:action="@{/notes/}" th:if="${session.role eq 2 or session.role eq 1}">
+        <button style="width: 150px" class="buttonStyle">Twoje wpisy</button>
+      </form>
       <button style="width: 150px" class="buttonStyle" onclick="location.href='/addNote'" type="button">Dodaj wpis</button>
       <form method="GET" th:action="@{/sharedNotes/}">
         <button style="width: 150px" class="buttonStyle">Udostępnione wpisy</button>
@@ -32,12 +35,6 @@
               onclick="location.href='/adminPanel/'"
               type="button"
               style="width: 150px">Zarządzanie użytkownikami
-      </button>
-      <button th:if="${session.role eq 2 or session.role eq 1}"
-              class="buttonStyle"
-              onclick="location.href='/home/'"
-              type="button"
-              style="width: 150px">Strona główna
       </button>
     </ul>
   </nav>

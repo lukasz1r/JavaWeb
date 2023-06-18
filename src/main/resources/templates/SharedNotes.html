@@ -24,7 +24,7 @@
         <ul>
           <h2>Menu</h2>
           <form method="GET" th:action="@{/notes/}" th:if="${session.role eq 2 or session.role eq 1}">
-          <button style="width: 150px" class="buttonStyle">Twoje wpisy</button>
+               <button style="width: 150px" class="buttonStyle">Twoje wpisy</button>
           </form>
           <button th:if="${session.role eq 2 or session.role eq 1}" 
                style="width: 150px" 
@@ -36,12 +36,6 @@
                onclick="location.href='/adminPanel/'"
                type="button"
                style="width: 150px">Zarządzanie<br> Użytkownikami
-          </button>
-          <button
-               class="buttonStyle"
-               onclick="location.href='/home/'"
-               type="button"
-               style="width: 150px">Strona<br> Główna
           </button>
         </ul>
     </nav>

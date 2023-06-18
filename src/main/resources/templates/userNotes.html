@@ -37,12 +37,6 @@
                     type="button"
                     style="width: 150px">Zarządzanie użytkownikami
             </button>
-            <button th:if="${session.role eq 2 or session.role eq 1}"
-                    class="buttonStyle"
-                    onclick="location.href='/home/'"
-                    type="button"
-                    style="width: 150px">Strona główna
-            </button>
         </ul>
     </nav>
 
@@ -50,6 +44,8 @@
         <div id="wpisyHeader">
              <h2 style="margin-right: 100px;">Twoje wpisy</h2>
              <div>
+                <button class="buttonStyle" onclick="location.href='/popular-asc'" type="button">⭐️⭧</button>
+                <button class="buttonStyle" onclick="location.href='/popular-desc'" type="button">⭐️⭨</button>
                 <button class="buttonStyle" onclick="location.href='/title-asc'" type="button">💬⭧</button>
                 <button class="buttonStyle" onclick="location.href='/title-desc'" type="button">💬⭨</button>
                 <button class="buttonStyle" onclick="location.href='/category-asc'" type="button">🏷️⭧</button>

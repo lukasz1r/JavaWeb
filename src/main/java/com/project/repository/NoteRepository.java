@@ -44,17 +44,11 @@ public interface NoteRepository extends JpaRepository<NoteData, Integer> {
      @Query(value = "SELECT * FROM notes WHERE user_id = :id ORDER BY title DESC", nativeQuery = true)
      ArrayList<NoteData> orderedByTitleDesc(@Param("id") Long id);
 
-     @Query(value = "SELECT * FROM notes ORDER BY date ASC", nativeQuery = true)
-     ArrayList<NoteData> orderedByDatAsc();
+     @Query(value = "SELECT n.* FROM notes n JOIN categories c ON n.category_id = c.id WHERE user_id = :id ORDER BY (SELECT COUNT(*) FROM notes WHERE category_id = n.category_id) ASC, n.category_id DESC", nativeQuery = true)
+     ArrayList<NoteData> orderedByPopularCategoryAsc(@Param("id") Long id);
 
-     @Query(value = "SELECT * FROM notes ORDER BY date DESC", nativeQuery = true)
-     ArrayList<NoteData> orderedByDatDesc();
-
-     @Query(value = "SELECT n.* FROM notes n JOIN categories c ON n.category_id = c.id ORDER BY (SELECT COUNT(*) FROM notes WHERE category_id = n.category_id) ASC, n.category_id DESC", nativeQuery = true)
-     ArrayList<NoteData> orderedByPopularCategoryAsc();
-
-     @Query(value = "SELECT n.* FROM notes n JOIN categories c ON n.category_id = c.id ORDER BY (SELECT COUNT(*) FROM notes WHERE category_id = n.category_id) DESC, n.category_id ASC", nativeQuery = true)
-     ArrayList<NoteData> orderedByPopularCategoryDesc();
+     @Query(value = "SELECT n.* FROM notes n JOIN categories c ON n.category_id = c.id WHERE user_id = :id ORDER BY (SELECT COUNT(*) FROM notes WHERE category_id = n.category_id) DESC, n.category_id ASC", nativeQuery = true)
+     ArrayList<NoteData> orderedByPopularCategoryDesc(@Param("id") Long id);
 
      @Query(value = "SELECT categories.name FROM categories JOIN notes ON notes.category_id = categories.id WHERE notes.id = :id", nativeQuery = true)
      String getNoteCategory(@Param("id") int id);
