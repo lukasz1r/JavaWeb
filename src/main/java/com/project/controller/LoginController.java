@@ -44,18 +44,16 @@ public class LoginController {
             @Valid @ModelAttribute("user") UserDto userDto,
             BindingResult result,
             Model model) {
-        UserData existingUser = userService.findUserByEmail(userDto.getEmail());
+            UserData existingUser = userService.findUserByEmail(userDto.getEmail());
 
-        if (existingUser != null)
+        if (existingUser != null) {
             result.rejectValue("email", null,
                     "Użytkownik istnieje");
-
-        if (result.hasErrors()) {
-            model.addAttribute("user", userDto);
             return "/registration";
+        } else if (existingUser == null) {
+            userService.saveUser(userDto);
         }
 
-        userService.saveUser(userDto);
         return "redirect:/registration?success";
     }
 }
