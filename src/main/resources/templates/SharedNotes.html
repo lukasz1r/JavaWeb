@@ -21,19 +21,23 @@
 </header>
 <main>
     <nav>
-        <ul th:if="${session.role eq 2 or session.role eq 1}">
+        <ul>
           <h2>Menu</h2>
           <form method="GET" th:action="@{/notes/}" th:if="${session.role eq 2 or session.role eq 1}">
           <button style="width: 150px" class="buttonStyle">Twoje wpisy</button>
           </form>
-          <button style="width: 150px" class="buttonStyle" onclick="location.href='/addNote'" type="button">Dodaj wpis</button>
+          <button th:if="${session.role eq 2 or session.role eq 1}" 
+               style="width: 150px" 
+               class="buttonStyle" 
+               onclick="location.href='/addNote'" 
+               type="button">Dodaj wpis</button>
           <button th:if="${session.role} eq 1"
                class="buttonStyle"
                onclick="location.href='/adminPanel/'"
                type="button"
                style="width: 150px">Zarządzanie<br> Użytkownikami
           </button>
-          <button th:if="${session.role eq 2 or session.role eq 1}"
+          <button
                class="buttonStyle"
                onclick="location.href='/home/'"
                type="button"
