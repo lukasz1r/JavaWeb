@@ -108,7 +108,7 @@ public class NoteController {
           model.addAttribute("categories", categories);
 
           Cookie sortCookie = new Cookie("sort", "tasc");
-          sortCookie.setMaxAge(3600);
+          sortCookie.setMaxAge(86400);
           response.addCookie(sortCookie);
           return "/userNotes";
      }
@@ -122,7 +122,7 @@ public class NoteController {
           model.addAttribute("categories", categories);
           
           Cookie sortCookie = new Cookie("sort", "tdesc");
-          sortCookie.setMaxAge(3600);
+          sortCookie.setMaxAge(86400);
           response.addCookie(sortCookie);
           return "/userNotes";
      }
@@ -136,7 +136,7 @@ public class NoteController {
           model.addAttribute("categories", categories);
 
           Cookie sortCookie = new Cookie("sort", "dasc");
-          sortCookie.setMaxAge(3600);
+          sortCookie.setMaxAge(86400);
           response.addCookie(sortCookie);
           return "/userNotes";
      }
@@ -150,7 +150,7 @@ public class NoteController {
           model.addAttribute("categories", categories);
 
           Cookie sortCookie = new Cookie("sort", "ddesc");
-          sortCookie.setMaxAge(3600);
+          sortCookie.setMaxAge(86400);
           response.addCookie(sortCookie);
           return "/userNotes";
      }
@@ -164,7 +164,7 @@ public class NoteController {
           model.addAttribute("categories", categories);
 
           Cookie sortCookie = new Cookie("sort", "cdesc");
-          sortCookie.setMaxAge(3600);
+          sortCookie.setMaxAge(86400);
           response.addCookie(sortCookie);
           return "/userNotes";
      }
@@ -178,7 +178,7 @@ public class NoteController {
           model.addAttribute("categories", categories);
 
           Cookie sortCookie = new Cookie("sort", "casc");
-          sortCookie.setMaxAge(3600);
+          sortCookie.setMaxAge(86400);
           response.addCookie(sortCookie);
           return "/userNotes";
      }
