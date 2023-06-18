@@ -79,10 +79,12 @@
                     <span th:text="${category.name}"></span>
                 </p>
                 <p th:text="${note.date}"></p>
-                <p style="float: left;" >Przypomnienie &nbsp;&nbsp;</p> <p  style="float: left;" class="remindWartosc" th:text="${note.remind_date}"></p>
-                <div style="clear: both;"> </div>
-                <div class="remindDate"  th:if="${note.remind_date == #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
-                    <img src="/dzwon.png" width="9%" alt="przypomnienie" >
+                <div th:if="${note.remind_date >= #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
+                    <p style="float: left;" >Przypomnienie &nbsp;&nbsp;</p> <p  style="float: left;" class="remindWartosc" th:text="${note.remind_date}"></p>
+                    <div style="clear: both;"> </div>
+                    <div class="remindDate"  th:if="${note.remind_date == #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
+                        <img src="/dzwon.png" width="9%" alt="przypomnienie" >
+                    </div>
                 </div>
 
                 <p style="text-align: left;" th:text="${note.note}"></p>
@@ -108,11 +110,12 @@
                     <span th:text="${category.name}"></span>
                 </p>
                 <p th:text="${note.date}"></p>
-
-                <p style="float: left;" >Przypomnienie &nbsp;&nbsp;</p> <p  style="float: left;" class="remindWartosc" th:text="${note.remind_date}"></p>
-                <div style="clear: both;"> </div>
-                <div class="remindDate"  th:if="${note.remind_date == #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
-                    <img src="/dzwon.png" width="6.5%" alt="przypomnienie" >
+                <div th:if="${note.remind_date >= #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
+                    <p style="float: left;">Przypomnienie &nbsp;&nbsp;</p> <p  style="float: left;" class="remindWartosc" th:text="${note.remind_date}"></p>
+                    <div style="clear: both;"> </div>
+                    <div class="remindDate"  th:if="${note.remind_date == #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
+                        <img src="/dzwon.png" width="6.5%" alt="przypomnienie" >
+                    </div>
                 </div>
 
 
