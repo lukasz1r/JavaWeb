@@ -35,6 +35,6 @@ public class AddCategoryController {
      public String addCategoryForm(@RequestParam("name") String name) {
           CategoryData category = new CategoryData((int) categoryRepo.count() + 1, name);
           categoryRepo.save(category);
-          return "redirect:/home/";
+          return "redirect:/notes/";
      }
 }

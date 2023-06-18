@@ -213,11 +213,6 @@ public class NoteController {
           return "/userNotes";
      }
 
-     @PostMapping("/category/{id}")
-     public String redirectToHome(@PathVariable("id") int id) {
-          return "redirect:/home/category/" + id;
-     }
-
      @PostMapping("/notesCategory/{id}")
      public String redirectToNotes(@PathVariable("id") int id) {
           return "redirect:/notes/category/" + id;
