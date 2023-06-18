@@ -446,11 +446,12 @@ aside {
 
 #loginContainer{
     display: flex;
-    justify-content: center;
     flex-direction: column;
     margin: 0 auto;
     align-items: center;
     width: 50%;
+    height: 72vh;
+
 
 }
 #loginContainer form{
