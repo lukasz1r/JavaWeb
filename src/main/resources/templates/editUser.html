@@ -7,7 +7,7 @@
     <link rel="icon" href="/icon.png" type="image/x-icon">
     <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
 </head>
-<body>  
+<body>
      <header>
           <div class="mainLogo"><a href="/home/"></a><img id="logo" src="/logo.png" alt="Strona glowna Notegoods"/></div>       
           <div class="mainHeader" style="padding: 8px; margin-bottom: 2px;"><h1>Edycja uzytkownika</h1></div>    
@@ -19,36 +19,49 @@
           </form>
           </div>
      </header>
-     <div class="navDiv">
-          <nav>
-               <ul>
-                    <h2>Menu</h2>
-                    <button th:if="${session.role eq 2 or session.role eq 1}"
-                              class="buttonStyle"
-                              onclick="location.href='/adminPanel/'"
-                              type="button"
-                              style="width: 150px">Powrót
-                    </button>
-               </ul>
-          </nav>
-     </div>
-     <h1 style="color: #063044;">Edytuj uzytkownika</h1>
-          <div class="editForm">
-               <form class="editUserForm" method="POST" th:action="@{/editedUser/{email}(email=${user.email})}">
-                    <label>Imię:</label><br>
-                    <input class="inputStyle" type="text" id="name" name="name" th:value="${user.name}" /><br>                   
-                    <label>Email:</label><br>
-                    <input class="inputStyle" type="text" id="emailCh" name="emailCh" th:value="${user.email}" /><br>
-                    <label>Rola:</label><br>
-                    <label><input type="radio" id="roleAdmin" name="role" value="ADMIN" th:checked="${role eq 'ROLE_ADMIN'}">ADMIN</label></br>
-                    <label><input type="radio" id="roleUser" name="role" value="USER" th:checked="${role eq 'ROLE_USER'}">USER</label></br>
-                    <label><input type="radio" id="roleFullUser" name="role" value="FULLUSER" th:checked="${role eq 'ROLE_FULLUSER'}">FULLUSER</label></br>  
-                    <button class="buttonStyle" type="submit">Zapisz</button>
-               </form>
+
+     <main>
+          <div class="navDiv">
+               <nav>
+                    <ul>
+                         <h2>Menu</h2>
+                         <button th:if="${session.role eq 2 or session.role eq 1}"
+                                   class="buttonStyle"
+                                   onclick="location.href='/adminPanel/'"
+                                   type="button"
+                                   style="width: 150px">Powrót
+                         </button>
+                    </ul>
+               </nav>
           </div>
+
+          <div class="editNote">
+                    <div id="dodajWpis">
+                         <h1 style="color: #063044;">Edytuj uzytkownika</h1>
+                         <form class="editUserForm" method="POST" th:action="@{/editedUser/{email}(email=${user.email})}">
+                              <label>Imię:</label><br>
+                              <input class="inputStyle" type="text" id="name" name="name" th:value="${user.name}" /><br>
+                              <label>Email:</label><br>
+                              <input class="inputStyle" type="text" id="emailCh" name="emailCh" th:value="${user.email}" /><br>
+                              <label>Rola:</label><br>
+                              <div id="DivinputOptionStyle">
+                                   <label><input class="inputOptionStyle" type="radio" id="roleAdmin" name="role" value="ADMIN" th:checked="${role eq 'ROLE_ADMIN'}">ADMIN</label></br>
+                                   <label><input class="inputOptionStyle" type="radio" id="roleUser" name="role" value="USER" th:checked="${role eq 'ROLE_USER'}">USER</label></br>
+                                   <label><input class="inputOptionStyle" type="radio" id="roleFullUser" name="role" value="FULLUSER" th:checked="${role eq 'ROLE_FULLUSER'}">FULLUSER</label></br>
+                              </div>
+                              <button class="buttonStyle" type="submit">Zapisz</button>
+                         </form>
+                    </div>
+          </div>
+
+          <div class="navDiv" th:if="${session.isLogged}"></div>
+
+     </main>
+
      <footer>
           <p><b>Autorzy: </b> Adam Grzeszczuk, Dawid Kobeszko, Łukasz Kaliszewicz, Zuzanna Kalinowska &#9935</p>
      </footer>
+
 </body>
 
 </html>

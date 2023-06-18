@@ -107,6 +107,7 @@ main{
     display: flex;
     padding:0% 2% 0% 2%;
     justify-content: center;
+    min-height: 72vh;
 }
 
 nav{
@@ -222,6 +223,7 @@ footer{
     width: 100%;
     display: flex;
     justify-content: center;
+    height: 6vh;
     
 }
 
@@ -233,6 +235,16 @@ footer{
     border-style: solid;
     border-color: #063044;
     border-width: 3px;
+}
+
+#DivinputOptionStyle{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.inputOptionStyle{
+
 }
 
 #wpisyHeader{
