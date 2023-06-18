@@ -59,7 +59,7 @@
                     <input class="inputStyle" id="remind_date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="remind_date" placeholder="Data przypomnienia" th:required="true"/></br>
                     <label for="category_id" style="display: none">category_id</label>
                     <select class="inputStyle" name="category_id" id="category_id" th:required="true">
-                        <option disabled selected>Kategoria</option>
+                        <option disabled>Kategoria</option>
                         <option th:each="category : ${categories}" 
                             th:text="${category.name}"
                             th:value="${category.id}">
