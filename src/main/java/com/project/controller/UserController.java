@@ -70,6 +70,10 @@ public class UserController {
                 request.getSession().setAttribute("role", 3);
         }
 
+        if (request.getSession().getAttribute("role").equals(3)) {
+            return "redirect:/sharedNotes/";
+        }
+
         return "redirect:/notes/";
     }
 

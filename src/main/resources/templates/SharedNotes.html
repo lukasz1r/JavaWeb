@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-    <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
+    <div class="mainLogo"><a href="/notes/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
     <div class="mainHeader"><h1>Udostępnione wpisy</h1></div>
     <div class="loginButton">
      <form method="POST" th:action="@{/logout}">
@@ -21,9 +21,9 @@
 </header>
 <main>
     <nav>
-        <ul>
+        <ul th:if="${session.role eq 2 or session.role eq 1}">
           <h2>Menu</h2>
-          <form method="GET" th:action="@{/notes/}" th:if="${session.role eq 2 or session.role eq 1}">
+          <form method="GET" th:action="@{/notes/}">
                <button style="width: 150px" class="buttonStyle">Twoje wpisy</button>
           </form>
           <button th:if="${session.role eq 2 or session.role eq 1}" 
