@@ -49,7 +49,7 @@
                 <div id="dodajWpis">
                     <h2>Dodaj kategorię</h2>
                     <form action="GET" th:action="@{/addCategoryForm/}">
-                        <input class="inputStyle" type="text" id="name" name="name" placeholder="Podaj nazwę kategorii" required><br>
+                        <input class="inputStyle" type="text" id="name" name="name" placeholder="Podaj nazwę kategorii" required maxlength="100"><br>
                         <input class="buttonStyle" type="submit" value="Zapisz">
                     </form>
                 </div>

@@ -46,7 +46,7 @@
                         <h3 th:text="${note.title}"></h3>
                         <ul>
                             <form method="GET" th:action="@{/share/{id}(id=${note.id})}">
-                                <input class="inputStyle" name="userEmail" placeholder="Wpisz email użytkownika"></input>
+                                <input class="inputStyle" name="userEmail" placeholder="Wpisz email użytkownika" maxlength="250" required></input>
                                 <button class="buttonStyle" style="width: 135px; padding: 20px; margin-top: 6px;">Udostępnij</button>
                             </form>
                         </ul>

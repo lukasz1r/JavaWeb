@@ -49,8 +49,8 @@
             <div id="dodajWpis">
                 <h2>Edytuj notatkę</h2>
                 <form class="editUserForm" method="POST" th:action="@{/editNote/{id}(id=${note.id})}">
-                    <input class="inputStyle" type="text" id="title" name="title" th:value="${note.title}" required><br>
-                    <textarea class="inputStyle" type="text" id="note" name="note" th:field="${note.note}" required></textarea><br>
+                    <input class="inputStyle" type="text" id="title" name="title" th:value="${note.title}" required maxlength="250"><br>
+                    <textarea class="inputStyle" type="text" id="note" name="note" th:field="${note.note}" required maxlength="1000"></textarea><br>
                     <input class="inputStyle" type="date" id="remindDate" name="remindDate" th:value="${note.remindDate}"/><br>
                     <select class="inputStyle" style="margin-left: 195px; margin-right: 195px;" name="category_id" id="category_id">
                         <option disabled>Kategoria</option>

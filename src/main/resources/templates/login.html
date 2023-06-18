@@ -24,9 +24,9 @@
         <h1>Logowanie</h1>
         <form method="POST" role="form" th:action="@{/login}">
                 <label for="username">Email</label>
-                <input class="inputStyle" id="username" name="username" placeholder="Wpisz adres Email" type="email">
+                <input class="inputStyle" id="username" name="username" placeholder="Wpisz adres Email" type="email" maxlength="250">
                 <label for="password">Hasło</label>
-                <input class="inputStyle" id="password" name="password" placeholder="Wpisz hasło" type="password">
+                <input class="inputStyle" id="password" name="password" placeholder="Wpisz hasło" type="password" maxlength="250">
                 <button class="buttonStyle" type="submit">Zaloguj</button>
         </form>
         <p>lub</p>
