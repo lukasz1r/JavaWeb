@@ -2,7 +2,11 @@ package com.project.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,15 +15,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project.data.RoleData;
 import com.project.data.UserData;
-import com.project.dto.UserDto;
-import com.project.service.UserService;
+import com.project.repository.RoleRepository;
+import com.project.repository.UserRepository;
 
 @Controller
 public class LoginController {
 
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @RequestMapping("/login")
     public String loginForm() {
@@ -28,7 +39,7 @@ public class LoginController {
 
     @GetMapping("/registration")
     public String registrationForm(Model model) {
-        UserDto user = new UserDto();
+        UserData user = new UserData();
         model.addAttribute("user", user);
         return "registration";
     }
@@ -41,17 +52,19 @@ public class LoginController {
 
     @PostMapping("/registration")
     public String registration(
-            @Valid @ModelAttribute("user") UserDto userDto,
+            @Valid @ModelAttribute("user") UserData userData,
             BindingResult result,
             Model model) {
-            UserData existingUser = userService.findUserByEmail(userDto.getEmail());
+            UserData existingUser = userRepository.findByEmail(userData.getEmail());
 
         if (existingUser != null) {
-            result.rejectValue("email", null,
-                    "Użytkownik istnieje");
+            result.rejectValue("email", null, "Użytkownik istnieje");
             return "/registration";
+            
         } else if (existingUser == null) {
-            userService.saveUser(userDto);
+            RoleData role = roleRepository.findByName("ROLE_USER");
+            UserData user = new UserData(userData.getName(), userData.getEmail(), passwordEncoder.encode(userData.getPassword()), List.of(role));
+            userRepository.save(user);
         }
 
         return "redirect:/registration?success";
