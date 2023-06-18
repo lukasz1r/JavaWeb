@@ -1,6 +1,6 @@
 package com.project.service;
 
-
+import com.project.data.RoleData;
 import com.project.data.UserData;
 import com.project.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.stream.Collectors;
+import org.springframework.security.core.userdetails.User;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -22,11 +23,16 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserData user = userRepository.findByEmail(email);
         if (user != null) {
-            return new org.springframework.security.core.userdetails.User(user.getEmail(), 
+            List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+            for (RoleData role : user.getRoles()) {
+                authorities.add(new SimpleGrantedAuthority(role.getName()));
+            }
+
+            return new User(
+                    user.getEmail(), 
                     user.getPassword(),
-                    user.getRoles().stream()
-                    .map((role) -> new SimpleGrantedAuthority(role.getName()))
-                    .collect(Collectors.toList()));
+                    authorities);
         } else {
             throw new UsernameNotFoundException("Niepoprawne dane");
         }

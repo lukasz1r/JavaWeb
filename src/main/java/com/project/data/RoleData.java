@@ -18,9 +18,10 @@ import java.util.List;
 public class RoleData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, name = "name")
     private String name;
 
     @ManyToMany(mappedBy = "roles")
