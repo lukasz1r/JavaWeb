@@ -114,7 +114,7 @@
                     <p style="float: left;">Przypomnienie &nbsp;&nbsp;</p> <p  style="float: left;" class="remindWartosc" th:text="${note.remind_date}"></p>
                     <div style="clear: both;"> </div>
                     <div class="remindDate"  th:if="${note.remind_date == #dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
-                        <img src="/dzwon.png" width="6.5%" alt="przypomnienie" >
+                        <img src="/dzwon.png" width="9%" alt="przypomnienie" >
                     </div>
                 </div>
 
@@ -159,7 +159,7 @@
             <p style="text-align: left;" th:text="${#strings.abbreviate(note.note,40) + '...'}"   ></p>
             <button class="buttonStyle"
                     style="padding: 15px; flex-direction: column; display: flex;"
-                    th:onclick="'window.location.href=\'' + @{/sharedNote/{id}(id=${note.id})} + '\''">Zobacz notatkę &#8594; </button>
+                    th:onclick="'window.location.href=\'' + @{/singleNote/{id}(id=${note.id})} + '\''">Zobacz notatkę &#8594; </button>
         </article>
     </div>
 

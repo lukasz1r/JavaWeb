@@ -278,4 +278,14 @@ public class NoteController {
 
           return "shareNote";
      }
+
+     @GetMapping("/singleNote/{id}")
+     public String singleNote(@PathVariable("id") int id,  Model model) {
+          NoteData note = noteRepo.findById(id);
+          String category = noteRepo.getNoteCategory(id);
+          model.addAttribute("category", category);
+          model.addAttribute("note", note);
+
+          return "singleNote";
+     }
 }
