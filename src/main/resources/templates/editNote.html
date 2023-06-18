@@ -59,7 +59,7 @@
                     <textarea class="inputStyle" type="text" id="note" name="note" th:field="${note.note}" required></textarea><br>
                     <input class="inputStyle" type="date" id="remindDate" name="remindDate" th:value="${note.remindDate}"/><br>
                     <select class="inputStyle" style="margin-left: 195px; margin-right: 195px;" name="category_id" id="category_id">
-                        <option disabled selected>Kategoria</option>
+                        <option disabled>Kategoria</option>
                         <option th:each="category : ${categories}"
                                 th:text="${category.name}"
                                 th:value="${category.id}"
