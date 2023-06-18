@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-    <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
+    <div class="mainLogo"><img id="logo" src="/logo.png" alt="Strona glowna Notegoods"/></div>
     <div class="mainHeader"><h1>Udostępnione wpisy</h1></div>
     <div class="loginButton">
      <form method="POST" th:action="@{/logout}">
@@ -21,10 +21,10 @@
 </header>
 <main>
     <nav>
-        <ul>
+        <ul th:if="${session.role eq 2 or session.role eq 1}">
           <h2>Menu</h2>
-          <form method="GET" th:action="@{/notes/}" th:if="${session.role eq 2 or session.role eq 1}">
-          <button style="width: 150px" class="buttonStyle">Twoje wpisy</button>
+          <form method="GET" th:action="@{/notes/}">
+               <button style="width: 150px" class="buttonStyle">Twoje wpisy</button>
           </form>
           <button th:if="${session.role eq 2 or session.role eq 1}" 
                style="width: 150px" 
@@ -37,18 +37,13 @@
                type="button"
                style="width: 150px">Zarządzanie<br> Użytkownikami
           </button>
-          <button
-               class="buttonStyle"
-               onclick="location.href='/home/'"
-               type="button"
-               style="width: 150px">Strona<br> Główna
-          </button>
         </ul>
     </nav>
     </div>
     <div class="wpisy">
-          <div id="wpisyHeader">
-               <h2 style="margin-right: 100px;">Udostępnione wpisy</h2>
+          <div id="wpisyHeader" style="flex-direction: column;">
+               <h2 style="margin-right: 100px;">Udostępnione wpisy</h2><br>
+               <p style="font-size: 25px; margin-left: auto; margin-right: auto;" th:if="${sharedNotes.isEmpty()}">(brak)</p>
           </div>
           <article th:each="note : ${sharedNotes}">
                <h3 th:text="${note.title}"></h3>

@@ -44,7 +44,7 @@ public class SpringSecurity {
                         .defaultSuccessUrl("/logged/")
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll()
+                .logout((logout) -> logout
                 .logoutUrl("/logout")
                 .invalidateHttpSession(true))
                 .exceptionHandling().accessDeniedPage("/access-denied");

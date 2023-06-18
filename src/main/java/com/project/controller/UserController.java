@@ -69,7 +69,12 @@ public class UserController {
                 .anyMatch(authority -> authority.getAuthority().equals("ROLE_USER"))) {
                 request.getSession().setAttribute("role", 3);
         }
-        return "redirect:/home/";
+
+        if (request.getSession().getAttribute("role").equals(3)) {
+            return "redirect:/sharedNotes/";
+        }
+
+        return "redirect:/notes/";
     }
 
     @GetMapping("home/")
@@ -78,7 +83,7 @@ public class UserController {
         model.addAttribute("notes", notes);
         ArrayList<CategoryData> categories = categoryRepo.findAll();
         model.addAttribute("categories", categories);
-        return "index";
+        return "userNotes";
     }
 
     @GetMapping("adminPanel/")

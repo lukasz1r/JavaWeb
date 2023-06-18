@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
+        <div class="mainLogo"><a href="/notes/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
         <div class="mainHeader"><h1 style="font-weight: bold;">Witaj</h1></div> 
         <div class="loginButton">
         </div>
@@ -20,11 +20,11 @@
             <p class="errorMsg" th:if="${param.success}">Zarejestrowano</p>
             <h1>Rejestracja</h1>
             <label for="name">Imię</label>
-            <input class="inputStyle" id="name" name="name" type="text" placeholder="Twoje imię" required>
+            <input class="inputStyle" id="name" name="name" type="text" placeholder="Twoje imię" required maxlength="250">
             <label for="email">Email</label>
-            <input class="inputStyle" id="email" name="email" type="email" placeholder="Twój email" required>
+            <input class="inputStyle" id="email" name="email" type="email" placeholder="Twój email" required maxlength="250">
             <label for="password">Hasło</label>
-            <input class="inputStyle" id="password" name="password" type="password" placeholder="Twoje hasło" required>
+            <input class="inputStyle" id="password" name="password" type="password" placeholder="Twoje hasło" required maxlength="250">
             <button class="buttonStyle" type="submit">Zarejestruj</button>
         </form>
         <p>lub</p>

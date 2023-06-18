@@ -12,7 +12,7 @@
 <body>
 
 <header>
-    <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
+    <div class="mainLogo"><a href="/notes/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
     <div class="mainHeader"><h1>Twoje wpisy</h1></div>
     <div class="loginButton">
     <form method="POST" th:action="@{/logout}">
@@ -37,12 +37,6 @@
                     type="button"
                     style="width: 150px">Zarządzanie użytkownikami
             </button>
-            <button th:if="${session.role eq 2 or session.role eq 1}"
-                    class="buttonStyle"
-                    onclick="location.href='/home/'"
-                    type="button"
-                    style="width: 150px">Strona główna
-            </button>
         </ul>
     </nav>
 
@@ -50,6 +44,8 @@
         <div id="wpisyHeader">
              <h2 style="margin-right: 100px;">Twoje wpisy</h2>
              <div>
+                <button class="buttonStyle" onclick="location.href='/popular-asc'" type="button">⭐️⭧</button>
+                <button class="buttonStyle" onclick="location.href='/popular-desc'" type="button">⭐️⭨</button>
                 <button class="buttonStyle" onclick="location.href='/title-asc'" type="button">💬⭧</button>
                 <button class="buttonStyle" onclick="location.href='/title-desc'" type="button">💬⭨</button>
                 <button class="buttonStyle" onclick="location.href='/category-asc'" type="button">🏷️⭧</button>
@@ -89,6 +85,7 @@
 
                 <p style="text-align: left;" th:text="${note.note}"></p>
           </article>
+          <p style="font-size: 25px; margin-left: auto; margin-right: auto; text-align: center;" th:if="${notesCategory.isEmpty()}">(brak)</p>
         </div>
         <div th:unless="${notesCategory}">
             <article th:each="note : ${notes}">
@@ -117,11 +114,9 @@
                         <img src="/dzwon.png" width="9%" alt="przypomnienie" >
                     </div>
                 </div>
-
-
-
                 <p style="text-align: left;" th:text="${note.note}"></p>
           </article>
+          <p style="font-size: 25px; margin-left: auto; margin-right: auto; text-align: center;" th:if="${notes.isEmpty()}">(brak)</p>
         </div>
      </div>
 

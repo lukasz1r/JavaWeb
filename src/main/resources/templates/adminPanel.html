@@ -9,7 +9,7 @@
 
 </head>
 <header>
-    <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
+    <div class="mainLogo"><a href="/notes/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
     <div class="mainHeader"><h1>Użytkownicy</h1></div>
     <div class="loginButton">
     <form method="POST" th:action="@{/logout}">
@@ -27,7 +27,7 @@
                     <h2>Menu</h2>
                     <button th:if="${session.role eq 1}"
                             class="buttonStyle"
-                            onclick="location.href='/home/'"
+                            onclick="location.href='/notes/'"
                             type="button"
                             style="width: 150px">Strona<br> główna
                     </button>

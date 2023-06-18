@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-    <div class="mainLogo"><a href="/home/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
+    <div class="mainLogo"><a href="/notes/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
         <div class="mainHeader"><h1>Udostępniona Notatka</h1></div>
         <div class="loginButton">
         <form method="POST" th:action="@{/logout}">
@@ -33,12 +33,6 @@
                     type="button"
                     style="width: 150px">Zarządzanie użytkownikami
             </button>
-            <button th:if="${session.role eq 2 or session.role eq 1}"
-                    class="buttonStyle"
-                    onclick="location.href='/home/'"
-                    type="button"
-                    style="width: 150px">Strona główna
-            </button>
         </ul>
     </nav>
 
@@ -52,7 +46,7 @@
                         <h3 th:text="${note.title}"></h3>
                         <ul>
                             <form method="GET" th:action="@{/share/{id}(id=${note.id})}">
-                                <input class="inputStyle" name="userEmail" placeholder="Wpisz email użytkownika"></input>
+                                <input class="inputStyle" name="userEmail" placeholder="Wpisz email użytkownika" maxlength="250" required></input>
                                 <button class="buttonStyle" style="width: 135px; padding: 20px; margin-top: 6px;">Udostępnij</button>
                             </form>
                         </ul>

@@ -58,6 +58,10 @@ public class NoteController {
                          return "redirect:/category-asc";
                     } else if (cookie.getValue().equals("cdesc")) {
                          return "redirect:/category-desc";
+                    } else if (cookie.getValue().equals("pasc")) {
+                         return "redirect:/popular-asc";
+                    } else if (cookie.getValue().equals("pdesc")) {
+                         return "redirect:/popular-desc";
                     }
                }
           }
@@ -184,53 +188,29 @@ public class NoteController {
      }
 
      @GetMapping("/popular-asc")
-     public String sortByPopularAsc(Model model) {
-          ArrayList<NoteData> notes = noteRepo.orderedByPopularCategoryAsc();
+     public String sortByPopularAsc(Model model, HttpServletRequest request, HttpServletResponse response) {
+          ArrayList<NoteData> notes = noteRepo.orderedByPopularCategoryAsc((long) request.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
-          return "/index";
-     }
 
-     @GetMapping("/dat-desc")
-     public String sortByDateDesc(Model model) {
-          ArrayList<NoteData> notes = noteRepo.orderedByDatDesc();
-          model.addAttribute("notes", notes);
-          ArrayList<CategoryData> categories = categoryRepo.findAll();
-          model.addAttribute("categories", categories);
-          return "/index";
-     }
-
-     @GetMapping("/dat-asc")
-     public String sortByDateAsc(Model model) {
-          ArrayList<NoteData> notes = noteRepo.orderedByDatAsc();
-          model.addAttribute("notes", notes);
-          ArrayList<CategoryData> categories = categoryRepo.findAll();
-          model.addAttribute("categories", categories);
-          return "/index";
+          Cookie sortCookie = new Cookie("sort", "pasc");
+          sortCookie.setMaxAge(86400);
+          response.addCookie(sortCookie);
+          return "/userNotes";
      }
 
      @GetMapping("/popular-desc")
-     public String sortByPopularDesc(Model model) {
-          ArrayList<NoteData> notes = noteRepo.orderedByPopularCategoryDesc();
+     public String sortByPopularDesc(Model model, HttpServletRequest request, HttpServletResponse response) {
+          ArrayList<NoteData> notes = noteRepo.orderedByPopularCategoryDesc((long) request.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
-          return "/index";
-     }
 
-     @PostMapping("/category/{id}")
-     public String redirectToHome(@PathVariable("id") int id) {
-          return "redirect:/home/category/" + id;
-     }
-
-     @GetMapping("/home/category/{id}")
-     public String showNotesByCategory(@PathVariable("id") int id, Model model) {
-          ArrayList<NoteData> notes = noteRepo.findAllByCategory(id);
-          model.addAttribute("notesCategory", notes);
-          ArrayList<CategoryData> categories = categoryRepo.findAll();
-          model.addAttribute("categories", categories);
-          return "/index";
+          Cookie sortCookie = new Cookie("sort", "pdesc");
+          sortCookie.setMaxAge(86400);
+          response.addCookie(sortCookie);
+          return "/userNotes";
      }
 
      @PostMapping("/notesCategory/{id}")

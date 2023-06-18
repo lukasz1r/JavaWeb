@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <div class="mainLogo"><a href="/home/"></a><img id="logo" src="/logo.png" alt="Strona glowna Notegoods"/></div>
+        <div class="mainLogo"><a href="/notes/"></a><img id="logo" src="/logo.png" alt="Strona glowna Notegoods"/></div>
         <div class="mainHeader"><h1>Dodawanie kategorii</h1></div>
         <div class="loginButton">
         <form method="POST" th:action="@{/logout}">
@@ -42,12 +42,6 @@
                             type="button"
                             style="width: 150px">Zarządzanie użytkownikami
                     </button>
-                    <button th:if="${session.role eq 2 or session.role eq 1}"
-                            class="buttonStyle"
-                            onclick="location.href='/home/'"
-                            type="button"
-                            style="width: 150px">Strona główna
-                    </button>
                 </ul>
             </nav>
         </div>
@@ -55,7 +49,7 @@
                 <div id="dodajWpis">
                     <h2>Dodaj kategorię</h2>
                     <form action="GET" th:action="@{/addCategoryForm/}">
-                        <input class="inputStyle" type="text" id="name" name="name" placeholder="Podaj nazwę kategorii" required><br>
+                        <input class="inputStyle" type="text" id="name" name="name" placeholder="Podaj nazwę kategorii" required maxlength="100"><br>
                         <input class="buttonStyle" type="submit" value="Zapisz">
                     </form>
                 </div>
