@@ -34,10 +34,10 @@ public class AddNoteController {
      }
 
      @GetMapping("/addNoteForm")
-     public String dodajWpisDoBazy(@RequestParam("title") String title, @RequestParam("content") String note, @RequestParam("category_id") int category_id, @RequestParam("remind_date") String remind_date, HttpServletRequest session) {
+     public String dodajWpisDoBazy(@RequestParam("title") String title, @RequestParam("content") String note, @RequestParam("category_id") int category_id, @RequestParam("remind_date") String remind_date, HttpServletRequest request) {
           noteRepo.save(new NoteData(
                          noteRepo.count() + 1, 
-                         (Long) session.getSession().getAttribute("id"), 
+                         (Long) request.getSession().getAttribute("id"), 
                          title, 
                          note, 
                          (new SimpleDateFormat("yyyy-MM-dd")).format(new Date()), 

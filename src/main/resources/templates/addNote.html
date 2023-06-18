@@ -32,11 +32,6 @@
                     <form method="GET" th:action="@{/sharedNotes/}">
                         <button style="width: 150px" class="buttonStyle">Udostępnione notatki</button>
                     </form>
-                    <button th:if="${session.role eq 2 or session.role eq 1}" 
-                            style="width: 150px" class="buttonStyle" 
-                            onclick="location.href='/addNote'" 
-                            type="button">Dodaj wpis
-                    </button>
                     <button th:if="${session.role eq 1}"
                             class="buttonStyle"
                             onclick="location.href='/adminPanel/'"

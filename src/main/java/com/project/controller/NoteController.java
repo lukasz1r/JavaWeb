@@ -19,10 +19,11 @@ import com.project.repository.UserRepository;
 
 import org.springframework.security.core.Authentication;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/")
@@ -41,7 +42,26 @@ public class NoteController {
      SharedRepository sharedRepo;
 
      @GetMapping("notes/")
-     public String getAllUserNotes(Authentication authentication, Model model) {
+     public String getAllUserNotes(Authentication authentication, Model model, HttpServletRequest request) {
+          Cookie[] cookies = request.getCookies();
+          if (cookies != null) {
+               for (Cookie cookie : cookies) {
+                    if (cookie.getValue().equals("tasc")) {
+                         return "redirect:/title-asc";
+                    } else if (cookie.getValue().equals("tdesc")) {
+                         return "redirect:/title-desc";
+                    } else if (cookie.getValue().equals("dasc")) {
+                         return "redirect:/date-asc";
+                    } else if (cookie.getValue().equals("ddesc")) {
+                         return "redirect:/date-desc";
+                    } else if (cookie.getValue().equals("casc")) {
+                         return "redirect:/category-asc";
+                    } else if (cookie.getValue().equals("cdesc")) {
+                         return "redirect:/category-desc";
+                    }
+               }
+          }
+
           UserData user = userRepo.findByEmail(authentication.getName());
           ArrayList<NoteData> notes = noteRepo.findAllUsers(user.getId());
           model.addAttribute("notes", notes);
@@ -49,6 +69,7 @@ public class NoteController {
           model.addAttribute("categories", categories);
           ArrayList<NoteData> reminded = noteRepo.getRemindNotes();
           model.addAttribute("reminded", reminded);
+          
           return "userNotes";
      }
 
@@ -79,62 +100,86 @@ public class NoteController {
      }
 
      @GetMapping("/title-asc")
-     public String sortNotesByTitleAsc(Model model, HttpServletRequest session)
+     public String sortNotesByTitleAsc(Model model, HttpServletRequest request, HttpServletResponse response)
      {
-          ArrayList<NoteData> notes = noteRepo.orderedByTitleAsc((long) session.getSession().getAttribute("id"));
+          ArrayList<NoteData> notes = noteRepo.orderedByTitleAsc((long) request.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
+
+          Cookie sortCookie = new Cookie("sort", "tasc");
+          sortCookie.setMaxAge(3600);
+          response.addCookie(sortCookie);
           return "/userNotes";
      }
 
      @GetMapping("/title-desc")
-     public String sortNotesByTitleDesc(Model model, HttpServletRequest session)
+     public String sortNotesByTitleDesc(Model model, HttpServletRequest request, HttpServletResponse response)
      {
-          ArrayList<NoteData> notes = noteRepo.orderedByTitleDesc((long) session.getSession().getAttribute("id"));
+          ArrayList<NoteData> notes = noteRepo.orderedByTitleDesc((long) request.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
+          
+          Cookie sortCookie = new Cookie("sort", "tdesc");
+          sortCookie.setMaxAge(3600);
+          response.addCookie(sortCookie);
           return "/userNotes";
      }
 
      @GetMapping("/date-asc")
-     public String sortNotesByDateAsc(Model model, HttpServletRequest session)
+     public String sortNotesByDateAsc(Model model, HttpServletRequest request, HttpServletResponse response)
      {
-          ArrayList<NoteData> notes = noteRepo.orderedByDateAsc((long) session.getSession().getAttribute("id"));
+          ArrayList<NoteData> notes = noteRepo.orderedByDateAsc((long) request.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
+
+          Cookie sortCookie = new Cookie("sort", "dasc");
+          sortCookie.setMaxAge(3600);
+          response.addCookie(sortCookie);
           return "/userNotes";
      }
 
      @GetMapping("/date-desc")
-     public String sortNotesByDateDesc(Model model, HttpServletRequest session)
+     public String sortNotesByDateDesc(Model model, HttpServletRequest request, HttpServletResponse response)
      {
-          ArrayList<NoteData> notes = noteRepo.orderedByDateDesc((long) session.getSession().getAttribute("id"));
+          ArrayList<NoteData> notes = noteRepo.orderedByDateDesc((long) request.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
+
+          Cookie sortCookie = new Cookie("sort", "ddesc");
+          sortCookie.setMaxAge(3600);
+          response.addCookie(sortCookie);
           return "/userNotes";
      }
 
      @GetMapping("/category-desc")
-     public String sortNotesByCategoryDesc(Model model, HttpServletRequest session)
+     public String sortNotesByCategoryDesc(Model model, HttpServletRequest request, HttpServletResponse response)
      {
-          ArrayList<NoteData> notes = noteRepo.orderedByNameDesc((long) session.getSession().getAttribute("id"));
+          ArrayList<NoteData> notes = noteRepo.orderedByNameDesc((long) request.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
+
+          Cookie sortCookie = new Cookie("sort", "cdesc");
+          sortCookie.setMaxAge(3600);
+          response.addCookie(sortCookie);
           return "/userNotes";
      }
 
      @GetMapping("/category-asc")
-     public String sortNotesByCategoryAsc(Model model, HttpServletRequest session)
+     public String sortNotesByCategoryAsc(Model model, HttpServletRequest request, HttpServletResponse response)
      {
-          ArrayList<NoteData> notes = noteRepo.orderedByNameAsc((long) session.getSession().getAttribute("id"));
+          ArrayList<NoteData> notes = noteRepo.orderedByNameAsc((long) request.getSession().getAttribute("id"));
           model.addAttribute("notes", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
+
+          Cookie sortCookie = new Cookie("sort", "casc");
+          sortCookie.setMaxAge(3600);
+          response.addCookie(sortCookie);
           return "/userNotes";
      }
 
@@ -194,8 +239,8 @@ public class NoteController {
      }
 
      @GetMapping("/notes/category/{id}")
-     public String showNotesByCategoryUser(@PathVariable("id") int id, Model model, HttpServletRequest session) {
-          ArrayList<NoteData> notes = noteRepo.findAllByCategory(id, (long) session.getSession().getAttribute("id"));
+     public String showNotesByCategoryUser(@PathVariable("id") int id, Model model, HttpServletRequest request) {
+          ArrayList<NoteData> notes = noteRepo.findAllByCategory(id, (long) request.getSession().getAttribute("id"));
           model.addAttribute("notesCategory", notes);
           ArrayList<CategoryData> categories = categoryRepo.findAll();
           model.addAttribute("categories", categories);
@@ -224,31 +269,13 @@ public class NoteController {
           return "redirect:/sharedNotes/";
      }
 
-     @GetMapping("/shareNoteByKey/{key}")
-     public String shareNote(@PathVariable("key") String shareKey , @RequestParam("id") int id, Model model) {
-          // Przetwarzanie logiki dla udostępnienia notatki
-          // Na przykład, pobieranie notatki o określonym ID i przekazanie jej do widoku
-
-          NoteData note = noteRepo.findById(id);
-          model.addAttribute("note", note);
-          model.addAttribute("shareKey", shareKey);
-
-          return "shareNote"; // Zwraca nazwę widoku, który będzie wyświetlany dla udostępnionej notatki
-     }
-
      @GetMapping("/sharedNote/{id}")
      public String shareNote(@PathVariable("id") int id,  Model model) {
-          // Przetwarzanie logiki dla udostępnienia notatki
-          // Na przykład, pobieranie notatki o określonym ID i przekazanie jej do widoku
-
           NoteData note = noteRepo.findById(id);
           String category = noteRepo.getNoteCategory(id);
           model.addAttribute("category", category);
           model.addAttribute("note", note);
 
-          String shareKey = UUID.randomUUID().toString();
-          model.addAttribute("shareKey", shareKey);
-
-          return "shareNote"; // Zwraca nazwę widoku, który będzie wyświetlany dla udostępnionej notatki
+          return "shareNote";
      }
 }
