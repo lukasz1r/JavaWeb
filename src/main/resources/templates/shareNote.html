@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Udostępnij wpis</title>
+  <title>Udostępniony wpis</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="icon" href="/icon.png" type="image/x-icon">
   <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
@@ -10,9 +10,9 @@
 <body>
 <header>
     <div class="mainLogo"><a href="/notes/"> <img id="logo" src="/logo.png"  alt="Strona glowna Notegoods"/></a></div>
-        <div class="mainHeader"><h1>Udostępnij wpis</h1></div>
+        <div class="mainHeader"><h1>Udostępniony wpis</h1></div>
         <div class="loginButton">
-        <form method="POST" th:action="@{/logout}">
+        <form method="POST" th:action="@{/logout}" th:if="${session.isLogged}">
             <p style="color: #6d6b64; padding: 0vw 0.6vw 0vw 0vw;" th:text="'Witaj '"> </p>
             <h2 id="welcomeUsername" style="padding: 0px" th:text="${session.sessionUser}"></h2>
             <button class="buttonStyle" type="submit">Wyloguj się</button>
@@ -21,11 +21,11 @@
     </header>
 <main>
     <nav>
-        <ul>
+        <ul th:if="${session.isLogged}">
             <h2>Menu</h2>
             <button style="width: 150px" class="buttonStyle" onclick="location.href='/addNote'" type="button">Dodaj wpis</button>
             <form method="GET" th:action="@{/sharedNotes/}">
-                <button style="width: 150px" class="buttonStyle">Udostępnione wpisy</button>
+                <button style="width: 150px" class="buttonStyle">Udostępniony wpisy</button>
             </form>
             <button th:if="${session.role} eq 1"
                     class="buttonStyle"
@@ -38,7 +38,7 @@
 
         <div class="wpisy">
             <div id="wpisyHeader">
-            <h2 style="margin-right: 100px;">Udostępnij wpis</h2>
+            <h2 style="margin-right: 100px;">Udostępniony wpis</h2>
             </div>
             <div class="shareNote">
                 <article>
