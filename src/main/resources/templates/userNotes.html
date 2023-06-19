@@ -44,6 +44,15 @@
         <div id="wpisyHeader">
              <h2 style="margin-right: 100px;">Twoje wpisy</h2>
              <div>
+                <form action="/filter-notes" method="GET">
+                    <label for="startDate">Data początkowa:</label>
+                    <input class="inputStyle" style="font-family: Century Gothic, serif;" type="date" id="startDate" name="startDate" required><br>
+                
+                    <label for="endDate">Data końcowa:</label>
+                    <input class="inputStyle" style="font-family: Century Gothic, serif;" type="date" id="endDate" name="endDate" required>
+                
+                    <button class="buttonStyle" type="submit">Filtruj</button>
+                </form>
                 <button class="buttonStyle" onclick="location.href='/popular-asc'" type="button">⭐️⭧</button>
                 <button class="buttonStyle" onclick="location.href='/popular-desc'" type="button">⭐️⭨</button>
                 <button class="buttonStyle" onclick="location.href='/title-asc'" type="button">💬⭧</button>

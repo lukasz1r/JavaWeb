@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,10 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/")
@@ -268,4 +272,17 @@ public class NoteController {
 
           return "singleNote";
      }
+
+     @GetMapping("/filter-notes")
+     public String filterNotesByDateRange(
+               @RequestParam("startDate") String startDate,
+               @RequestParam("endDate") String endDate,
+               HttpServletRequest request,
+               Model model) {
+          ArrayList<NoteData> notes = noteRepo.filterByDate((long) request.getSession().getAttribute("id"), startDate, endDate);
+          model.addAttribute("notes", notes);
+          ArrayList<CategoryData> categories = categoryRepo.findAll();
+          model.addAttribute("categories", categories);
+          return "userNotes";
+    }
 }
